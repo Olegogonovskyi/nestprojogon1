@@ -1,7 +1,9 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { EntityEnum } from '../enums/entity.enum';
 import { IdCreateUpdateEntity } from './models/IdCreateUpdateEntity';
 import { RoleEnum } from '../enums/role.enum';
+import { PostsEntity } from './post.entity';
+import { RefreshTokenEntity } from './refreshToken.entity';
 
 @Entity(EntityEnum.USERS)
 export class UsersEntity extends IdCreateUpdateEntity {
@@ -17,7 +19,7 @@ export class UsersEntity extends IdCreateUpdateEntity {
   @Column('int')
   age: number;
 
-  @Column('text') //посада
+  @Column('text', { nullable: true }) //посада
   position: string;
 
   @Column({ type: 'enum', enum: RoleEnum, default: RoleEnum.BUYER })
@@ -25,4 +27,10 @@ export class UsersEntity extends IdCreateUpdateEntity {
 
   @Column('text', { nullable: true })
   image: string;
+
+  @OneToMany(() => PostsEntity, (entity) => entity.user)
+  posts?: PostsEntity[];
+
+  @OneToMany(() => RefreshTokenEntity, (entity) => entity.user)
+  refreshTokens?: RefreshTokenEntity[];
 }

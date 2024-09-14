@@ -10,7 +10,7 @@ export class ExchangeRateEntity extends IdCreateUpdateEntity {
   currensy: PriseEnum;
 
   @Column('int')
-  age: number;
+  rate: number;
 
   @Column('date')
   date: Date;

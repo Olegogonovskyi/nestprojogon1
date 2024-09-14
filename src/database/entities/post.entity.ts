@@ -1,8 +1,17 @@
-import { Entity, Column } from 'typeorm';
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { IdCreateUpdateEntity } from './models/IdCreateUpdateEntity';
 
 import { EntityEnum } from '../enums/entity.enum';
 import { PriseEnum } from '../enums/prise.enum';
+import { UsersEntity } from './users.entity';
+import { TagEntity } from './tag.entity';
 
 @Entity(EntityEnum.POSTS)
 export class PostsEntity extends IdCreateUpdateEntity {
@@ -23,4 +32,14 @@ export class PostsEntity extends IdCreateUpdateEntity {
 
   @Column('boolean', { default: false })
   isActive: boolean;
+
+  @Column('text')
+  userID: string;
+  @ManyToOne(() => UsersEntity, (entity) => entity.posts)
+  @JoinColumn({ name: 'userID' })
+  user?: UsersEntity;
+
+  @ManyToMany(() => TagEntity, (entity) => entity.posts)
+  @JoinTable()
+  tags?: TagEntity[];
 }

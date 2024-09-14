@@ -5,4 +5,5 @@ export enum EntityEnum {
   REFRESH_TOKEN = 'refreshToken',
   PRISE = 'prise',
   USERS = 'users',
+  TAG = 'tag',
 }
