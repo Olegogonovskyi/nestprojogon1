@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  oleg-proj-postgres:
+    image: postgres:16.1
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    environment:
+      POSTGRES_USER: '${POSTGRES_USER:-user}'
+      POSTGRES_PASSWORD: '${POSTGRES_PASSWORD:-password}'
+      POSTGRES_DB: '${POSTGRES_DB:-oleg-proj}'
+    volumes:
+      - ./oleg-proj-api-db:/var/lib/postgresql/oleg-proj
+
+  oleg-proj-redis:
+    image: redis:7.2.3
+    ports:
+      - '${REDIS_PORT:-6380}:6379'
+    command: >
+      --requirepass '${REDIS_PASSWORD:-redispass}'
+    restart: unless-stopped
+
+  oleg-proj-s3:
+    image: quay.io/minio/minio:latest
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    ports:
+      - "8000:9000"
+      - "8001:9001"
+    volumes:
+      - ./oleg-proj-api-s3-data:/usr/src/app/s3
+    environment:
+      - MINIO_ROOT_USER=user            # AWS_S3_ACCESS_KEY
+      - MINIO_ROOT_PASSWORD=password    # AWS_S3_SECRET_KEY
+
+volumes:
+  oleg-proj-api-db:
+  oleg-proj-api-s3:
