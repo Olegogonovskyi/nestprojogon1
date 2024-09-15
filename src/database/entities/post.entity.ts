@@ -27,6 +27,9 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @Column('text', { nullable: true })
   image: string;
 
+  @Column('int', { default: 1 })
+  priseValue: number;
+
   @Column({ type: 'enum', enum: PriseEnum, default: PriseEnum.UAN })
   prise: PriseEnum;
 

@@ -15,7 +15,7 @@ services:
   oleg-proj-redis:
     image: redis:7.2.3
     ports:
-      - '${REDIS_PORT:-6380}:6379'
+      - '${REDIS_PORT:-6379}:6379'
     command: >
       --requirepass '${REDIS_PASSWORD:-redispass}'
     restart: unless-stopped

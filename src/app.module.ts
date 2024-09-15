@@ -6,6 +6,7 @@ import { PostgresModule } from './modules/postgres/postgresModule';
 import { RedisModule } from './modules/redis/redis.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { RepositoryModule } from './modules/repository/repository.module';
+import { PostsModule } from './modules/posts/posts.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RepositoryModule } from './modules/repository/repository.module';
     PostgresModule,
     RedisModule,
     RepositoryModule,
+    PostsModule,
   ],
 })
 export class AppModule {}
