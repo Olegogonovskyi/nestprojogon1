@@ -49,4 +49,8 @@ export class PostsService {
     this.postRepository.merge(post, updatePostDto);
     return await this.postRepository.save(post);
   }
+
+  public async deletePost(postId: string): Promise<void> {
+    await this.postRepository.delete({ id: postId });
+  }
 }
