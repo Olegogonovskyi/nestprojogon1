@@ -7,6 +7,7 @@ import { TagEntity } from '../../database/entities/tag.entity';
 import { In } from 'typeorm';
 import { PostsEntity } from '../../database/entities/post.entity';
 import { UpdatePostDto } from './dto/req/updatePostDto';
+import { PostListRequeryDto } from './dto/req/PostListReqQueryDto';
 
 @Injectable()
 export class PostsService {
@@ -39,6 +40,16 @@ export class PostsService {
         tags,
       }),
     );
+  }
+
+  public async getById(postId: string): Promise<PostsEntity> {
+    return await this.postRepository.getById(postId);
+  }
+
+  public async getList(
+    query: PostListRequeryDto,
+  ): Promise<[PostsEntity[], number]> {
+    return await this.postRepository.getList(query);
   }
 
   public async updatePost(

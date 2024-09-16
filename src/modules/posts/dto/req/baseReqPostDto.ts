@@ -49,14 +49,13 @@ export class BaseReqPostDto {
 
   @ApiProperty({ type: [String], maxLength: 30, isArray: true })
   @IsArray()
-  @IsOptional()
   @IsString({ each: true })
   @Length(3, 30, { each: true })
   @ArrayMaxSize(5)
   @Transform(TransformHelper.trimArray)
   @Transform(TransformHelper.uniqueItems)
   @Transform(TransformHelper.toLowerCaseArray)
-  tags?: string[];
+  tags: string[];
 
   @IsInt()
   @Min(1)

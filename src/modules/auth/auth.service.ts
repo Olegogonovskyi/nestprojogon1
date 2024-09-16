@@ -46,7 +46,7 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new Error('auth.service 53');
+      throw new Error('There are not user with this creentials');
     }
 
     const isPaswordValid = bcrypt.compare(loginAuthDto.password, user.password);
