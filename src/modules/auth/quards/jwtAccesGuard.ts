@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 
 import { UserRepository } from '../../repository/services/users.repository';
@@ -27,18 +32,18 @@ export class JwtAccessGuard implements CanActivate {
 
     const authorizationHeader = request.get('Authorization');
     if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
-      throw new Error('Invalid Authorization header format');
+      throw new UnauthorizedException('Invalid Authorization header format');
     }
     const accessToken = request.get('Authorization')?.split('Bearer ')[1];
     if (!accessToken) {
-      throw new Error('jstAccesGuard 34');
+      throw new UnauthorizedException('Token is lost');
     }
     const payload = await this.tokenService.verifyToken(
       accessToken,
       TokenTypeEnam.ACCESS,
     );
     if (!payload) {
-      throw new Error('jstAccesGuard 41');
+      throw new UnauthorizedException('Invalid token');
     }
 
     const isAccessTokenExist = await this.authCacheService.isAccessTokenExist(
@@ -47,14 +52,14 @@ export class JwtAccessGuard implements CanActivate {
       accessToken,
     );
     if (!isAccessTokenExist) {
-      throw new Error('jstAccesGuard 50');
+      throw new UnauthorizedException('Token is missing');
     }
 
     const user = await this.userRepository.findOneBy({
       id: payload.userId,
     });
     if (!user) {
-      throw new Error('jstAccesGuard 57');
+      throw new UnauthorizedException('Invalid token');
     }
     request.user = UserMapper.toReqUserData(user, payload);
     return true;

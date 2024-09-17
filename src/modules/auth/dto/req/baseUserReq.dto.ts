@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsNotIn,
   IsOptional,
@@ -12,6 +13,8 @@ import { Transform } from 'class-transformer';
 import { TransformHelper } from '../../../../helpers/transformHelper';
 import { NameValidDecorators } from '../../decorators/nameValid.decorators';
 import { AgeValidDecorators } from '../../decorators/ageValid.decorators';
+import { RoleEnum } from '../../../../database/enums/role.enum';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class BaseUserReqDto {
   @IsOptional()
@@ -39,8 +42,17 @@ export class BaseUserReqDto {
   // Цей вираз перевіряє, що пароль має довжину мінімум 8 символів і містить хоча б одну літеру та одну цифру.
   public readonly password: string;
 
+  @IsOptional()
   @AgeValidDecorators()
-  public readonly age: number;
+  public readonly age?: number;
+
+  @ApiProperty({ enum: RoleEnum })
+  @IsEnum(RoleEnum)
+  @IsOptional()
+  role?: RoleEnum;
+
+  @IsOptional()
+  position?: string;
 
   @IsOptional()
   @IsString()
