@@ -45,4 +45,16 @@ export class RedisService {
   public async expire(key: string, time: number): Promise<number> {
     return await this.redisClient.expire(key, time);
   }
+
+  public async getKeysByPattern(pattern: string): Promise<string[]> {
+    return await this.redisClient.keys(pattern);
+  }
+
+  /**
+   * Delete multiple keys.
+   */
+  public async deleteByKeys(keys: string[]): Promise<number> {
+    if (keys.length === 0) return 0;
+    return await this.redisClient.del(...keys); // Видаляє всі ключі
+  }
 }

@@ -13,6 +13,7 @@ import { Transform, Type } from 'class-transformer';
 import { TransformHelper } from '../../../../helpers/transformHelper';
 import { PriseEnum } from '../../../../database/enums/prise.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { RegisterAuthResDto } from '../../../auth/dto/res/register.auth.res.dto';
 
 export class BaseReqPostDto {
   @ApiPropertyOptional()
@@ -70,4 +71,6 @@ export class BaseReqPostDto {
   @IsBoolean()
   @IsOptional()
   isActive?: boolean = false;
+
+  user?: RegisterAuthResDto;
 }

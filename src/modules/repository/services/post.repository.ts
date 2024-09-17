@@ -12,6 +12,7 @@ export class PostRepository extends Repository<PostsEntity> {
   public async getById(postId: string): Promise<PostsEntity> {
     const qb = this.createQueryBuilder('post');
     qb.leftJoinAndSelect('post.tags', 'tag');
+    qb.leftJoinAndSelect('post.user', 'user');
     qb.andWhere('post.id = :postId', { postId });
 
     return await qb.getOneOrFail();
@@ -22,6 +23,7 @@ export class PostRepository extends Repository<PostsEntity> {
   ): Promise<[PostsEntity[], number]> {
     const qb = this.createQueryBuilder('post');
     qb.leftJoinAndSelect('post.tags', 'tag');
+    qb.leftJoinAndSelect('post.user', 'user');
     if (query.search) {
       qb.andWhere('CONCAT(post.title, post.description) ILIKE :search');
       qb.setParameter('search', `%${query.search}%`);

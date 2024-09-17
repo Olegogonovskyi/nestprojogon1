@@ -15,6 +15,15 @@ export class AuthCacheService {
     this.jwtConfig = this.configService.get('jwt');
   }
 
+  public async deleteByIdKey(id: string): Promise<void> {
+    const keys = await this.redisService.getKeysByPattern(
+      `ACCESS_TOKEN:${id}:*`,
+    );
+    if (keys.length > 0) {
+      await this.redisService.deleteByKeys(keys);
+    }
+  }
+
   public async saveToken(
     token: string,
     userId: string,
@@ -43,5 +52,8 @@ export class AuthCacheService {
   }
   private getKey(userId: string, deviceId: string): string {
     return `ACCESS_TOKEN:${userId}:${deviceId}`;
+  }
+  private getKeyId(userId: string): string {
+    return `ACCESS_TOKEN:${userId}:*`;
   }
 }

@@ -10,4 +10,5 @@ export class CreateUpdateResDto extends PickType(BaseReqPostDto, [
   'prise',
   'isActive',
   'tags',
+  'user',
 ]) {}
