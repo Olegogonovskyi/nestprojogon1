@@ -9,6 +9,7 @@ import {
   Put,
   Get,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import {
@@ -30,9 +31,13 @@ import { PostMapper } from './mappers/postMapper';
 import { UpdatePostDto } from './dto/req/updatePostDto';
 import { PostListRequeryDto } from './dto/req/PostListReqQueryDto';
 import { PostListResDto } from './dto/res/PostListResDto';
+import { ControllerEnum } from '../enums/controllerEnum';
+import { RolesGuard } from '../users/guards/RolesGuard';
+import { Roles } from '../users/decorators/roleDecorator';
+import { RoleEnum } from '../../database/enums/role.enum';
 
-@ApiTags('Posts')
-@Controller('posts')
+@ApiTags(ControllerEnum.POSTS)
+@Controller(ControllerEnum.POSTS)
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
@@ -90,12 +95,14 @@ export class PostsController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiBody({ type: UpdatePostDto })
-  @Put(':postId')
+  @UseGuards(RolesGuard)
+  @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
+  @Put(':id')
   public async update(
-    @Param('postId') postId: string,
+    @Param('id') id: string,
     @Body() updatePostDto: UpdatePostDto,
   ): Promise<CreateUpdateResDto> {
-    const result = await this.postsService.updatePost(postId, updatePostDto);
+    const result = await this.postsService.updatePost(id, updatePostDto);
     return PostMapper.toResCreateDto(result);
   }
 
@@ -106,8 +113,10 @@ export class PostsController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @HttpCode(HttpStatus.NO_CONTENT)
-  @Delete(':postId')
-  public async deletePost(@Param('postId') postId: string): Promise<void> {
-    await this.postsService.deletePost(postId);
+  @UseGuards(RolesGuard)
+  @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
+  @Delete(':id')
+  public async deletePost(@Param('id') id: string): Promise<void> {
+    await this.postsService.deletePost(id);
   }
 }

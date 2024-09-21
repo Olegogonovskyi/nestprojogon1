@@ -3,8 +3,8 @@ import { BaseUserReqDto } from '../../../auth/dto/req/baseUserReq.dto';
 import { IsEnum, IsOptional } from 'class-validator';
 import { RoleEnum } from '../../../../database/enums/role.enum';
 
-export class CreateUserByAdminDto extends PartialType(
-  PickType(BaseUserReqDto, ['name', 'email', 'age', 'role', 'position']),
+export class UpdateUserByAdminDto extends PartialType(
+  PickType(BaseUserReqDto, ['name', 'age', 'role', 'position']),
 ) {
   @IsOptional()
   name?: string;

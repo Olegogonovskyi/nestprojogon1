@@ -22,7 +22,7 @@ export class UsersEntity extends IdCreateUpdateEntity {
   @Column('text', { nullable: true }) //посада
   position: string;
 
-  @Column({ type: 'enum', enum: RoleEnum, default: RoleEnum.BUYER })
+  @Column({ type: 'enum', enum: RoleEnum, default: RoleEnum.SELLER })
   role: RoleEnum;
 
   @Column('text', { nullable: true })

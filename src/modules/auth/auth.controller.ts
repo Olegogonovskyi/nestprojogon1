@@ -17,9 +17,10 @@ import { JwtAccessGuard } from './quards/jwtAccesGuard';
 import { TokenPair } from './models/tokenPair';
 import { CurrentUser } from './decorators/currentUserDecorator';
 import { ReqAfterGuard } from './dto/req/reqAfterGuard';
+import { ControllerEnum } from '../enums/controllerEnum';
 
-@ApiTags('Auth')
-@Controller('auth')
+@ApiTags(ControllerEnum.AUTH)
+@Controller(ControllerEnum.AUTH)
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

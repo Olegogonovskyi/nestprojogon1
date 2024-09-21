@@ -32,18 +32,27 @@ export class PostsService {
     userData: ReqAfterGuard,
   ): Promise<PostsEntity> {
     const tags = await this.createTags(createPostDto.tags);
-    console.log(createPostDto);
-    return await this.postRepository.save(
-      this.postRepository.create({
-        ...createPostDto,
-        userID: userData.id,
-        tags,
-      }),
-    );
+    const post = this.postRepository.create({
+      ...createPostDto,
+      userID: userData.id,
+      tags,
+    });
+    const savedPost = await this.postRepository.save(post);
+    return await this.getById(savedPost.id);
+    // return await this.postRepository.save(
+    //   this.postRepository.create({
+    //     ...createPostDto,
+    //     userID: userData.id,
+    //     tags,
+    //   }),
+    // );
   }
 
   public async getById(postId: string): Promise<PostsEntity> {
-    return await this.postRepository.getById(postId);
+    return await this.postRepository.findOne({
+      where: { id: postId },
+      relations: ['user'], // вантажу юзера
+    });
   }
 
   public async getList(

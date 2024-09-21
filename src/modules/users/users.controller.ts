@@ -26,10 +26,13 @@ import { UserModuleMaper } from './mapers/userModuleMaper';
 import { RoleEnum } from '../../database/enums/role.enum';
 import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
 import { CurrentUser } from '../auth/decorators/currentUserDecorator';
+import { UpdateUserByAdminDto } from './dto/req/updateUserByAdminDto';
+import { UpdateMeDto } from './dto/req/updateMeDto';
+import { ControllerEnum } from '../enums/controllerEnum';
 
-@ApiTags('Users')
+@ApiTags(ControllerEnum.USERS)
 @ApiBearerAuth()
-@Controller('user')
+@Controller(ControllerEnum.USERS)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -60,11 +63,11 @@ export class UsersController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been removed' })
-  @Delete('admin/:userId')
+  @Delete('admin/user/:id')
   public async deleteUser(
-    @Param('userId', ParseUUIDPipe) userId: string,
+    @Param('id', ParseUUIDPipe) id: string,
   ): Promise<void> {
-    await this.usersService.deleteUser(userId);
+    await this.usersService.deleteUser(id);
   }
 
   @ApiOperation({
@@ -74,12 +77,29 @@ export class UsersController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been updated' })
-  @Patch('admin/:userId')
+  @Patch('admin/user/:id')
   public async updateUserbyAdmin(
-    @Body() updateUserDto: CreateUserByAdminDto,
+    @Body() updateUserDto: UpdateUserByAdminDto,
+    @Param('id', ParseUUIDPipe) id: string,
   ): Promise<CreateUserAdminRes> {
-    const result = await this.usersService.updateUserbyAdmin(updateUserDto);
+    const result = await this.usersService.updateUserbyAdmin(updateUserDto, id);
     return UserModuleMaper.toResUserByAdmin(result);
+  }
+
+  @ApiOperation({
+    summary: `Update me`,
+  })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiConflictResponse({ description: 'Conflict' })
+  @ApiNoContentResponse({ description: 'User has been updated' })
+  @Patch(':id')
+  public async updateMe(
+    @Body() updateUserDto: UpdateMeDto,
+    @Param('id', ParseUUIDPipe) id: string,
+  ): Promise<UserModuleMaper> {
+    const result = await this.usersService.updateMe(updateUserDto, id);
+    return UserModuleMaper.toResUser(result);
   }
 
   @ApiOperation({

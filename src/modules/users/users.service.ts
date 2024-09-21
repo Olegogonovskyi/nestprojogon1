@@ -5,6 +5,8 @@ import * as bcrypt from 'bcrypt';
 import { UserRepository } from '../repository/services/users.repository';
 import { AuthCacheService } from '../auth/services/auth.catch.service';
 import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
+import { UpdateUserByAdminDto } from './dto/req/updateUserByAdminDto';
+import { UpdateMeDto } from './dto/req/updateMeDto';
 
 @Injectable()
 export class UsersService {
@@ -32,10 +34,22 @@ export class UsersService {
   }
 
   public async updateUserbyAdmin(
-    updateUserDto: CreateUserByAdminDto,
+    updateUserDto: UpdateUserByAdminDto,
+    userId: string,
   ): Promise<UsersEntity> {
     const user = await this.userRepository.findOneBy({
-      email: updateUserDto.email,
+      id: userId,
+    });
+    this.userRepository.merge(user, updateUserDto);
+    return await this.userRepository.save(user);
+  }
+
+  public async updateMe(
+    updateUserDto: UpdateMeDto,
+    userId: string,
+  ): Promise<UsersEntity> {
+    const user = await this.userRepository.findOneBy({
+      id: userId,
     });
     this.userRepository.merge(user, updateUserDto);
     return await this.userRepository.save(user);
