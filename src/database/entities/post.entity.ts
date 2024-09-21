@@ -27,11 +27,23 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @Column('text', { nullable: true })
   image: string;
 
-  @Column('int', { default: 1 })
+  @Column('decimal', { default: 1 })
   priseValue: number;
 
   @Column({ type: 'enum', enum: PriseEnum, default: PriseEnum.UAN })
   prise: PriseEnum;
+
+  @Column('decimal', { nullable: true })
+  usdPrice: number;
+
+  @Column('decimal', { nullable: true })
+  eurPrice: number;
+
+  @Column('decimal', { nullable: true })
+  uahPrice: number;
+
+  @Column()
+  exchangeRateDate: Date;
 
   @Column('boolean', { default: false })
   isActive: boolean;

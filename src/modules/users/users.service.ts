@@ -19,9 +19,11 @@ export class UsersService {
     CreateUserByAdminDto: CreateUserByAdminDto,
   ): Promise<UsersEntity> {
     const password = await bcrypt.hash(CreateUserByAdminDto.password, 10);
+    console.log(`password:  ${password}`);
     const isExistUser = await this.userRepository.findOneBy({
       email: CreateUserByAdminDto.email,
     });
+    console.log(`isExistUser:  ${isExistUser}`);
     if (isExistUser) {
       throw new ConflictException(
         `this email exist in base with id ${isExistUser.id}`,

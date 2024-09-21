@@ -24,6 +24,7 @@ export class UserMapper {
       id: payload.userId,
       deviceId: payload.deviceId,
       email: user.email,
+      role: user.role,
     };
   }
 }

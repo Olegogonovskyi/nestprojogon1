@@ -62,6 +62,7 @@ export class JwtAccessGuard implements CanActivate {
       throw new UnauthorizedException('Invalid token');
     }
     request.user = UserMapper.toReqUserData(user, payload);
+    console.log(`request.user:  ${JSON.stringify(request.user)}`);
     return true;
   }
 }

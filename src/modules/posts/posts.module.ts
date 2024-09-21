@@ -4,9 +4,10 @@ import { PostsController } from './posts.controller';
 import { UsersModule } from '../users/users.module';
 import { RolesGuard } from '../users/guards/RolesGuard';
 import { APP_GUARD } from '@nestjs/core';
+import { ExchangeModule } from '../exchange/exchange.module';
 
 @Module({
-  imports: [forwardRef(() => UsersModule)],
+  imports: [forwardRef(() => UsersModule), ExchangeModule],
   controllers: [PostsController],
   providers: [
     PostsService,

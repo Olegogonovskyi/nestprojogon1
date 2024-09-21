@@ -2,8 +2,10 @@ import {
   ArrayMaxSize,
   IsArray,
   IsBoolean,
+  IsDate,
   IsEnum,
   IsInt,
+  IsNumber,
   IsOptional,
   IsString,
   Length,
@@ -66,6 +68,26 @@ export class BaseReqPostDto {
   @ApiProperty({ enum: PriseEnum })
   @IsEnum(PriseEnum)
   prise: PriseEnum;
+
+  @ApiPropertyOptional({ type: Number, description: 'currency in EUR' })
+  @IsNumber()
+  @IsOptional()
+  eurPrice?: number;
+
+  @ApiPropertyOptional({ type: Number, description: 'currency in USD' })
+  @IsNumber()
+  @IsOptional()
+  usdPrice?: number;
+
+  @ApiPropertyOptional({ type: Number, description: 'currency in UAN' })
+  @IsNumber()
+  @IsOptional()
+  uahPrice?: number;
+
+  @ApiPropertyOptional({ type: Date, description: 'date of exchange currency' })
+  @IsOptional()
+  @IsDate()
+  exchangeRateDate?: Date;
 
   @ApiPropertyOptional()
   @IsBoolean()

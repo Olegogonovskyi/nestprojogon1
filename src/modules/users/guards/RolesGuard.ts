@@ -1,6 +1,10 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { ControllerEnum } from '../../enums/controllerEnum';
 import { PostsEntity } from '../../../database/entities/post.entity';
 import { PostsService } from '../../posts/posts.service';
 
@@ -13,26 +17,25 @@ export class RolesGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
+    console.log(`roles:  ${roles}`);
     if (!roles) {
       return true;
     }
     const request = context.switchToHttp().getRequest();
     const user = request.user;
-    console.log(user);
     const entityId = request.params.id;
     const controller = context.getClass().name;
-    console.log(controller);
 
-    const hasRole = roles.some((role) => user.roles?.includes(role));
+    const hasRole = roles.some((role) => user.role?.includes(role));
     if (hasRole) {
       return true;
     }
 
-    if (controller === ControllerEnum.POSTS) {
+    if (controller === 'PostsController') {
       const entity = await this.getAdByPostId(entityId); // перевіряю чи то власник
       return entity && entity.userID === user.id;
     }
-    return false;
+    throw new ForbiddenException('You cant do it');
   }
 
   private async getAdByPostId(id: string): Promise<PostsEntity> {

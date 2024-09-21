@@ -8,12 +8,15 @@ import { In } from 'typeorm';
 import { PostsEntity } from '../../database/entities/post.entity';
 import { UpdatePostDto } from './dto/req/updatePostDto';
 import { PostListRequeryDto } from './dto/req/PostListReqQueryDto';
+import { ExchangeRateService } from '../exchange/exchange.service';
+import { PriseEnum } from '../../database/enums/prise.enum';
 
 @Injectable()
 export class PostsService {
   constructor(
     private readonly postRepository: PostRepository,
     private readonly tagsRepository: TagRepository,
+    private readonly exchangeRateService: ExchangeRateService,
   ) {}
 
   private async createTags(tags: string[]): Promise<TagEntity[]> {
@@ -31,10 +34,46 @@ export class PostsService {
     createPostDto: CreatePostDto,
     userData: ReqAfterGuard,
   ): Promise<PostsEntity> {
+    const exchangeRates = await this.exchangeRateService.updateExchangeRates();
+    const { prise, priseValue } = createPostDto; //price = priseValue, currency = prise
+    const numericPriseValue = Number(priseValue);
+    const dateRate = new Date();
+
+    const postCurrency = new PostsEntity();
+    switch (prise) {
+      case 'USD':
+        postCurrency.usdPrice = numericPriseValue;
+        postCurrency.eurPrice =
+          numericPriseValue * exchangeRates[PriseEnum.EUR];
+        postCurrency.uahPrice =
+          numericPriseValue * exchangeRates[PriseEnum.UAN];
+        break;
+      case 'EUR':
+        postCurrency.eurPrice = numericPriseValue;
+        postCurrency.usdPrice =
+          numericPriseValue / exchangeRates[PriseEnum.EUR];
+        postCurrency.uahPrice =
+          postCurrency.usdPrice * exchangeRates[PriseEnum.UAN];
+        break;
+      case 'UAN':
+        postCurrency.uahPrice = numericPriseValue;
+        postCurrency.usdPrice =
+          numericPriseValue / exchangeRates[PriseEnum.UAN];
+        postCurrency.eurPrice =
+          postCurrency.usdPrice * exchangeRates[PriseEnum.EUR];
+        break;
+      default:
+        throw new Error('Unsupported currency');
+    }
+
     const tags = await this.createTags(createPostDto.tags);
     const post = this.postRepository.create({
       ...createPostDto,
       userID: userData.id,
+      uahPrice: postCurrency.uahPrice,
+      eurPrice: postCurrency.eurPrice,
+      usdPrice: postCurrency.usdPrice,
+      exchangeRateDate: dateRate,
       tags,
     });
     const savedPost = await this.postRepository.save(post);

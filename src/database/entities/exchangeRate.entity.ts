@@ -7,7 +7,7 @@ import { PriseEnum } from '../enums/prise.enum';
 @Entity(EntityEnum.EXCHANGERATE)
 export class ExchangeRateEntity extends IdCreateUpdateEntity {
   @Column({ type: 'enum', enum: PriseEnum, default: PriseEnum.UAN })
-  currensy: PriseEnum;
+  currency: PriseEnum;
 
   @Column('int')
   rate: number;

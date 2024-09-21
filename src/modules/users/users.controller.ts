@@ -6,6 +6,7 @@ import {
   ParseUUIDPipe,
   Param,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 
@@ -29,6 +30,8 @@ import { CurrentUser } from '../auth/decorators/currentUserDecorator';
 import { UpdateUserByAdminDto } from './dto/req/updateUserByAdminDto';
 import { UpdateMeDto } from './dto/req/updateMeDto';
 import { ControllerEnum } from '../enums/controllerEnum';
+import { RolesGuard } from './guards/RolesGuard';
+import { Roles } from './decorators/roleDecorator';
 
 @ApiTags(ControllerEnum.USERS)
 @ApiBearerAuth()
@@ -48,6 +51,8 @@ export class UsersController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiBody({ type: CreateUserByAdminDto })
+  @UseGuards(RolesGuard)
+  @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
   @Post('admin/create')
   public async create(
     @Body() CreateUserByAdminDto: CreateUserByAdminDto,
@@ -63,6 +68,8 @@ export class UsersController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been removed' })
+  @UseGuards(RolesGuard)
+  @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
   @Delete('admin/user/:id')
   public async deleteUser(
     @Param('id', ParseUUIDPipe) id: string,
@@ -77,6 +84,8 @@ export class UsersController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been updated' })
+  @UseGuards(RolesGuard)
+  @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
   @Patch('admin/user/:id')
   public async updateUserbyAdmin(
     @Body() updateUserDto: UpdateUserByAdminDto,

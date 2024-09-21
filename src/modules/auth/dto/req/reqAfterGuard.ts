@@ -5,4 +5,5 @@ export class ReqAfterGuard extends PickType(BaseUserReqDto, [
   'id',
   'email',
   'deviceId',
+  'role',
 ]) {}
