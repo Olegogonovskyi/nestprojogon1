@@ -30,7 +30,7 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @Column('decimal', { default: 1 })
   priseValue: number;
 
-  @Column({ type: 'enum', enum: PriseEnum, default: PriseEnum.UAN })
+  @Column({ type: 'enum', enum: PriseEnum, default: PriseEnum.UAH })
   prise: PriseEnum;
 
   @Column('decimal', { nullable: true })

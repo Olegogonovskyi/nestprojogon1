@@ -34,33 +34,28 @@ export class PostsService {
     createPostDto: CreatePostDto,
     userData: ReqAfterGuard,
   ): Promise<PostsEntity> {
-    const exchangeRates = await this.exchangeRateService.updateExchangeRates();
+    const { eur, usd } =
+      await this.exchangeRateService.updateExchangeRates();
     const { prise, priseValue } = createPostDto; //price = priseValue, currency = prise
     const numericPriseValue = Number(priseValue);
     const dateRate = new Date();
 
     const postCurrency = new PostsEntity();
     switch (prise) {
-      case 'USD':
+      case PriseEnum.USD:
         postCurrency.usdPrice = numericPriseValue;
-        postCurrency.eurPrice =
-          numericPriseValue * exchangeRates[PriseEnum.EUR];
-        postCurrency.uahPrice =
-          numericPriseValue * exchangeRates[PriseEnum.UAN];
+        postCurrency.eurPrice = numericPriseValue * usd / eur;
+        postCurrency.uahPrice = numericPriseValue * usd;
         break;
-      case 'EUR':
+      case PriseEnum.EUR:
         postCurrency.eurPrice = numericPriseValue;
-        postCurrency.usdPrice =
-          numericPriseValue / exchangeRates[PriseEnum.EUR];
-        postCurrency.uahPrice =
-          postCurrency.usdPrice * exchangeRates[PriseEnum.UAN];
+        postCurrency.usdPrice = numericPriseValue * eur / usd;
+        postCurrency.uahPrice = numericPriseValue * eur;
         break;
-      case 'UAN':
+      case PriseEnum.UAH:
         postCurrency.uahPrice = numericPriseValue;
-        postCurrency.usdPrice =
-          numericPriseValue / exchangeRates[PriseEnum.UAN];
-        postCurrency.eurPrice =
-          postCurrency.usdPrice * exchangeRates[PriseEnum.EUR];
+        postCurrency.usdPrice = numericPriseValue * usd;
+        postCurrency.eurPrice = numericPriseValue * eur;
         break;
       default:
         throw new Error('Unsupported currency');
