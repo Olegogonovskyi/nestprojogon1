@@ -18,6 +18,12 @@ export class PostRepository extends Repository<PostsEntity> {
     return await qb.getOneOrFail();
   }
 
+  public async countPostsByUserId(userId: string): Promise<number> {
+    return this.createQueryBuilder('post')
+      .where('post.userID = :userId', { userId })
+      .getCount();
+  }
+
   public async getList(
     query: PostListRequeryDto,
   ): Promise<[PostsEntity[], number]> {

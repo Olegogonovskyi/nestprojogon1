@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/req/createPostDto';
 import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
 import { TagRepository } from '../repository/services/tag.repository';
@@ -10,6 +10,8 @@ import { UpdatePostDto } from './dto/req/updatePostDto';
 import { PostListRequeryDto } from './dto/req/PostListReqQueryDto';
 import { ExchangeRateService } from '../exchange/exchange.service';
 import { PriseEnum } from '../../database/enums/prise.enum';
+import { RoleEnum } from '../../database/enums/role.enum';
+import { UserRepository } from '../repository/services/users.repository';
 
 @Injectable()
 export class PostsService {
@@ -34,9 +36,19 @@ export class PostsService {
     createPostDto: CreatePostDto,
     userData: ReqAfterGuard,
   ): Promise<PostsEntity> {
-    const { eur, usd } =
-      await this.exchangeRateService.updateExchangeRates();
-    const { prise, priseValue } = createPostDto; //price = priseValue, currency = prise
+    const { prise, priseValue } = createPostDto;
+    const { id, role } = userData;
+    if (role === RoleEnum.SELLER) {
+      const countPosts = await this.postRepository.countPostsByUserId(id);
+      console.log(countPosts);
+      if (countPosts >= 1) {
+        throw new ForbiddenException(
+          'If You want publicate more posts you must pay',
+        );
+      }
+    }
+
+    const { eur, usd } = await this.exchangeRateService.updateExchangeRates();
     const numericPriseValue = Number(priseValue);
     const dateRate = new Date();
 
@@ -44,12 +56,12 @@ export class PostsService {
     switch (prise) {
       case PriseEnum.USD:
         postCurrency.usdPrice = numericPriseValue;
-        postCurrency.eurPrice = numericPriseValue * usd / eur;
+        postCurrency.eurPrice = (numericPriseValue * usd) / eur;
         postCurrency.uahPrice = numericPriseValue * usd;
         break;
       case PriseEnum.EUR:
         postCurrency.eurPrice = numericPriseValue;
-        postCurrency.usdPrice = numericPriseValue * eur / usd;
+        postCurrency.usdPrice = (numericPriseValue * eur) / usd;
         postCurrency.uahPrice = numericPriseValue * eur;
         break;
       case PriseEnum.UAH:
@@ -73,13 +85,6 @@ export class PostsService {
     });
     const savedPost = await this.postRepository.save(post);
     return await this.getById(savedPost.id);
-    // return await this.postRepository.save(
-    //   this.postRepository.create({
-    //     ...createPostDto,
-    //     userID: userData.id,
-    //     tags,
-    //   }),
-    // );
   }
 
   public async getById(postId: string): Promise<PostsEntity> {
