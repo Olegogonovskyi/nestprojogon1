@@ -30,6 +30,7 @@ export class PostRepository extends Repository<PostsEntity> {
     const qb = this.createQueryBuilder('post');
     qb.leftJoinAndSelect('post.tags', 'tag');
     qb.leftJoinAndSelect('post.user', 'user');
+    qb.andWhere('post.isActive = :isActive', { isActive: true });
     if (query.search) {
       qb.andWhere('CONCAT(post.title, post.description) ILIKE :search');
       qb.setParameter('search', `%${query.search}%`);

@@ -45,6 +45,9 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @Column()
   exchangeRateDate: Date;
 
+  @Column('int', { default: 0 })
+  editAttempts: number;
+
   @Column('boolean', { default: false })
   isActive: boolean;
 

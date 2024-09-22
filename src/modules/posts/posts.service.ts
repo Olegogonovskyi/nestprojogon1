@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { CreatePostDto } from './dto/req/createPostDto';
 import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
 import { TagRepository } from '../repository/services/tag.repository';
@@ -9,9 +13,11 @@ import { PostsEntity } from '../../database/entities/post.entity';
 import { UpdatePostDto } from './dto/req/updatePostDto';
 import { PostListRequeryDto } from './dto/req/PostListReqQueryDto';
 import { ExchangeRateService } from '../exchange/exchange.service';
-import { PriseEnum } from '../../database/enums/prise.enum';
+
 import { RoleEnum } from '../../database/enums/role.enum';
-import { UserRepository } from '../repository/services/users.repository';
+
+import { validate } from 'class-validator';
+import { ExchangeHelper } from './helpers/exchangeHelper';
 
 @Injectable()
 export class PostsService {
@@ -40,47 +46,49 @@ export class PostsService {
     const { id, role } = userData;
     if (role === RoleEnum.SELLER) {
       const countPosts = await this.postRepository.countPostsByUserId(id);
-      console.log(countPosts);
       if (countPosts >= 1) {
         throw new ForbiddenException(
           'If You want publicate more posts you must pay',
         );
       }
     }
-
     const { eur, usd } = await this.exchangeRateService.updateExchangeRates();
-    const numericPriseValue = Number(priseValue);
-    const dateRate = new Date();
 
-    const postCurrency = new PostsEntity();
-    switch (prise) {
-      case PriseEnum.USD:
-        postCurrency.usdPrice = numericPriseValue;
-        postCurrency.eurPrice = (numericPriseValue * usd) / eur;
-        postCurrency.uahPrice = numericPriseValue * usd;
-        break;
-      case PriseEnum.EUR:
-        postCurrency.eurPrice = numericPriseValue;
-        postCurrency.usdPrice = (numericPriseValue * eur) / usd;
-        postCurrency.uahPrice = numericPriseValue * eur;
-        break;
-      case PriseEnum.UAH:
-        postCurrency.uahPrice = numericPriseValue;
-        postCurrency.usdPrice = numericPriseValue * usd;
-        postCurrency.eurPrice = numericPriseValue * eur;
-        break;
-      default:
-        throw new Error('Unsupported currency');
-    }
+    const { eurPrice, usdPrice, uahPrice } = ExchangeHelper.priseCalc(
+      prise,
+      priseValue,
+      eur,
+      usd,
+    );
 
     const tags = await this.createTags(createPostDto.tags);
+    const errors = await validate(createPostDto);
+    if (errors.length > 0) {
+      const post = this.postRepository.create({
+        ...createPostDto,
+        userID: userData.id,
+        uahPrice,
+        eurPrice,
+        usdPrice,
+        exchangeRateDate: new Date(),
+        editAttempts: 1,
+        tags,
+      });
+      const savedPost = await this.postRepository.save(post);
+      const posttoChange = await this.getById(savedPost.id);
+      throw new BadRequestException(
+        `Validation failed. You have only 3 attempts to update post ${posttoChange}`,
+      );
+    }
     const post = this.postRepository.create({
       ...createPostDto,
       userID: userData.id,
-      uahPrice: postCurrency.uahPrice,
-      eurPrice: postCurrency.eurPrice,
-      usdPrice: postCurrency.usdPrice,
-      exchangeRateDate: dateRate,
+      uahPrice,
+      eurPrice,
+      usdPrice,
+      exchangeRateDate: new Date(),
+      editAttempts: 0,
+      isActive: true,
       tags,
     });
     const savedPost = await this.postRepository.save(post);
@@ -105,8 +113,22 @@ export class PostsService {
     updatePostDto: UpdatePostDto,
   ): Promise<PostsEntity> {
     const post = await this.postRepository.findOneBy({ id: postId });
-    this.postRepository.merge(post, updatePostDto);
-    return await this.postRepository.save(post);
+    if (post.editAttempts <= 3) {
+      const errors = await validate(updatePostDto);
+      if (errors.length > 0) {
+        this.postRepository.merge(post, updatePostDto, {
+          editAttempts: post.editAttempts + 1,
+          isActive: false,
+        });
+        throw new BadRequestException(
+          `Validation failed. You have only ${post.editAttempts - 3} attempts to update post ${postId}`,
+        );
+      }
+      this.postRepository.merge(post, updatePostDto, { isActive: true });
+      return await this.postRepository.save(post);
+    }
+    await this.deletePost(postId);
+    throw new BadRequestException('Maximum edit attempts reached');
   }
 
   public async deletePost(postId: string): Promise<void> {
