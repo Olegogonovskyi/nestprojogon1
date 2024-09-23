@@ -75,6 +75,9 @@ export class PostsController {
   }
 
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiOperation({
+    summary: `Get list of posts`,
+  })
   @Get()
   public async getList(
     @Query() query: PostListRequeryDto,
@@ -107,6 +110,9 @@ export class PostsController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({
+    summary: `Get post by id`,
+  })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })

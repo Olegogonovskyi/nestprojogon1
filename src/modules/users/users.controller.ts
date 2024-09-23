@@ -7,6 +7,8 @@ import {
   Param,
   Patch,
   UseGuards,
+  UploadedFile,
+  Get,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 
@@ -96,19 +98,45 @@ export class UsersController {
   }
 
   @ApiOperation({
+    summary: `Find me`,
+  })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @Get('me')
+  public async findMe(
+    @CurrentUser() userData: ReqAfterGuard,
+  ): Promise<UserModuleMaper> {
+    const result = await this.usersService.findMe(userData.id);
+    return UserModuleMaper.toResUser(result);
+  }
+
+  @ApiOperation({
     summary: `Update me`,
   })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been updated' })
-  @Patch(':id')
+  @Patch(':me')
   public async updateMe(
     @Body() updateUserDto: UpdateMeDto,
-    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() userData: ReqAfterGuard,
   ): Promise<UserModuleMaper> {
-    const result = await this.usersService.updateMe(updateUserDto, id);
+    const result = await this.usersService.updateMe(updateUserDto, userData.id);
     return UserModuleMaper.toResUser(result);
+  }
+
+  @ApiOperation({
+    summary: `Upload avatar`,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiNoContentResponse({ description: 'Avatar was changed' })
+  @Post('me/uploadAvatar')
+  public async uploadAvatar(
+    @UploadedFile() avatar: Express.Multer.File,
+    @CurrentUser() userData: ReqAfterGuard,
+  ): Promise<void> {
+    await this.usersService.uploadAvatar(userData, avatar);
   }
 
   @ApiOperation({

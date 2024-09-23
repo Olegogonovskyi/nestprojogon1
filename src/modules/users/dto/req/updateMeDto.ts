@@ -10,4 +10,7 @@ export class UpdateMeDto extends PartialType(
 
   @IsOptional()
   age?: number;
+
+  @IsOptional()
+  image?: string;
 }

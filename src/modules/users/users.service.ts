@@ -7,19 +7,21 @@ import { AuthCacheService } from '../auth/services/auth.catch.service';
 import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
 import { UpdateUserByAdminDto } from './dto/req/updateUserByAdminDto';
 import { UpdateMeDto } from './dto/req/updateMeDto';
+import { FileStorageService } from '../filestorage/filestorageService';
+import { ContentType } from '../filestorage/enums/content-type.enum';
 
 @Injectable()
 export class UsersService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly authCacheService: AuthCacheService,
+    private readonly fileStorageService: FileStorageService,
   ) {}
 
   public async create(
     CreateUserByAdminDto: CreateUserByAdminDto,
   ): Promise<UsersEntity> {
     const password = await bcrypt.hash(CreateUserByAdminDto.password, 10);
-    console.log(`password:  ${password}`);
     const isExistUser = await this.userRepository.findOneBy({
       email: CreateUserByAdminDto.email,
     });
@@ -46,6 +48,10 @@ export class UsersService {
     return await this.userRepository.save(user);
   }
 
+  public async findMe(id: string): Promise<UsersEntity> {
+    return await this.userRepository.findOneBy({ id: id });
+  }
+
   public async updateMe(
     updateUserDto: UpdateMeDto,
     userId: string,
@@ -55,6 +61,19 @@ export class UsersService {
     });
     this.userRepository.merge(user, updateUserDto);
     return await this.userRepository.save(user);
+  }
+
+  public async uploadAvatar(
+    userData: ReqAfterGuard,
+    avatar: Express.Multer.File,
+  ): Promise<void> {
+    console.log(avatar);
+    const image = await this.fileStorageService.uploadFile(
+      avatar,
+      ContentType.AVATAR,
+      userData.id,
+    );
+    await this.userRepository.update(userData.id, { image });
   }
 
   public async deleteUser(userId: string): Promise<void> {

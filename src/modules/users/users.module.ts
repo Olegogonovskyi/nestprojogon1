@@ -7,9 +7,10 @@ import { RedisModule } from '../redis/redis.module';
 import { RolesGuard } from './guards/RolesGuard';
 import { PostsModule } from '../posts/posts.module';
 import { APP_GUARD } from '@nestjs/core';
+import { FileStorageModule } from '../filestorage/filestorageModule';
 
 @Module({
-  imports: [RedisModule, PostsModule],
+  imports: [RedisModule, PostsModule, FileStorageModule],
   controllers: [UsersController],
   providers: [
     UsersService,
