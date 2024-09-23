@@ -18,6 +18,8 @@ import { RoleEnum } from '../../database/enums/role.enum';
 
 import { validate } from 'class-validator';
 import { ExchangeHelper } from './helpers/exchangeHelper';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { PostViewedEvent } from '../post-view/services/postViewEvent';
 
 @Injectable()
 export class PostsService {
@@ -25,6 +27,7 @@ export class PostsService {
     private readonly postRepository: PostRepository,
     private readonly tagsRepository: TagRepository,
     private readonly exchangeRateService: ExchangeRateService,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   private async createTags(tags: string[]): Promise<TagEntity[]> {
@@ -96,6 +99,7 @@ export class PostsService {
   }
 
   public async getById(postId: string): Promise<PostsEntity> {
+    this.eventEmitter.emit('post.viewed', new PostViewedEvent(postId));
     return await this.postRepository.findOne({
       where: { id: postId },
       relations: ['user'], // вантажу юзера

@@ -1,9 +1,8 @@
 export enum EntityEnum {
   CARDEALPOINT = 'cardealpoint',
-  EXCHANGERATE = 'exchangerate',
+  POSTVIEWS = 'postviews',
   POSTS = 'posts',
   REFRESH_TOKEN = 'refreshToken',
-  PRISE = 'prise',
   USERS = 'users',
   TAG = 'tag',
 }

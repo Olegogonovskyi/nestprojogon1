@@ -8,6 +8,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { RepositoryModule } from './modules/repository/repository.module';
 import { PostsModule } from './modules/posts/posts.module';
 import { FileStorageModule } from './modules/filestorage/filestorageModule';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { FileStorageModule } from './modules/filestorage/filestorageModule';
     RepositoryModule,
     PostsModule,
     FileStorageModule,
+    EventEmitterModule.forRoot(),
   ],
 })
 export class AppModule {}
