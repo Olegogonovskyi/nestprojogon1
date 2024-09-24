@@ -117,7 +117,7 @@ export class UsersController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been updated' })
-  @Patch(':me')
+  @Patch('me')
   public async updateMe(
     @Body() updateUserDto: UpdateMeDto,
     @CurrentUser() userData: ReqAfterGuard,

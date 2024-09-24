@@ -65,4 +65,7 @@ export class PostsEntity extends IdCreateUpdateEntity {
 
   @OneToMany(() => PostViewEntity, (entity) => entity.post)
   views?: PostViewEntity[];
+
+  @Column('int', { default: 0 })
+  countOfViews?: number;
 }

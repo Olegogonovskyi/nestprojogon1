@@ -17,7 +17,6 @@ export class RolesGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
-    console.log(`roles:  ${roles}`);
     if (!roles) {
       return true;
     }
@@ -39,6 +38,6 @@ export class RolesGuard implements CanActivate {
   }
 
   private async getAdByPostId(id: string): Promise<PostsEntity> {
-    return await this.postsService.getById(id);
+    return await this.postsService.getByPostId(id);
   }
 }

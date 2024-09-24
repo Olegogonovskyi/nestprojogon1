@@ -95,4 +95,9 @@ export class BaseReqPostDto {
   isActive?: boolean = false;
 
   user?: RegisterAuthResDto;
+
+  @ApiPropertyOptional({ type: Number, description: 'count of views' })
+  @IsNumber()
+  @IsOptional()
+  countOfViews?: number;
 }

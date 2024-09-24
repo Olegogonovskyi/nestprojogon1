@@ -11,7 +11,13 @@ import { AuthService } from './auth.service';
 import { SkipAuth } from './decorators/skipAuthDecorator';
 import { RegisterAuthReqDto } from './dto/req/register.auth.req.dto';
 import { AuthResDto } from './dto/res/auth.res.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { LoginReqDto } from './dto/req/loginReqDto';
 import { JwtAccessGuard } from './quards/jwtAccesGuard';
 import { TokenPair } from './models/tokenPair';
@@ -24,6 +30,7 @@ import { ControllerEnum } from '../enums/controllerEnum';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @ApiOperation({ summary: 'register user' })
   @SkipAuth()
   @Post('register')
   public async register(
@@ -31,12 +38,17 @@ export class AuthController {
   ): Promise<AuthResDto> {
     return this.authService.register(registerAuthDto);
   }
+
+  @ApiOperation({ summary: 'Login' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @SkipAuth()
   @Post('login')
   public async login(@Body() loginAuthDto: LoginReqDto): Promise<AuthResDto> {
     return await this.authService.login(loginAuthDto);
   }
 
+  @ApiOperation({ summary: 'Refresh Tokkens' })
   @ApiBearerAuth()
   @UseGuards(JwtAccessGuard)
   @SkipAuth()
@@ -47,6 +59,7 @@ export class AuthController {
     return await this.authService.refresh(userData);
   }
 
+  @ApiOperation({ summary: 'Logout from devices' })
   @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
   @Post('logout')

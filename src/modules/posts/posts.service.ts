@@ -2,6 +2,8 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
+  InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import { CreatePostDto } from './dto/req/createPostDto';
 import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
@@ -18,8 +20,9 @@ import { RoleEnum } from '../../database/enums/role.enum';
 
 import { validate } from 'class-validator';
 import { ExchangeHelper } from './helpers/exchangeHelper';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { PostViewedEvent } from '../post-view/services/postViewEvent';
+import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import { PostViewedEvent } from './services/postViewEvent';
+import { PostViewRepository } from '../repository/services/postView.repository';
 
 @Injectable()
 export class PostsService {
@@ -28,6 +31,7 @@ export class PostsService {
     private readonly tagsRepository: TagRepository,
     private readonly exchangeRateService: ExchangeRateService,
     private readonly eventEmitter: EventEmitter2,
+    private readonly postViewRepository: PostViewRepository,
   ) {}
 
   private async createTags(tags: string[]): Promise<TagEntity[]> {
@@ -41,10 +45,20 @@ export class PostsService {
     return [...entities, ...newEntities];
   }
 
+  private async addView(post: PostsEntity): Promise<void> {
+    const view = this.postViewRepository.create({ post });
+    await this.postViewRepository.save(view);
+  }
+
+  @OnEvent('post.viewed')
+  private async handlePostViewedEvent(event: PostViewedEvent) {
+    await this.addView(event.post);
+  }
+
   public async create(
     createPostDto: CreatePostDto,
     userData: ReqAfterGuard,
-  ): Promise<PostsEntity> {
+  ): Promise<[PostsEntity, number?]> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
     if (role === RoleEnum.SELLER) {
@@ -78,7 +92,7 @@ export class PostsService {
         tags,
       });
       const savedPost = await this.postRepository.save(post);
-      const posttoChange = await this.getById(savedPost.id);
+      const posttoChange = await this.getById(savedPost.id, userData);
       throw new BadRequestException(
         `Validation failed. You have only 3 attempts to update post ${posttoChange}`,
       );
@@ -95,15 +109,42 @@ export class PostsService {
       tags,
     });
     const savedPost = await this.postRepository.save(post);
-    return await this.getById(savedPost.id);
+    return await this.getById(savedPost.id, userData);
   }
 
-  public async getById(postId: string): Promise<PostsEntity> {
-    this.eventEmitter.emit('post.viewed', new PostViewedEvent(postId));
+  public async getByPostId(postId: string): Promise<PostsEntity> {
     return await this.postRepository.findOne({
       where: { id: postId },
-      relations: ['user'], // вантажу юзера
+      relations: ['user'],
     });
+  }
+
+  public async getById(
+    postId: string,
+    userData: ReqAfterGuard,
+  ): Promise<[PostsEntity, number?]> {
+    try {
+      const post = await this.postRepository.findOne({
+        where: { id: postId },
+        relations: ['user'],
+      });
+      if (!post) {
+        throw new NotFoundException(`Post with ID ${postId} not found`);
+      }
+
+      this.eventEmitter.emit('post.viewed', new PostViewedEvent(post));
+
+      let countViews: number | undefined;
+      if (userData.role !== RoleEnum.SELLER) {
+        countViews = await this.postViewRepository.count({
+          where: { post: { id: postId } },
+        });
+      }
+
+      return [post, countViews];
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to fetch post details');
+    }
   }
 
   public async getList(
@@ -129,7 +170,7 @@ export class PostsService {
         );
       }
       this.postRepository.merge(post, updatePostDto, { isActive: true });
-      return await this.postRepository.save(post);
+      await this.postRepository.save(post);
     }
     await this.deletePost(postId);
     throw new BadRequestException('Maximum edit attempts reached');
