@@ -166,7 +166,7 @@ export class PostsService {
           isActive: false,
         });
         throw new BadRequestException(
-          `Validation failed. You have only ${post.editAttempts - 3} attempts to update post ${postId}`,
+          `Validation failed. You have only ${3-post.editAttempts} attempts to update post ${postId}`,
         );
       }
       this.postRepository.merge(post, updatePostDto, { isActive: true });

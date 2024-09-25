@@ -5,6 +5,7 @@ import {
   IsDate,
   IsEnum,
   IsInt,
+  IsNotIn,
   IsNumber,
   IsOptional,
   IsString,
@@ -16,6 +17,7 @@ import { TransformHelper } from '../../../../helpers/transformHelper';
 import { PriseEnum } from '../../../../database/enums/prise.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { RegisterAuthResDto } from '../../../auth/dto/res/register.auth.res.dto';
+import { ValidationCostants } from '../../../../validationConstants/validation costants';
 
 export class BaseReqPostDto {
   @ApiPropertyOptional()
@@ -25,6 +27,7 @@ export class BaseReqPostDto {
 
   @ApiProperty({ type: String, minLength: 3, maxLength: 50 })
   @IsString()
+  @IsNotIn(ValidationCostants)
   @Length(3, 50)
   @Transform(TransformHelper.trim)
   @Type(() => String)
@@ -32,6 +35,7 @@ export class BaseReqPostDto {
 
   @ApiProperty({ type: String, maxLength: 300 })
   @IsString()
+  @IsNotIn(ValidationCostants)
   @Length(0, 300)
   @Transform(TransformHelper.trim)
   @Type(() => String)
@@ -39,6 +43,7 @@ export class BaseReqPostDto {
 
   @ApiProperty({ type: String, maxLength: 3000 })
   @IsString()
+  @IsNotIn(ValidationCostants)
   @Length(0, 3000)
   @Transform(TransformHelper.trim)
   @Type(() => String)
@@ -53,6 +58,7 @@ export class BaseReqPostDto {
   @ApiProperty({ type: [String], maxLength: 30, isArray: true })
   @IsArray()
   @IsString({ each: true })
+  @IsNotIn(ValidationCostants)
   @Length(3, 30, { each: true })
   @ArrayMaxSize(5)
   @Transform(TransformHelper.trimArray)

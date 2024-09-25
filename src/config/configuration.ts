@@ -28,4 +28,8 @@ export default () => ({
     bucketName: process.env.AWC_BUCKET_NAME,
     endpoint: process.env.AWS_ENDPOINT_URL,
   },
+  email: {
+    SMTP_EMAIL: process.env.SMTP_EMAIL,
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+  },
 });
