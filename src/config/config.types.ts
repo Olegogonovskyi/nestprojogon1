@@ -4,6 +4,7 @@ export type Config = {
   redis: RedisConfig;
   jwt: JwtConfig;
   aws: AwsConfig;
+  email: Emailconfig;
 };
 
 export type AppConfig = {
@@ -38,4 +39,9 @@ export type AwsConfig = {
   secretAccessKey: string;
   bucketName: string;
   endpoint: string;
+};
+
+export type Emailconfig = {
+  smtpEmail: string;
+  smtpPass: string;
 };
