@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
-import { EmailTypeToPayloadType } from '../types/emailTypes/email-type-to-payload.type';
-import { emailConstant } from '../costants/emailCostants';
 
 import { EmailEnum } from './enums/emailEnam';
+import { emailConstant } from './costants/emailCostants';
+import { EmailTypeToPayloadType } from './types/emailTypes/email-type-to-payload.type';
 
 @Injectable()
 export class EmailService {
