@@ -3,6 +3,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { EmailService } from './emailodule.service';
 
 @Module({
   imports: [
@@ -25,16 +26,58 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           from: configService.get('SMTP_EMAIL'),
         },
         template: {
-          dir: join(__dirname, 'templates'),
+          dir: join(
+            process.cwd(),
+            'src',
+            'modules',
+            'emailodule',
+            'templates',
+            'views',
+          ),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
           },
+          partials: {
+            dir: join(
+              process.cwd(),
+              'src',
+              'modules',
+              'emailodule',
+              'templates',
+              'partials',
+            ),
+            options: {
+              strict: true,
+            },
+          },
+          layouts: {
+            dir: join(
+              process.cwd(),
+              'src',
+              'modules',
+              'emailodule',
+              'templates',
+              'layouts',
+            ),
+            options: {
+              strict: true,
+            },
+          },
+          viewPath: join(
+            process.cwd(),
+            'src',
+            'modules',
+            'emailodule',
+            'templates',
+            'views',
+          ),
         },
       }),
     }),
   ],
 
-  providers: [],
+  providers: [EmailService],
+  exports: [EmailService],
 })
-export class AppModule {}
+export class EmailoduleModule {}

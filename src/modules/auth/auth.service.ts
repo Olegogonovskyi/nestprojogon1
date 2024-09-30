@@ -9,6 +9,8 @@ import { AuthResDto } from './dto/res/auth.res.dto';
 import { LoginReqDto } from './dto/req/loginReqDto';
 import { TokenPair } from './models/tokenPair';
 import { ReqAfterGuard } from './dto/req/reqAfterGuard';
+import { EmailService } from '../emailodule/emailodule.service';
+import { EmailEnum } from '../emailodule/enums/emailEnam';
 
 @Injectable()
 export class AuthService {
@@ -16,6 +18,7 @@ export class AuthService {
     private readonly userRepository: UserRepository,
     private readonly tokenService: TokenService,
     private readonly deleteCreateTokens: DeleteCreateTokens,
+    private readonly emailService: EmailService,
   ) {}
 
   public async register(
@@ -36,6 +39,11 @@ export class AuthService {
       user.id,
       tokens,
     );
+    await this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
+      name: 'email',
+      frontUrl: 'www.uuu',
+      actionToken: tokens.accessToken,
+    });
     return { user: UserMapper.toResponseDTO(user), tokens: tokens };
   }
 
