@@ -4,6 +4,7 @@ import {
   Injectable,
   InternalServerErrorException,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { CreatePostDto } from './dto/req/createPostDto';
 import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
@@ -61,6 +62,10 @@ export class PostsService {
   ): Promise<[PostsEntity, number?]> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
+
+    if (!userData.isVerified) {
+      throw new UnauthorizedException('User is not veryfaed');
+    }
     if (role === RoleEnum.SELLER) {
       const countPosts = await this.postRepository.countPostsByUserId(id);
       if (countPosts >= 1) {

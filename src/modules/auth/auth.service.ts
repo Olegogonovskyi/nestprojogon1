@@ -52,7 +52,7 @@ export class AuthService {
       ),
       this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
         layout: 'main',
-        name: 'email',
+        name: user.name,
         frontUrl: process.env.FRONTEND_URL,
         actionToken: verToken,
       }),

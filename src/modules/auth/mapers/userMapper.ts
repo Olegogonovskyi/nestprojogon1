@@ -25,6 +25,7 @@ export class UserMapper {
       deviceId: payload.deviceId,
       email: user.email,
       role: user.role,
+      isVerified: user.isVerified,
     };
   }
 }

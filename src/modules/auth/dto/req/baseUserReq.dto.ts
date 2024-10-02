@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsEmail,
   IsEnum,
   IsNotEmpty,
@@ -53,6 +54,11 @@ export class BaseUserReqDto {
 
   @IsOptional()
   position?: string;
+
+  @ApiProperty()
+  @IsBoolean()
+  @IsOptional()
+  isVerified?: boolean;
 
   @IsOptional()
   @IsString()

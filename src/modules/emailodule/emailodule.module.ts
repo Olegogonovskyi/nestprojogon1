@@ -74,40 +74,6 @@ import * as fs from 'fs';
             options: {
               strict: true,
             },
-            partials: {
-              dir: join(
-                process.cwd(),
-                'src',
-                'modules',
-                'emailodule',
-                'templates',
-                'partials',
-              ),
-              options: {
-                strict: true,
-              },
-            },
-            layouts: {
-              dir: join(
-                process.cwd(),
-                'src',
-                'modules',
-                'emailodule',
-                'templates',
-                'layouts',
-              ),
-              options: {
-                strict: true,
-              },
-            },
-            viewPath: join(
-              process.cwd(),
-              'src',
-              'modules',
-              'emailodule',
-              'templates',
-              'views',
-            ),
           },
         };
       },
