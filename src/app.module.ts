@@ -9,6 +9,7 @@ import { RepositoryModule } from './modules/repository/repository.module';
 import { PostsModule } from './modules/posts/posts.module';
 import { FileStorageModule } from './modules/filestorage/filestorageModule';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { EmailModule } from './modules/emailodule/emailodule.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     PostsModule,
     FileStorageModule,
     EventEmitterModule.forRoot(),
+    EmailModule,
   ],
 })
 export class AppModule {}

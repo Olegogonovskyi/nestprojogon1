@@ -5,6 +5,7 @@ import {
   UseGuards,
   HttpCode,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
@@ -13,6 +14,7 @@ import { RegisterAuthReqDto } from './dto/req/register.auth.req.dto';
 import { AuthResDto } from './dto/res/auth.res.dto';
 import {
   ApiBearerAuth,
+  ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOperation,
   ApiTags,
@@ -65,5 +67,13 @@ export class AuthController {
   @Post('logout')
   public async logOut(@CurrentUser() userData: ReqAfterGuard): Promise<void> {
     await this.authService.logout(userData);
+  }
+
+  @ApiOperation({ summary: 'Verify created user' })
+  @ApiNoContentResponse({ description: 'User has been verifed' })
+  @ApiBearerAuth()
+  @Post('verify')
+  public async verifyUser(@Query('token') token: string): Promise<string> {
+    return await this.authService.verifyUser(token);
   }
 }

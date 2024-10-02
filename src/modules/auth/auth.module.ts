@@ -9,10 +9,10 @@ import { UsersModule } from '../users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAccessGuard } from './quards/jwtAccesGuard';
 import { RedisModule } from '../redis/redis.module';
-import { EmailoduleModule } from '../emailodule/emailodule.module';
+import { EmailModule } from '../emailodule/emailodule.module';
 
 @Module({
-  imports: [JwtModule, UsersModule, RedisModule, EmailoduleModule],
+  imports: [JwtModule, UsersModule, RedisModule, EmailModule],
   controllers: [AuthController],
   providers: [
     {

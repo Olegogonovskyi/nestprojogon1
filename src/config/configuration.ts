@@ -20,6 +20,8 @@ export default () => ({
     accessExpiresIn: Number(process.env.JWT_ACCESS_EXPIRES_IN),
     refreshSecret: process.env.JWT_REFRESH_SECRET,
     refreshExpiresIn: Number(process.env.JWT_REFRESH_EXPIRES_IN),
+    verifSecret: process.env.JWT_ACTION_VERIFIED_SECRET,
+    verifTime: Number(process.env.JWT_ACTION_VERIFIED_EXPIRES_IN),
   },
   aws: {
     region: process.env.AWS_REGION,

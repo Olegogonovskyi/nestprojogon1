@@ -19,8 +19,8 @@ export class EmailService {
       await this.mailerService.sendMail({
         to,
         subject,
-        template, // ім'я шаблону Handlebars без розширення
-        context, // змінні для шаблону
+        template,
+        context,
       });
     } catch (e) {
       console.log(e);

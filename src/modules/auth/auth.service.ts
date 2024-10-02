@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { RegisterAuthReqDto } from './dto/req/register.auth.req.dto';
 import { UserRepository } from '../repository/services/users.repository';
@@ -11,6 +11,9 @@ import { TokenPair } from './models/tokenPair';
 import { ReqAfterGuard } from './dto/req/reqAfterGuard';
 import { EmailService } from '../emailodule/emailodule.service';
 import { EmailEnum } from '../emailodule/enums/emailEnam';
+import { TokenTypeEnam } from './enums/tokenTypeEnam';
+import * as process from 'node:process';
+import { handleTokenError } from '../../common/tokenErr/handleTokenError';
 
 @Injectable()
 export class AuthService {
@@ -34,16 +37,27 @@ export class AuthService {
       deviceId: registerAuthDto.deviceId,
     });
 
-    await this.deleteCreateTokens.saveNewTokens(
-      registerAuthDto.deviceId,
-      user.id,
-      tokens,
-    );
-    await this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
-      name: 'email',
-      frontUrl: 'www.uuu',
-      actionToken: tokens.accessToken,
+    const verToken = await this.tokenService.genreVerifToken({
+      userId: user.id,
+      deviceId: registerAuthDto.deviceId,
     });
+
+    await Promise.all([
+      this.userRepository.update(user.id, { verifyToken: verToken }),
+
+      this.deleteCreateTokens.saveNewTokens(
+        registerAuthDto.deviceId,
+        user.id,
+        tokens,
+      ),
+      this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
+        layout: 'main',
+        name: 'email',
+        frontUrl: process.env.FRONTEND_URL,
+        actionToken: verToken,
+      }),
+    ]);
+
     return { user: UserMapper.toResponseDTO(user), tokens: tokens };
   }
 
@@ -90,6 +104,26 @@ export class AuthService {
       tokens,
     );
     return tokens;
+  }
+
+  public async verifyUser(verToken: string): Promise<string> {
+    try {
+      const payload = await this.tokenService.verifyToken(
+        verToken,
+        TokenTypeEnam.VERIFY,
+      );
+      const userToVer = await this.userRepository.findOneBy({
+        id: payload.userId,
+      });
+      if (!userToVer) {
+        throw new NotFoundException('User not found');
+      }
+      userToVer.isVerified = true;
+      await this.userRepository.update(userToVer.id, { isVerified: true });
+      return 'User successfully verified';
+    } catch (e) {
+      handleTokenError(e);
+    }
   }
 
   public async logout(userData: ReqAfterGuard): Promise<void> {

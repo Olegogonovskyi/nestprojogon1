@@ -3,6 +3,7 @@ export enum EntityEnum {
   POSTVIEWS = 'postviews',
   POSTS = 'posts',
   REFRESH_TOKEN = 'refreshToken',
+
   USERS = 'users',
   TAG = 'tag',
 }

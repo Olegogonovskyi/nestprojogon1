@@ -28,6 +28,12 @@ export class UsersEntity extends IdCreateUpdateEntity {
   @Column('text', { nullable: true })
   image: string;
 
+  @Column('boolean', { default: false })
+  isVerified: boolean;
+
+  @Column('text', { nullable: true })
+  verifyToken: string;
+
   @OneToMany(() => PostsEntity, (entity) => entity.user)
   posts?: PostsEntity[];
 
