@@ -18,6 +18,7 @@ import { PriseEnum } from '../../../../database/enums/prise.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { RegisterAuthResDto } from '../../../auth/dto/res/register.auth.res.dto';
 import { ValidationCostants } from '../../../../validationConstants/validation costants';
+import { CarBrandEnum } from '../../enums/carEnum';
 
 export class BaseReqPostDto {
   @ApiPropertyOptional()
@@ -74,6 +75,10 @@ export class BaseReqPostDto {
   @ApiProperty({ enum: PriseEnum })
   @IsEnum(PriseEnum)
   prise: PriseEnum;
+
+  @ApiProperty({ enum: CarBrandEnum })
+  @IsEnum(CarBrandEnum)
+  carBrand: CarBrandEnum;
 
   @ApiPropertyOptional({ type: Number, description: 'currency in EUR' })
   @IsNumber()

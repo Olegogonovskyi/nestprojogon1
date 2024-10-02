@@ -8,6 +8,7 @@ export class PostMapper {
   private static toResDto(
     post: PostsEntity,
     views?: number,
+    averagePrise?: number,
   ): CreateUpdateResDto {
     const {
       id,
@@ -20,6 +21,7 @@ export class PostMapper {
       isActive,
       tags,
       user,
+      carBrand,
     } = post;
     const baseDto = {
       id,
@@ -32,8 +34,11 @@ export class PostMapper {
       isActive,
       tags: tags ? tags.map((tag) => tag.name) : [],
       user: UserMapper.toResponseDTO(user),
+      carBrand,
     };
-    return views !== undefined ? { ...baseDto, countOfViews: views } : baseDto;
+    return views !== undefined
+      ? { ...baseDto, countOfViews: views, averagePrise }
+      : baseDto;
   }
 
   public static toResUpdateDto(post: PostsEntity): CreateUpdateResDto {
@@ -42,9 +47,10 @@ export class PostMapper {
 
   public static toResCreateDto(
     post: PostsEntity,
-    views: number,
+    views?: number,
+    averagePrise?: number,
   ): CreateUpdateResDto {
-    return this.toResDto(post, views);
+    return this.toResDto(post, views, averagePrise);
   }
 
   public static toResListDto(
@@ -53,11 +59,9 @@ export class PostMapper {
     query: PostListRequeryDto,
   ): PostListResDto {
     return {
-      data: entites.map(this.toResCreateDto),
+      data: entites.map((entity) => this.toResCreateDto(entity)),
       total,
       ...query,
     };
   }
 }
-
-//PostListResDto

@@ -17,8 +17,12 @@ export class CreateUpdateResDto extends PartialType(
     'tags',
     'user',
     'countOfViews',
+    'carBrand',
   ]),
 ) {
   @IsOptional()
   countOfViews?: number;
+
+  @IsOptional()
+  averagePrise?: number;
 }

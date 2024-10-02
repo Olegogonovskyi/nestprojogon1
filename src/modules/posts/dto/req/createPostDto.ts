@@ -9,4 +9,5 @@ export class CreatePostDto extends PickType(BaseReqPostDto, [
   'prise',
   'image',
   'tags',
+  'carBrand',
 ]) {}

@@ -57,11 +57,11 @@ export class PostsController {
     @Body() createPostDto: CreatePostDto,
     @CurrentUser() userData: ReqAfterGuard,
   ): Promise<CreateUpdateResDto> {
-    const [post, number] = await this.postsService.create(
+    const [post, views, averagePrise] = await this.postsService.create(
       createPostDto,
       userData,
     );
-    return PostMapper.toResCreateDto(post, number);
+    return PostMapper.toResCreateDto(post, views, averagePrise);
   }
 
   @ApiBearerAuth()
@@ -74,8 +74,11 @@ export class PostsController {
     @Param('postId') postId: string,
     @CurrentUser() userData: ReqAfterGuard,
   ): Promise<CreateUpdateResDto> {
-    const [post, number] = await this.postsService.getById(postId, userData);
-    return PostMapper.toResCreateDto(post, number);
+    const [post, views, averagePrise] = await this.postsService.getById(
+      postId,
+      userData,
+    );
+    return PostMapper.toResCreateDto(post, views, averagePrise);
   }
 
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })

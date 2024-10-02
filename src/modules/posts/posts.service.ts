@@ -59,7 +59,7 @@ export class PostsService {
   public async create(
     createPostDto: CreatePostDto,
     userData: ReqAfterGuard,
-  ): Promise<[PostsEntity, number?]> {
+  ): Promise<[PostsEntity, number?, number?]> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
 
@@ -127,7 +127,7 @@ export class PostsService {
   public async getById(
     postId: string,
     userData: ReqAfterGuard,
-  ): Promise<[PostsEntity, number?]> {
+  ): Promise<[PostsEntity, number?, number?]> {
     try {
       const post = await this.postRepository.findOne({
         where: { id: postId },
@@ -140,13 +140,17 @@ export class PostsService {
       this.eventEmitter.emit('post.viewed', new PostViewedEvent(post));
 
       let countViews: number | undefined;
+      let averagePrise: number | undefined;
       if (userData.role !== RoleEnum.SELLER) {
         countViews = await this.postViewRepository.count({
           where: { post: { id: postId } },
         });
+        averagePrise = await this.postRepository.getAveragePriceForCarBand(
+          post.carBrand,
+        );
       }
 
-      return [post, countViews];
+      return [post, countViews, averagePrise];
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch post details');
     }
