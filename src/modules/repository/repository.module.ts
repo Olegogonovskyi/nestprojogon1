@@ -4,6 +4,7 @@ import { PostRepository } from './services/post.repository';
 import { RefreshTokenRepository } from './services/refreshToken.repository';
 import { TagRepository } from './services/tag.repository';
 import { PostViewRepository } from './services/postView.repository';
+import { CarBrandRepository } from './services/carBrand.repository';
 
 const repositories = [
   UserRepository,
@@ -11,6 +12,7 @@ const repositories = [
   RefreshTokenRepository,
   TagRepository,
   PostViewRepository,
+  CarBrandRepository,
 ];
 
 @Global()

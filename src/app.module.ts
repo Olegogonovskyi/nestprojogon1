@@ -10,6 +10,7 @@ import { PostsModule } from './modules/posts/posts.module';
 import { FileStorageModule } from './modules/filestorage/filestorageModule';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EmailModule } from './modules/emailodule/emailodule.module';
+import { CarBrandModuleModule } from './modules/car-brand-module/car-brand-module.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { EmailModule } from './modules/emailodule/emailodule.module';
     FileStorageModule,
     EventEmitterModule.forRoot(),
     EmailModule,
+    CarBrandModuleModule,
   ],
 })
 export class AppModule {}

@@ -1,9 +1,9 @@
 import { IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
-import { TransformHelper } from '../../../../helpers/transformHelper';
 import { Transform, Type } from 'class-transformer';
+import { TransformHelper } from '../../../helpers/transformHelper';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PostListRequeryDto {
+export class CarBrandListRequeryDto {
   @ApiProperty()
   @Type(() => Number)
   @IsInt()

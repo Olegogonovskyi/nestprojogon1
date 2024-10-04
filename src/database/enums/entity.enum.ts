@@ -3,7 +3,7 @@ export enum EntityEnum {
   POSTVIEWS = 'postviews',
   POSTS = 'posts',
   REFRESH_TOKEN = 'refreshToken',
-
+  CARBRAND = 'carBrand',
   USERS = 'users',
   TAG = 'tag',
 }

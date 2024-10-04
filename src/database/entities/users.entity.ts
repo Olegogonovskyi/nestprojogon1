@@ -4,6 +4,7 @@ import { IdCreateUpdateEntity } from './models/IdCreateUpdateEntity';
 import { RoleEnum } from '../enums/role.enum';
 import { PostsEntity } from './post.entity';
 import { RefreshTokenEntity } from './refreshToken.entity';
+import { CarEntity } from './car.entity';
 
 @Entity(EntityEnum.USERS)
 export class UsersEntity extends IdCreateUpdateEntity {
@@ -36,6 +37,9 @@ export class UsersEntity extends IdCreateUpdateEntity {
 
   @OneToMany(() => PostsEntity, (entity) => entity.user)
   posts?: PostsEntity[];
+
+  @OneToMany(() => CarEntity, (entity) => entity.user)
+  carBrandModels?: CarEntity[];
 
   @OneToMany(() => RefreshTokenEntity, (entity) => entity.user)
   refreshTokens?: RefreshTokenEntity[];

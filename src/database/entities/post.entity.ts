@@ -15,6 +15,7 @@ import { UsersEntity } from './users.entity';
 import { TagEntity } from './tag.entity';
 import { PostViewEntity } from './postViev.entity';
 import { CarBrandEnum } from '../../modules/posts/enums/carEnum';
+import { CarEntity } from './car.entity';
 
 @Entity(EntityEnum.POSTS)
 export class PostsEntity extends IdCreateUpdateEntity {
@@ -62,6 +63,12 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @ManyToOne(() => UsersEntity, (entity) => entity.posts)
   @JoinColumn({ name: 'userID' })
   user?: UsersEntity;
+
+  @Column('text')
+  carBrandId: string;
+  @ManyToOne(() => CarEntity, (entity) => entity.posts)
+  @JoinColumn({ name: 'carBrandId' })
+  carBrandName?: CarEntity;
 
   @ManyToMany(() => TagEntity, (entity) => entity.posts)
   @JoinTable()
