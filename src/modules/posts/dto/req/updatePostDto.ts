@@ -12,6 +12,10 @@ export class UpdatePostDto extends PickType(BaseReqPostDto, [
   'prise',
   'image',
   'carBrand',
+  'region',
+  'town',
+  'model',
+  'year',
 ]) {
   @IsOptional()
   title: string;
@@ -23,6 +27,15 @@ export class UpdatePostDto extends PickType(BaseReqPostDto, [
   body: string;
 
   @IsOptional()
+  region: string;
+
+  @IsOptional()
+  town: string;
+
+  @IsOptional()
+  model: string;
+
+  @IsOptional()
   priseValue: number;
 
   @IsOptional()
@@ -32,5 +45,8 @@ export class UpdatePostDto extends PickType(BaseReqPostDto, [
   image: string;
 
   @IsOptional()
-  carBrand: CarBrandEnum;
+  carBrand: string;
+
+  @IsOptional()
+  year: number;
 }

@@ -24,6 +24,7 @@ import { ExchangeHelper } from './helpers/exchangeHelper';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { PostViewedEvent } from './services/postViewEvent';
 import { PostViewRepository } from '../repository/services/postView.repository';
+import { PaidInfoInterface } from './types/paidInfo.interface';
 
 @Injectable()
 export class PostsService {
@@ -59,7 +60,7 @@ export class PostsService {
   public async create(
     createPostDto: CreatePostDto,
     userData: ReqAfterGuard,
-  ): Promise<[PostsEntity, number?, number?]> {
+  ): Promise<[PostsEntity, paidInfo: PaidInfoInterface]> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
 
@@ -127,7 +128,7 @@ export class PostsService {
   public async getById(
     postId: string,
     userData: ReqAfterGuard,
-  ): Promise<[PostsEntity, number?, number?]> {
+  ): Promise<[PostsEntity, paidInfo: PaidInfoInterface]> {
     try {
       const post = await this.postRepository.findOne({
         where: { id: postId },
@@ -139,18 +140,31 @@ export class PostsService {
 
       this.eventEmitter.emit('post.viewed', new PostViewedEvent(post));
 
-      let countViews: number | undefined;
-      let averagePrise: number | undefined;
+      let paidInfo: PaidInfoInterface;
       if (userData.role !== RoleEnum.SELLER) {
-        countViews = await this.postViewRepository.count({
+        paidInfo.countViews = await this.postViewRepository.count({
           where: { post: { id: postId } },
         });
-        averagePrise = await this.postRepository.getAveragePriceForCarBand(
-          post.carBrand,
+        paidInfo.averagePrise =
+          await this.postRepository.getAveragePriceForCarBand(
+            post.carBrand,
+            post.model,
+          );
+
+        paidInfo.viewsByDay = await this.postViewRepository.countViewsByDay(
+          post.id,
         );
+        paidInfo.viewsByWeek = await this.postViewRepository.countViewsByWeek(
+          post.id,
+        );
+        paidInfo.viewsByMonth = await this.postViewRepository.countViewsByMonth(
+          post.id,
+        );
+      } else {
+        paidInfo = undefined;
       }
 
-      return [post, countViews, averagePrise];
+      return [post, paidInfo];
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch post details');
     }

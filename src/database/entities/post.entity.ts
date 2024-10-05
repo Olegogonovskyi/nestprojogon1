@@ -14,7 +14,6 @@ import { PriseEnum } from '../enums/prise.enum';
 import { UsersEntity } from './users.entity';
 import { TagEntity } from './tag.entity';
 import { PostViewEntity } from './postViev.entity';
-import { CarBrandEnum } from '../../modules/posts/enums/carEnum';
 import { CarEntity } from './car.entity';
 
 @Entity(EntityEnum.POSTS)
@@ -37,8 +36,20 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @Column({ type: 'enum', enum: PriseEnum, default: PriseEnum.UAH })
   prise: PriseEnum;
 
-  @Column({ type: 'enum', enum: CarBrandEnum, default: CarBrandEnum.HORSE })
-  carBrand: CarBrandEnum;
+  @Column('text')
+  carBrand: string;
+
+  @Column('text')
+  town: string;
+
+  @Column('text')
+  region: string;
+
+  @Column('text')
+  model: string;
+
+  @Column('decimal')
+  year: number;
 
   @Column('decimal', { nullable: true })
   usdPrice: number;

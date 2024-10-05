@@ -7,6 +7,9 @@ import {
   Param,
   Delete,
   Query,
+  HttpCode,
+  HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { CarBrandModuleService } from './car-brand-module.service';
 import { CreateReqCarBrandModuleDto } from './dto/req/createReq-car-brand-module.dto';
@@ -16,6 +19,7 @@ import {
   ApiBody,
   ApiConflictResponse,
   ApiForbiddenResponse,
+  ApiNotFoundResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -29,6 +33,8 @@ import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
 import { CarBrandListRequeryDto } from './dto/carBrandListRequeryDto';
 import { CarBrandMapper } from './services/carBrandMapper';
 import { CarBrandListResDto } from './dto/res/carBrandListResDto';
+import { RolesGuard } from '../users/guards/RolesGuard';
+import { Roles } from '../users/decorators/roleDecorator';
 
 @ApiTags(ControllerEnum.CARBRAND)
 @Controller(ControllerEnum.CARBRAND)
@@ -74,11 +80,6 @@ export class CarBrandModuleController {
     return CarBrandMapper.toResListDto(entites, number, query);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.carBrandModuleService.findOne(+id);
-  }
-
   @ApiBearerAuth()
   @ApiOperation({
     summary: `Update a new carBrand with models *only for ${RoleEnum.ADMIN} & ${RoleEnum.MANAGER}*`,
@@ -104,8 +105,20 @@ export class CarBrandModuleController {
     return this.carBrandModuleService.update(id, updateCarBrandModuleDto);
   }
 
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: `Delete carBrand by id`,
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiConflictResponse({ description: 'Conflict' })
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @UseGuards(RolesGuard)
+  @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.carBrandModuleService.remove(+id);
+  public async remove(@Param('id') id: string): Promise<void> {
+    await this.carBrandModuleService.remove(id);
   }
 }

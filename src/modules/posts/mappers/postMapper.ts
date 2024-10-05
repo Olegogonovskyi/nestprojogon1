@@ -3,12 +3,12 @@ import { CreateUpdateResDto } from '../dto/res/createUpdateResDto';
 import { PostListRequeryDto } from '../dto/req/PostListReqQueryDto';
 import { PostListResDto } from '../dto/res/PostListResDto';
 import { UserMapper } from '../../auth/mapers/userMapper';
+import { PaidInfoInterface } from '../types/paidInfo.interface';
 
 export class PostMapper {
   private static toResDto(
     post: PostsEntity,
-    views?: number,
-    averagePrise?: number,
+    paidInfo: PaidInfoInterface,
   ): CreateUpdateResDto {
     const {
       id,
@@ -22,6 +22,10 @@ export class PostMapper {
       tags,
       user,
       carBrand,
+      town,
+      region,
+      model,
+      year,
     } = post;
     const baseDto = {
       id,
@@ -35,22 +39,25 @@ export class PostMapper {
       tags: tags ? tags.map((tag) => tag.name) : [],
       user: UserMapper.toResponseDTO(user),
       carBrand,
+      town,
+      region,
+      model,
+      year,
     };
-    return views !== undefined
-      ? { ...baseDto, countOfViews: views, averagePrise }
+    return paidInfo !== undefined
+      ? { ...baseDto, paidInfo: paidInfo }
       : baseDto;
   }
 
   public static toResUpdateDto(post: PostsEntity): CreateUpdateResDto {
-    return this.toResDto(post);
+    return this.toResDto(post, undefined);
   }
 
   public static toResCreateDto(
     post: PostsEntity,
-    views?: number,
-    averagePrise?: number,
+    paidInfo: PaidInfoInterface,
   ): CreateUpdateResDto {
-    return this.toResDto(post, views, averagePrise);
+    return this.toResDto(post, paidInfo);
   }
 
   public static toResListDto(
@@ -59,7 +66,7 @@ export class PostMapper {
     query: PostListRequeryDto,
   ): PostListResDto {
     return {
-      data: entites.map((entity) => this.toResCreateDto(entity)),
+      data: entites.map((entity) => this.toResCreateDto(entity, undefined)),
       total,
       ...query,
     };

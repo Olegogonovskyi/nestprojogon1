@@ -10,6 +10,7 @@ import {
   IsOptional,
   IsString,
   Length,
+  Max,
   Min,
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
@@ -18,7 +19,6 @@ import { PriseEnum } from '../../../../database/enums/prise.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { RegisterAuthResDto } from '../../../auth/dto/res/register.auth.res.dto';
 import { ValidationCostants } from '../../../../validationConstants/validation costants';
-import { CarBrandEnum } from '../../enums/carEnum';
 
 export class BaseReqPostDto {
   @ApiPropertyOptional()
@@ -76,9 +76,22 @@ export class BaseReqPostDto {
   @IsEnum(PriseEnum)
   prise: PriseEnum;
 
-  @ApiProperty({ enum: CarBrandEnum })
-  @IsEnum(CarBrandEnum)
-  carBrand: CarBrandEnum;
+  @IsString()
+  carBrand: string;
+
+  @IsString()
+  model: string;
+
+  @IsString()
+  town: string;
+
+  @IsString()
+  region: string;
+
+  @IsInt()
+  @Min(1945)
+  @Max(2025)
+  year: number;
 
   @ApiPropertyOptional({ type: Number, description: 'currency in EUR' })
   @IsNumber()

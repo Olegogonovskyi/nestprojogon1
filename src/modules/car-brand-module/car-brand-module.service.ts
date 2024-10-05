@@ -48,7 +48,7 @@ export class CarBrandModuleService {
     return this.carBrandRepository.save(carBrand);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} carBrandModule`;
+  public async remove(id: string): Promise<void> {
+    await this.carBrandRepository.delete({ id: id });
   }
 }

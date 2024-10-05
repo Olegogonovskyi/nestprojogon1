@@ -24,10 +24,14 @@ export class PostRepository extends Repository<PostsEntity> {
       .getCount();
   }
 
-  public async getAveragePriceForCarBand(CarBand: string): Promise<number> {
+  public async getAveragePriceForCarBand(
+    CarBand: string,
+    model: string,
+  ): Promise<number> {
     const result = await this.createQueryBuilder('post')
       .select('AVG(post.priseValue)', 'avgPrice')
       .where('post.carBrand = :carBrand', { carBrand: CarBand })
+      .where('post.model = :model', { model: model })
       .getRawOne();
 
     return parseFloat(result.avgPrice);

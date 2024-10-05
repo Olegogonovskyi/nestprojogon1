@@ -57,11 +57,11 @@ export class PostsController {
     @Body() createPostDto: CreatePostDto,
     @CurrentUser() userData: ReqAfterGuard,
   ): Promise<CreateUpdateResDto> {
-    const [post, views, averagePrise] = await this.postsService.create(
+    const [post, paidInfo] = await this.postsService.create(
       createPostDto,
       userData,
     );
-    return PostMapper.toResCreateDto(post, views, averagePrise);
+    return PostMapper.toResCreateDto(post, paidInfo);
   }
 
   @ApiBearerAuth()
@@ -74,11 +74,8 @@ export class PostsController {
     @Param('postId') postId: string,
     @CurrentUser() userData: ReqAfterGuard,
   ): Promise<CreateUpdateResDto> {
-    const [post, views, averagePrise] = await this.postsService.getById(
-      postId,
-      userData,
-    );
-    return PostMapper.toResCreateDto(post, views, averagePrise);
+    const [post, paidInfo] = await this.postsService.getById(postId, userData);
+    return PostMapper.toResCreateDto(post, paidInfo);
   }
 
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
@@ -118,7 +115,7 @@ export class PostsController {
 
   @ApiBearerAuth()
   @ApiOperation({
-    summary: `Get post by id`,
+    summary: `Delete post by id`,
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @ApiNotFoundResponse({ description: 'Not Found' })
