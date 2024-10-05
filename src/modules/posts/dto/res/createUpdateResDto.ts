@@ -1,7 +1,8 @@
-import { PartialType, PickType } from '@nestjs/swagger';
+import { ApiProperty, PartialType, PickType } from '@nestjs/swagger';
 import { BaseReqPostDto } from '../req/baseReqPostDto';
 import { IsOptional } from 'class-validator';
 import { PaidInfoInterface } from '../../types/paidInfo.interface';
+import { PaidInfoResDto } from './paidInfoRes.dto';
 
 export class CreateUpdateResDto extends PartialType(
   PickType(BaseReqPostDto, [
@@ -22,5 +23,6 @@ export class CreateUpdateResDto extends PartialType(
   ]),
 ) {
   @IsOptional()
+  @ApiProperty({ type: PaidInfoResDto, required: false })
   paidInfo?: PaidInfoInterface | undefined;
 }
