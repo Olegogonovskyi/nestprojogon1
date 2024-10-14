@@ -1,12 +1,12 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { CreateUserByAdminDto } from './dto/req/createUserByAdminDto';
+import { CreateUserByAdminDto } from './dto/req/createUserByAdmin.dto';
 import { UsersEntity } from '../../database/entities/users.entity';
 import * as bcrypt from 'bcrypt';
 import { UserRepository } from '../repository/services/users.repository';
 import { AuthCacheService } from '../auth/services/auth.catch.service';
-import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
-import { UpdateUserByAdminDto } from './dto/req/updateUserByAdminDto';
-import { UpdateMeDto } from './dto/req/updateMeDto';
+import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
+import { UpdateUserByAdminDto } from './dto/req/updateUserByAdmin.dto';
+import { UpdateMeDto } from './dto/req/updateMe.dto';
 import { FileStorageService } from '../filestorage/filestorageService';
 import { ContentType } from '../filestorage/enums/content-type.enum';
 
@@ -64,7 +64,7 @@ export class UsersService {
   }
 
   public async uploadAvatar(
-    userData: ReqAfterGuard,
+    userData: ReqAfterGuardDto,
     avatar: Express.Multer.File,
   ): Promise<void> {
     console.log(avatar);
@@ -83,7 +83,7 @@ export class UsersService {
     ]);
   }
 
-  public async deleteMe(userData: ReqAfterGuard): Promise<void> {
+  public async deleteMe(userData: ReqAfterGuardDto): Promise<void> {
     await Promise.all([
       this.userRepository.delete({ id: userData.id }),
       this.authCacheService.deleteByIdKey(userData.id),

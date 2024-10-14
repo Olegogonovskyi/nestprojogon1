@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateReqCarBrandModuleDto } from './dto/req/createReq-car-brand-module.dto';
 import { UpdateCarBrandModuleDto } from './dto/req/update-car-brand-module.dto';
-import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
+import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
 import { CreateResCarBrandModuleDto } from './dto/res/createRes-car-brand-module.dto';
 import { CarBrandRepository } from '../repository/services/carBrand.repository';
-import { CarBrandListRequeryDto } from './dto/carBrandListRequeryDto';
+import { CarBrandListRequeryDto } from './dto/carBrandListRequery.dto';
 import { CarEntity } from '../../database/entities/car.entity';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class CarBrandModuleService {
 
   public async create(
     createCarBrandModuleDto: CreateReqCarBrandModuleDto,
-    userData: ReqAfterGuard,
+    userData: ReqAfterGuardDto,
   ): Promise<CreateResCarBrandModuleDto> {
     const carBrand = await this.carBrandRepository.save(
       this.carBrandRepository.create({

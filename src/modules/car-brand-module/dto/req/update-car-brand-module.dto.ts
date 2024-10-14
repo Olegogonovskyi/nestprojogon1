@@ -1,5 +1,5 @@
 import { PartialType, PickType } from '@nestjs/swagger';
-import { BaseCarBrandDto } from '../base-carBrandDto';
+import { BaseCarBrandDto } from '../base-carBrand.dto';
 import { IsOptional } from 'class-validator';
 
 export class UpdateCarBrandModuleDto extends PartialType(

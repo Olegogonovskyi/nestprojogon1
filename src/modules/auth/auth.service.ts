@@ -6,9 +6,9 @@ import { TokenService } from './services/tokenService';
 import { DeleteCreateTokens } from 'src/helpers/delete.create.tokens';
 import { UserMapper } from './mapers/userMapper';
 import { AuthResDto } from './dto/res/auth.res.dto';
-import { LoginReqDto } from './dto/req/loginReqDto';
+import { LoginReqDto } from './dto/req/loginReq.dto';
 import { TokenPair } from './models/tokenPair';
-import { ReqAfterGuard } from './dto/req/reqAfterGuard';
+import { ReqAfterGuardDto } from './dto/req/reqAfterGuard.dto';
 import { EmailService } from '../emailodule/emailodule.service';
 import { EmailEnum } from '../emailodule/enums/emailEnam';
 import { TokenTypeEnam } from './enums/tokenTypeEnam';
@@ -92,7 +92,7 @@ export class AuthService {
     return { user: UserMapper.toResponseDTO(user), tokens: tokens };
   }
 
-  public async refresh(userData: ReqAfterGuard): Promise<TokenPair> {
+  public async refresh(userData: ReqAfterGuardDto): Promise<TokenPair> {
     await this.deleteCreateTokens.deleteTokens(userData.deviceId, userData.id);
     const tokens = await this.tokenService.generateAuthTokens({
       userId: userData.id,
@@ -126,7 +126,7 @@ export class AuthService {
     }
   }
 
-  public async logout(userData: ReqAfterGuard): Promise<void> {
+  public async logout(userData: ReqAfterGuardDto): Promise<void> {
     await this.deleteCreateTokens.deleteTokens(userData.deviceId, userData.id);
   }
 }

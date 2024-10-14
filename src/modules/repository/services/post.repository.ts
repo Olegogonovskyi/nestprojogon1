@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { PostsEntity } from '../../../database/entities/post.entity';
-import { PostListRequeryDto } from '../../posts/dto/req/PostListReqQueryDto';
+import { PostListRequeryDto } from '../../posts/dto/req/PostListReqQuery.dto';
 
 @Injectable()
 export class PostRepository extends Repository<PostsEntity> {

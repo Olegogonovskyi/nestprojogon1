@@ -6,15 +6,15 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { CreatePostDto } from './dto/req/createPostDto';
-import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
+import { CreatePostDto } from './dto/req/createPost.dto';
+import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
 import { TagRepository } from '../repository/services/tag.repository';
 import { PostRepository } from '../repository/services/post.repository';
 import { TagEntity } from '../../database/entities/tag.entity';
 import { In } from 'typeorm';
 import { PostsEntity } from '../../database/entities/post.entity';
-import { UpdatePostDto } from './dto/req/updatePostDto';
-import { PostListRequeryDto } from './dto/req/PostListReqQueryDto';
+import { UpdatePostDto } from './dto/req/updatePost.dto';
+import { PostListRequeryDto } from './dto/req/PostListReqQuery.dto';
 import { ExchangeRateService } from '../exchange/exchange.service';
 
 import { RoleEnum } from '../../database/enums/role.enum';
@@ -59,7 +59,7 @@ export class PostsService {
 
   public async create(
     createPostDto: CreatePostDto,
-    userData: ReqAfterGuard,
+    userData: ReqAfterGuardDto,
   ): Promise<[PostsEntity, paidInfo: PaidInfoInterface]> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
@@ -127,7 +127,7 @@ export class PostsService {
 
   public async getById(
     postId: string,
-    userData: ReqAfterGuard,
+    userData: ReqAfterGuardDto,
   ): Promise<[PostsEntity, paidInfo: PaidInfoInterface]> {
     try {
       const post = await this.postRepository.findOne({

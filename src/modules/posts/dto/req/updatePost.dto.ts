@@ -1,5 +1,5 @@
 import { PickType } from '@nestjs/swagger';
-import { BaseReqPostDto } from './baseReqPostDto';
+import { BaseReqPostDto } from './baseReqPost.dto';
 import { IsOptional } from 'class-validator';
 import { PriseEnum } from '../../../../database/enums/prise.enum';
 import { CarBrandEnum } from '../../enums/carEnum';

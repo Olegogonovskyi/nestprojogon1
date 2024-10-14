@@ -23,14 +23,14 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { CreatePostDto } from './dto/req/createPostDto';
-import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
+import { CreatePostDto } from './dto/req/createPost.dto';
+import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
 import { CurrentUser } from '../auth/decorators/currentUserDecorator';
-import { CreateUpdateResDto } from './dto/res/createUpdateResDto';
+import { CreateUpdateResDto } from './dto/res/createUpdateRes.dto';
 import { PostMapper } from './mappers/postMapper';
-import { UpdatePostDto } from './dto/req/updatePostDto';
-import { PostListRequeryDto } from './dto/req/PostListReqQueryDto';
-import { PostListResDto } from './dto/res/PostListResDto';
+import { UpdatePostDto } from './dto/req/updatePost.dto';
+import { PostListRequeryDto } from './dto/req/PostListReqQuery.dto';
+import { PostListResDto } from './dto/res/PostListRes.dto';
 import { ControllerEnum } from '../enums/controllerEnum';
 import { RolesGuard } from '../users/guards/RolesGuard';
 import { Roles } from '../users/decorators/roleDecorator';
@@ -55,7 +55,7 @@ export class PostsController {
   @Post()
   public async create(
     @Body() createPostDto: CreatePostDto,
-    @CurrentUser() userData: ReqAfterGuard,
+    @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<CreateUpdateResDto> {
     const [post, paidInfo] = await this.postsService.create(
       createPostDto,
@@ -72,7 +72,7 @@ export class PostsController {
   @Get(':postId')
   public async getById(
     @Param('postId') postId: string,
-    @CurrentUser() userData: ReqAfterGuard,
+    @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<CreateUpdateResDto> {
     const [post, paidInfo] = await this.postsService.getById(postId, userData);
     return PostMapper.toResCreateDto(post, paidInfo);

@@ -23,14 +23,14 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { CreateUserByAdminDto } from './dto/req/createUserByAdminDto';
-import { CreateUserAdminRes } from './dto/res/createUserAdminRes';
+import { CreateUserByAdminDto } from './dto/req/createUserByAdmin.dto';
+import { CreateUserAdminResDto } from './dto/res/createUserAdminRes.dto';
 import { UserModuleMaper } from './mapers/userModuleMaper';
 import { RoleEnum } from '../../database/enums/role.enum';
-import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
+import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
 import { CurrentUser } from '../auth/decorators/currentUserDecorator';
-import { UpdateUserByAdminDto } from './dto/req/updateUserByAdminDto';
-import { UpdateMeDto } from './dto/req/updateMeDto';
+import { UpdateUserByAdminDto } from './dto/req/updateUserByAdmin.dto';
+import { UpdateMeDto } from './dto/req/updateMe.dto';
 import { ControllerEnum } from '../enums/controllerEnum';
 import { RolesGuard } from './guards/RolesGuard';
 import { Roles } from './decorators/roleDecorator';
@@ -58,7 +58,7 @@ export class UsersController {
   @Post('admin/create')
   public async create(
     @Body() CreateUserByAdminDto: CreateUserByAdminDto,
-  ): Promise<CreateUserAdminRes> {
+  ): Promise<CreateUserAdminResDto> {
     const result = await this.usersService.create(CreateUserByAdminDto);
     return UserModuleMaper.toResUserByAdmin(result);
   }
@@ -92,7 +92,7 @@ export class UsersController {
   public async updateUserbyAdmin(
     @Body() updateUserDto: UpdateUserByAdminDto,
     @Param('id', ParseUUIDPipe) id: string,
-  ): Promise<CreateUserAdminRes> {
+  ): Promise<CreateUserAdminResDto> {
     const result = await this.usersService.updateUserbyAdmin(updateUserDto, id);
     return UserModuleMaper.toResUserByAdmin(result);
   }
@@ -104,7 +104,7 @@ export class UsersController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @Get('me')
   public async findMe(
-    @CurrentUser() userData: ReqAfterGuard,
+    @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<UserModuleMaper> {
     const result = await this.usersService.findMe(userData.id);
     return UserModuleMaper.toResUser(result);
@@ -120,7 +120,7 @@ export class UsersController {
   @Patch('me')
   public async updateMe(
     @Body() updateUserDto: UpdateMeDto,
-    @CurrentUser() userData: ReqAfterGuard,
+    @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<UserModuleMaper> {
     const result = await this.usersService.updateMe(updateUserDto, userData.id);
     return UserModuleMaper.toResUser(result);
@@ -134,7 +134,7 @@ export class UsersController {
   @Post('me/uploadAvatar')
   public async uploadAvatar(
     @UploadedFile() avatar: Express.Multer.File,
-    @CurrentUser() userData: ReqAfterGuard,
+    @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<void> {
     await this.usersService.uploadAvatar(userData, avatar);
   }
@@ -147,7 +147,7 @@ export class UsersController {
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been removed' })
   @Delete('me')
-  public async deleteMe(@CurrentUser() userData: ReqAfterGuard): Promise<void> {
+  public async deleteMe(@CurrentUser() userData: ReqAfterGuardDto): Promise<void> {
     await this.usersService.deleteMe(userData);
   }
 }

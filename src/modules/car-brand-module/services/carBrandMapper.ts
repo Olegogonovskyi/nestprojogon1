@@ -1,5 +1,5 @@
 import { CreateResCarBrandModuleDto } from '../dto/res/createRes-car-brand-module.dto';
-import { CarBrandListRequeryDto } from '../dto/carBrandListRequeryDto';
+import { CarBrandListRequeryDto } from '../dto/carBrandListRequery.dto';
 import { CarBrandListResDto } from '../dto/res/carBrandListResDto';
 
 export class CarBrandMapper {

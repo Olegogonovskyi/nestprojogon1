@@ -1,7 +1,7 @@
 import { RegisterAuthResDto } from '../dto/res/register.auth.res.dto';
 import { UsersEntity } from '../../../database/entities/users.entity';
 import { JwtPayload } from '../models/jwtPayload';
-import { ReqAfterGuard } from '../dto/req/reqAfterGuard';
+import { ReqAfterGuardDto } from '../dto/req/reqAfterGuard.dto';
 
 export class UserMapper {
   public static toResponseDTO(data: UsersEntity): RegisterAuthResDto {
@@ -19,7 +19,7 @@ export class UserMapper {
   public static toReqUserData(
     user: UsersEntity,
     payload: JwtPayload,
-  ): ReqAfterGuard {
+  ): ReqAfterGuardDto {
     return {
       id: payload.userId,
       deviceId: payload.deviceId,

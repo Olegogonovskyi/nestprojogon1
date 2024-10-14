@@ -1,7 +1,7 @@
 import { PostsEntity } from '../../../database/entities/post.entity';
-import { CreateUpdateResDto } from '../dto/res/createUpdateResDto';
-import { PostListRequeryDto } from '../dto/req/PostListReqQueryDto';
-import { PostListResDto } from '../dto/res/PostListResDto';
+import { CreateUpdateResDto } from '../dto/res/createUpdateRes.dto';
+import { PostListRequeryDto } from '../dto/req/PostListReqQuery.dto';
+import { PostListResDto } from '../dto/res/PostListRes.dto';
 import { UserMapper } from '../../auth/mapers/userMapper';
 import { PaidInfoInterface } from '../types/paidInfo.interface';
 

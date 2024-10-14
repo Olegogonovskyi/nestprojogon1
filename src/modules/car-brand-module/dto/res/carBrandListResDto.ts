@@ -1,4 +1,4 @@
-import { CarBrandListRequeryDto } from '../carBrandListRequeryDto';
+import { CarBrandListRequeryDto } from '../carBrandListRequery.dto';
 import { CreateResCarBrandModuleDto } from './createRes-car-brand-module.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsInt, Min } from 'class-validator';

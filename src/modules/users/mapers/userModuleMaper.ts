@@ -1,9 +1,9 @@
 import { UsersEntity } from '../../../database/entities/users.entity';
-import { CreateUserAdminRes } from '../dto/res/createUserAdminRes';
-import { UpdateMeDto } from '../dto/req/updateMeDto';
+import { CreateUserAdminResDto } from '../dto/res/createUserAdminRes.dto';
+import { UpdateMeDto } from '../dto/req/updateMe.dto';
 
 export class UserModuleMaper {
-  public static toResUserByAdmin(createdUser: UsersEntity): CreateUserAdminRes {
+  public static toResUserByAdmin(createdUser: UsersEntity): CreateUserAdminResDto {
     const { id, name, email, position, role, age } = createdUser;
     return {
       id,

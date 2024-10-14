@@ -1,5 +1,5 @@
-import { CreateUpdateResDto } from './createUpdateResDto';
-import { PostListRequeryDto } from '../req/PostListReqQueryDto';
+import { CreateUpdateResDto } from './createUpdateRes.dto';
+import { PostListRequeryDto } from '../req/PostListReqQuery.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsInt, Min } from 'class-validator';
 

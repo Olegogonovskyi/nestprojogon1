@@ -29,8 +29,8 @@ import { ControllerEnum } from '../enums/controllerEnum';
 import { RoleEnum } from '../../database/enums/role.enum';
 import { CreateResCarBrandModuleDto } from './dto/res/createRes-car-brand-module.dto';
 import { CurrentUser } from '../auth/decorators/currentUserDecorator';
-import { ReqAfterGuard } from '../auth/dto/req/reqAfterGuard';
-import { CarBrandListRequeryDto } from './dto/carBrandListRequeryDto';
+import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
+import { CarBrandListRequeryDto } from './dto/carBrandListRequery.dto';
 import { CarBrandMapper } from './services/carBrandMapper';
 import { CarBrandListResDto } from './dto/res/carBrandListResDto';
 import { RolesGuard } from '../users/guards/RolesGuard';
@@ -58,7 +58,7 @@ export class CarBrandModuleController {
   @Post()
   public async create(
     @Body() createCarBrandModuleDto: CreateReqCarBrandModuleDto,
-    @CurrentUser() userData: ReqAfterGuard,
+    @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<CreateResCarBrandModuleDto> {
     return await this.carBrandModuleService.create(
       createCarBrandModuleDto,

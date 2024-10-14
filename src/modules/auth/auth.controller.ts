@@ -20,11 +20,11 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { LoginReqDto } from './dto/req/loginReqDto';
+import { LoginReqDto } from './dto/req/loginReq.dto';
 import { JwtAccessGuard } from './quards/jwtAccesGuard';
 import { TokenPair } from './models/tokenPair';
 import { CurrentUser } from './decorators/currentUserDecorator';
-import { ReqAfterGuard } from './dto/req/reqAfterGuard';
+import { ReqAfterGuardDto } from './dto/req/reqAfterGuard.dto';
 import { ControllerEnum } from '../enums/controllerEnum';
 
 @ApiTags(ControllerEnum.AUTH)
@@ -56,7 +56,7 @@ export class AuthController {
   @SkipAuth()
   @Post('refresh')
   public async refresh(
-    @CurrentUser() userData: ReqAfterGuard,
+    @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<TokenPair> {
     return await this.authService.refresh(userData);
   }
@@ -65,7 +65,7 @@ export class AuthController {
   @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
   @Post('logout')
-  public async logOut(@CurrentUser() userData: ReqAfterGuard): Promise<void> {
+  public async logOut(@CurrentUser() userData: ReqAfterGuardDto): Promise<void> {
     await this.authService.logout(userData);
   }
 
