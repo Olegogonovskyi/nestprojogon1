@@ -12,12 +12,7 @@ import { AuthService } from './auth.service';
 import { SkipAuth } from './decorators/skipAuthDecorator';
 import { RegisterAuthReqDto } from './dto/req/register.auth.req.dto';
 import { AuthResDto } from './dto/res/auth.res.dto';
-import {
-  ApiBearerAuth,
-  ApiNoContentResponse,
-  ApiOperation,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoginReqDto } from './dto/req/loginReq.dto';
 import { JwtAccessGuard } from './quards/jwtAccesGuard';
 import { TokenPair } from './models/tokenPair';
@@ -68,7 +63,6 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Verify created user' })
-  @ApiNoContentResponse({ description: 'User has been verifed' })
   @ApiBearerAuth()
   @Post('verify')
   public async verifyUser(@Query('token') token: string): Promise<string> {

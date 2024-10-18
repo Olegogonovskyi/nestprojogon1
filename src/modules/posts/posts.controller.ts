@@ -14,7 +14,6 @@ import {
 import { PostsService } from './posts.service';
 import {
   ApiBearerAuth,
-  ApiBody,
   ApiOperation,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -39,7 +38,6 @@ export class PostsController {
 
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new post' })
-  @ApiBody({ type: CreatePostDto })
   @Post()
   public async create(
     @Body() createPostDto: CreatePostDto,
@@ -77,7 +75,6 @@ export class PostsController {
 
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Update post' })
-  @ApiBody({ type: UpdatePostDto })
   @UseGuards(RolesGuard)
   @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
   @Put(':id')

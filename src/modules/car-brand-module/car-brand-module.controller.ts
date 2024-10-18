@@ -16,9 +16,7 @@ import { CreateReqCarBrandModuleDto } from './dto/req/createReq-car-brand-module
 import { UpdateCarBrandModuleDto } from './dto/req/update-car-brand-module.dto';
 import {
   ApiBearerAuth,
-  ApiBody,
   ApiOperation,
-  ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { ControllerEnum } from '../enums/controllerEnum';
@@ -41,12 +39,6 @@ export class CarBrandModuleController {
   @ApiOperation({
     summary: `Create a new carBrand with models *only for ${RoleEnum.ADMIN} & ${RoleEnum.MANAGER}*`,
   })
-  @ApiResponse({
-    status: 201,
-    description: 'The carBrand has been successfully created.',
-    type: CreateResCarBrandModuleDto,
-  })
-  @ApiBody({ type: CreateReqCarBrandModuleDto })
   @Post()
   public async create(
     @Body() createCarBrandModuleDto: CreateReqCarBrandModuleDto,
@@ -74,7 +66,6 @@ export class CarBrandModuleController {
   @ApiOperation({
     summary: `Update a new carBrand with models *only for ${RoleEnum.ADMIN} & ${RoleEnum.MANAGER}*`,
   })
-  @ApiBody({ type: UpdateCarBrandModuleDto })
   @Patch(':id')
   update(
     @Param('id') id: string,
