@@ -9,6 +9,7 @@ import {
   UseGuards,
   UploadedFile,
   Get,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 
@@ -16,6 +17,7 @@ import {
   ApiBearerAuth,
   ApiBody,
   ApiConflictResponse,
+  ApiConsumes,
   ApiForbiddenResponse,
   ApiNoContentResponse,
   ApiOperation,
@@ -34,6 +36,8 @@ import { UpdateMeDto } from './dto/req/updateMe.dto';
 import { ControllerEnum } from '../enums/controllerEnum';
 import { RolesGuard } from './guards/RolesGuard';
 import { Roles } from './decorators/roleDecorator';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiFile } from './decorators/apiFile.decorator';
 
 @ApiTags(ControllerEnum.USERS)
 @ApiBearerAuth()
@@ -131,6 +135,9 @@ export class UsersController {
   })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiNoContentResponse({ description: 'Avatar was changed' })
+  @UseInterceptors(FileInterceptor('avatar'))
+  @ApiFile('avatar', false, false)
+  @ApiConsumes('multipart/form-data')
   @Post('me/uploadAvatar')
   public async uploadAvatar(
     @UploadedFile() avatar: Express.Multer.File,
@@ -147,7 +154,9 @@ export class UsersController {
   @ApiConflictResponse({ description: 'Conflict' })
   @ApiNoContentResponse({ description: 'User has been removed' })
   @Delete('me')
-  public async deleteMe(@CurrentUser() userData: ReqAfterGuardDto): Promise<void> {
-    await this.usersService.deleteMe(userData);
+  public async deleteMe(
+    @CurrentUser() userData: ReqAfterGuardDto,
+  ): Promise<void> {
+    await this.usersService.deleteUser(userData.id);
   }
 }

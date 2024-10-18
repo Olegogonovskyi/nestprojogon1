@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Config, JwtConfig } from '../../../config/config.types';
 import { JwtPayload } from '../models/jwtPayload';
 import { TokenPair } from '../models/tokenPair';
-import { TokenTypeEnam } from '../enums/tokenTypeEnam';
+import { TokenTypeEnum } from '../enums/tokenTypeEnum';
 import { handleTokenError } from '../../../common/tokenErr/handleTokenError';
 
 @Injectable()
@@ -51,7 +51,7 @@ export class TokenService {
 
   public async verifyToken(
     token: string,
-    type: TokenTypeEnam,
+    type: TokenTypeEnum,
   ): Promise<JwtPayload> {
     try {
       return await this.jwtService.verifyAsync(token, {
@@ -62,17 +62,17 @@ export class TokenService {
     }
   }
 
-  private getSecret(type: TokenTypeEnam): string {
+  private getSecret(type: TokenTypeEnum): string {
     try {
       let secret: string;
       switch (type) {
-        case TokenTypeEnam.ACCESS:
+        case TokenTypeEnum.ACCESS:
           secret = this.jwtConfig.accessSecret;
           break;
-        case TokenTypeEnam.REFRESH:
+        case TokenTypeEnum.REFRESH:
           secret = this.jwtConfig.refreshSecret;
           break;
-        case TokenTypeEnam.VERIFY:
+        case TokenTypeEnum.VERIFY:
           secret = this.jwtConfig.verifSecret;
           break;
         default:

@@ -65,7 +65,7 @@ export class PostsService {
     const { id, role } = userData;
 
     if (!userData.isVerified) {
-      throw new UnauthorizedException('User is not veryfaed');
+      throw new UnauthorizedException('User is not veryfied');
     }
     if (role === RoleEnum.SELLER) {
       const countPosts = await this.postRepository.countPostsByUserId(id);
@@ -140,7 +140,13 @@ export class PostsService {
 
       this.eventEmitter.emit('post.viewed', new PostViewedEvent(post));
 
-      let paidInfo: PaidInfoInterface;
+      const paidInfo: PaidInfoInterface = {
+        countViews: 0,
+        averagePrise: 0,
+        viewsByDay: 0,
+        viewsByWeek: 0,
+        viewsByMonth: 0,
+      };
       if (userData.role !== RoleEnum.SELLER) {
         paidInfo.countViews = await this.postViewRepository.count({
           where: { post: { id: postId } },
@@ -160,8 +166,6 @@ export class PostsService {
         paidInfo.viewsByMonth = await this.postViewRepository.countViewsByMonth(
           post.id,
         );
-      } else {
-        paidInfo = undefined;
       }
 
       return [post, paidInfo];

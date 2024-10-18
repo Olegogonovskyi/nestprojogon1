@@ -65,7 +65,9 @@ export class AuthController {
   @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
   @Post('logout')
-  public async logOut(@CurrentUser() userData: ReqAfterGuardDto): Promise<void> {
+  public async logOut(
+    @CurrentUser() userData: ReqAfterGuardDto,
+  ): Promise<void> {
     await this.authService.logout(userData);
   }
 

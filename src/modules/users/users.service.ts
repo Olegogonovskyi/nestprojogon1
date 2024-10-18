@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { CreateUserByAdminDto } from './dto/req/createUserByAdmin.dto';
 import { UsersEntity } from '../../database/entities/users.entity';
 import * as bcrypt from 'bcrypt';
@@ -25,11 +29,11 @@ export class UsersService {
     const isExistUser = await this.userRepository.findOneBy({
       email: CreateUserByAdminDto.email,
     });
-    console.log(`isExistUser:  ${isExistUser}`);
     if (isExistUser) {
-      throw new ConflictException(
-        `this email exist in base with id ${isExistUser.id}`,
-      );
+      throw new ConflictException({
+        message: `Email already exists: ${isExistUser.email}`,
+        errorCode: 'USER_EXISTS',
+      });
     }
 
     return await this.userRepository.save(
@@ -37,56 +41,53 @@ export class UsersService {
     );
   }
 
-  public async updateUserbyAdmin(
-    updateUserDto: UpdateUserByAdminDto,
-    userId: string,
-  ): Promise<UsersEntity> {
-    const user = await this.userRepository.findOneBy({
-      id: userId,
-    });
-    this.userRepository.merge(user, updateUserDto);
-    return await this.userRepository.save(user);
+  public async updateUserbyAdmin(dto: UpdateUserByAdminDto, id: string) {
+    const user = await this.updateUser(dto, id);
+    await this.authCacheService.deleteByIdKey(id); // Invalidate cache
+    return user;
   }
 
   public async findMe(id: string): Promise<UsersEntity> {
     return await this.userRepository.findOneBy({ id: id });
   }
 
-  public async updateMe(
-    updateUserDto: UpdateMeDto,
-    userId: string,
-  ): Promise<UsersEntity> {
-    const user = await this.userRepository.findOneBy({
-      id: userId,
-    });
-    this.userRepository.merge(user, updateUserDto);
-    return await this.userRepository.save(user);
+  public async updateMe(dto: UpdateMeDto, id: string) {
+    return this.updateUser(dto, id);
   }
 
   public async uploadAvatar(
     userData: ReqAfterGuardDto,
     avatar: Express.Multer.File,
   ): Promise<void> {
-    console.log(avatar);
-    const image = await this.fileStorageService.uploadFile(
-      avatar,
-      ContentType.AVATAR,
-      userData.id,
-    );
-    await this.userRepository.update(userData.id, { image });
+    try {
+      const image = await this.fileStorageService.uploadFile(
+        avatar,
+        ContentType.AVATAR,
+        userData.id,
+      );
+      await this.userRepository.update(userData.id, { image });
+    } catch (e) {
+      throw new InternalServerErrorException('Avatar upload failed');
+    }
   }
 
   public async deleteUser(userId: string): Promise<void> {
-    await Promise.all([
-      this.userRepository.delete({ id: userId }),
-      this.authCacheService.deleteByIdKey(userId),
-    ]);
+    try {
+      await Promise.all([
+        this.userRepository.delete({ id: userId }),
+        this.authCacheService.deleteByIdKey(userId),
+      ]);
+    } catch (e) {
+      throw new InternalServerErrorException('Failed to delete user');
+    }
   }
 
-  public async deleteMe(userData: ReqAfterGuardDto): Promise<void> {
-    await Promise.all([
-      this.userRepository.delete({ id: userData.id }),
-      this.authCacheService.deleteByIdKey(userData.id),
-    ]);
+  private async updateUser(
+    updateUserDto: Partial<UsersEntity>,
+    userId: string,
+  ): Promise<UsersEntity> {
+    const user = await this.userRepository.findOneBy({ id: userId });
+    this.userRepository.merge(user, updateUserDto);
+    return await this.userRepository.save(user);
   }
 }

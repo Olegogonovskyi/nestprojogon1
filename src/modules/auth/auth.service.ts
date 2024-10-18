@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { RegisterAuthReqDto } from './dto/req/register.auth.req.dto';
 import { UserRepository } from '../repository/services/users.repository';
@@ -11,7 +16,7 @@ import { TokenPair } from './models/tokenPair';
 import { ReqAfterGuardDto } from './dto/req/reqAfterGuard.dto';
 import { EmailService } from '../emailodule/emailodule.service';
 import { EmailEnum } from '../emailodule/enums/emailEnam';
-import { TokenTypeEnam } from './enums/tokenTypeEnam';
+import { TokenTypeEnum } from './enums/tokenTypeEnum';
 import * as process from 'node:process';
 import { handleTokenError } from '../../common/tokenErr/handleTokenError';
 
@@ -42,21 +47,24 @@ export class AuthService {
       deviceId: registerAuthDto.deviceId,
     });
 
-    await Promise.all([
-      this.userRepository.update(user.id, { verifyToken: verToken }),
-
-      this.deleteCreateTokens.saveNewTokens(
-        registerAuthDto.deviceId,
-        user.id,
-        tokens,
-      ),
-      this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
-        layout: 'main',
-        name: user.name,
-        frontUrl: process.env.FRONTEND_URL,
-        actionToken: verToken,
-      }),
-    ]);
+    try {
+      await Promise.all([
+        this.userRepository.update(user.id, { verifyToken: verToken }),
+        this.deleteCreateTokens.saveNewTokens(
+          registerAuthDto.deviceId,
+          user.id,
+          tokens,
+        ),
+        this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
+          layout: 'main',
+          name: user.name,
+          frontUrl: process.env.FRONTEND_URL,
+          actionToken: verToken,
+        }),
+      ]);
+    } catch (e) {
+      throw new InternalServerErrorException('Registration failed');
+    }
 
     return { user: UserMapper.toResponseDTO(user), tokens: tokens };
   }
@@ -68,12 +76,15 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new Error('There are not user with this creentials');
+      throw new UnauthorizedException('Invalid credentials');
     }
 
-    const isPaswordValid = bcrypt.compare(loginAuthDto.password, user.password);
+    const isPaswordValid = await bcrypt.compare(
+      loginAuthDto.password,
+      user.password,
+    );
     if (!isPaswordValid) {
-      throw new Error('auth.service 58');
+      throw new UnauthorizedException('Invalid credentials');
     }
 
     const tokens = await this.tokenService.generateAuthTokens({
@@ -110,7 +121,7 @@ export class AuthService {
     try {
       const payload = await this.tokenService.verifyToken(
         verToken,
-        TokenTypeEnam.VERIFY,
+        TokenTypeEnum.VERIFY,
       );
       const userToVer = await this.userRepository.findOneBy({
         id: payload.userId,

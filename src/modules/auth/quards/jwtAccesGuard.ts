@@ -8,7 +8,7 @@ import { Reflector } from '@nestjs/core';
 
 import { UserRepository } from '../../repository/services/users.repository';
 import { UserMapper } from '../mapers/userMapper';
-import { TokenTypeEnam } from '../enums/tokenTypeEnam';
+import { TokenTypeEnum } from '../enums/tokenTypeEnum';
 import { AuthCacheService } from '../services/auth.catch.service';
 import { TokenService } from '../services/tokenService';
 
@@ -40,7 +40,7 @@ export class JwtAccessGuard implements CanActivate {
     }
     const payload = await this.tokenService.verifyToken(
       accessToken,
-      TokenTypeEnam.ACCESS,
+      TokenTypeEnum.ACCESS,
     );
     if (!payload) {
       throw new UnauthorizedException('Invalid token');
