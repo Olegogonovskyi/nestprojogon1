@@ -15,10 +15,8 @@ import { AuthResDto } from './dto/res/auth.res.dto';
 import {
   ApiBearerAuth,
   ApiNoContentResponse,
-  ApiNotFoundResponse,
   ApiOperation,
   ApiTags,
-  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { LoginReqDto } from './dto/req/loginReq.dto';
 import { JwtAccessGuard } from './quards/jwtAccesGuard';
@@ -42,8 +40,6 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Login' })
-  @ApiNotFoundResponse({ description: 'Not Found' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @SkipAuth()
   @Post('login')
   public async login(@Body() loginAuthDto: LoginReqDto): Promise<AuthResDto> {

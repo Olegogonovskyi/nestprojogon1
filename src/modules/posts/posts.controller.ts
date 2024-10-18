@@ -15,11 +15,7 @@ import { PostsService } from './posts.service';
 import {
   ApiBearerAuth,
   ApiBody,
-  ApiConflictResponse,
-  ApiForbiddenResponse,
-  ApiNotFoundResponse,
   ApiOperation,
-  ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
@@ -43,14 +39,6 @@ export class PostsController {
 
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new post' })
-  @ApiResponse({
-    status: 201,
-    description: 'The post has been successfully created.',
-  })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
   @ApiBody({ type: CreatePostDto })
   @Post()
   public async create(
@@ -66,9 +54,6 @@ export class PostsController {
 
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Find a post' })
-  @ApiNotFoundResponse({ description: 'Not Found' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
   @Get(':postId')
   public async getById(
     @Param('postId') postId: string,
@@ -92,15 +77,6 @@ export class PostsController {
 
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Update post' })
-  @ApiResponse({
-    status: 201,
-    description: 'The post has been successfully updated.',
-  })
-  @ApiNotFoundResponse({ description: 'Not Found' })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
   @ApiBody({ type: UpdatePostDto })
   @UseGuards(RolesGuard)
   @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
@@ -117,11 +93,6 @@ export class PostsController {
   @ApiOperation({
     summary: `Delete post by id`,
   })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiNotFoundResponse({ description: 'Not Found' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @UseGuards(RolesGuard)
   @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)

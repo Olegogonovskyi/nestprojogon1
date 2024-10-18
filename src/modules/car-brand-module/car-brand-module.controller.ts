@@ -17,13 +17,9 @@ import { UpdateCarBrandModuleDto } from './dto/req/update-car-brand-module.dto';
 import {
   ApiBearerAuth,
   ApiBody,
-  ApiConflictResponse,
-  ApiForbiddenResponse,
-  ApiNotFoundResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
-  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ControllerEnum } from '../enums/controllerEnum';
 import { RoleEnum } from '../../database/enums/role.enum';
@@ -50,10 +46,6 @@ export class CarBrandModuleController {
     description: 'The carBrand has been successfully created.',
     type: CreateResCarBrandModuleDto,
   })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
   @ApiBody({ type: CreateReqCarBrandModuleDto })
   @Post()
   public async create(
@@ -70,8 +62,6 @@ export class CarBrandModuleController {
   @ApiOperation({
     summary: `List of car brands for frontend `,
   })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
   @Get()
   public async findAll(
     @Query() query: CarBrandListRequeryDto,
@@ -84,18 +74,6 @@ export class CarBrandModuleController {
   @ApiOperation({
     summary: `Update a new carBrand with models *only for ${RoleEnum.ADMIN} & ${RoleEnum.MANAGER}*`,
   })
-  @ApiResponse({
-    status: 201,
-    description: 'The carBrand has been successfully created.',
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Bad Request.',
-    type: CreateResCarBrandModuleDto,
-  })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
   @ApiBody({ type: UpdateCarBrandModuleDto })
   @Patch(':id')
   update(
@@ -109,11 +87,6 @@ export class CarBrandModuleController {
   @ApiOperation({
     summary: `Delete carBrand by id`,
   })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiNotFoundResponse({ description: 'Not Found' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @UseGuards(RolesGuard)
   @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)

@@ -13,13 +13,9 @@ import { UsersService } from './users.service';
 import {
   ApiBearerAuth,
   ApiBody,
-  ApiConflictResponse,
-  ApiForbiddenResponse,
-  ApiNoContentResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
-  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { CreateUserByAdminDto } from './dto/req/createUserByAdmin.dto';
 import { CreateUserAdminResDto } from './dto/res/createUserAdminRes.dto';
@@ -43,10 +39,6 @@ export class UsersAdminController {
     status: 201,
     description: 'User has been successfully created.',
   })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
   @ApiBody({ type: CreateUserByAdminDto })
   @UseGuards(RolesGuard)
   @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
@@ -61,10 +53,6 @@ export class UsersAdminController {
   @ApiOperation({
     summary: `Remove user *only for ${RoleEnum.ADMIN} & ${RoleEnum.MANAGER}*`,
   })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
-  @ApiNoContentResponse({ description: 'User has been removed' })
   @UseGuards(RolesGuard)
   @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
   @Delete(':id')
@@ -77,10 +65,6 @@ export class UsersAdminController {
   @ApiOperation({
     summary: `Update user *only for ${RoleEnum.ADMIN} & ${RoleEnum.MANAGER}*`,
   })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
-  @ApiNoContentResponse({ description: 'User has been updated' })
   @UseGuards(RolesGuard)
   @Roles(RoleEnum.MANAGER, RoleEnum.ADMIN)
   @Patch(':id')

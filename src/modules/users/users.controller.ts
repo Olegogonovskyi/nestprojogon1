@@ -12,13 +12,9 @@ import { UsersService } from './users.service';
 
 import {
   ApiBearerAuth,
-  ApiConflictResponse,
   ApiConsumes,
-  ApiForbiddenResponse,
-  ApiNoContentResponse,
   ApiOperation,
   ApiTags,
-  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { UserModuleMaper } from './mapers/userModuleMaper';
 import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
@@ -37,8 +33,6 @@ export class UsersController {
   @ApiOperation({
     summary: `Find me`,
   })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
   @Get('me')
   public async findMe(
     @CurrentUser() userData: ReqAfterGuardDto,
@@ -50,10 +44,6 @@ export class UsersController {
   @ApiOperation({
     summary: `Update me`,
   })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
-  @ApiNoContentResponse({ description: 'User has been updated' })
   @Patch('me')
   public async updateMe(
     @Body() updateUserDto: UpdateMeDto,
@@ -66,8 +56,6 @@ export class UsersController {
   @ApiOperation({
     summary: `Upload avatar`,
   })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiNoContentResponse({ description: 'Avatar was changed' })
   @UseInterceptors(FileInterceptor('avatar'))
   @ApiFile('avatar', false, false)
   @ApiConsumes('multipart/form-data')
@@ -82,10 +70,6 @@ export class UsersController {
   @ApiOperation({
     summary: `Remove me`,
   })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiConflictResponse({ description: 'Conflict' })
-  @ApiNoContentResponse({ description: 'User has been removed' })
   @Delete('me')
   public async deleteMe(
     @CurrentUser() userData: ReqAfterGuardDto,
