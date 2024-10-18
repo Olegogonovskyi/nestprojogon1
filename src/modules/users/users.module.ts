@@ -8,10 +8,11 @@ import { RolesGuard } from './guards/RolesGuard';
 import { PostsModule } from '../posts/posts.module';
 import { APP_GUARD } from '@nestjs/core';
 import { FileStorageModule } from '../filestorage/filestorageModule';
+import { UsersAdminController } from './usersAdmin.controller';
 
 @Module({
   imports: [RedisModule, PostsModule, FileStorageModule],
-  controllers: [UsersController],
+  controllers: [UsersController, UsersAdminController],
   providers: [
     UsersService,
     DeleteCreateTokens,
