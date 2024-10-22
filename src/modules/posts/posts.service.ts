@@ -161,27 +161,32 @@ export class PostsService {
         viewsByWeek: 0,
         viewsByMonth: 0,
       };
-      if (userData.role !== RoleEnum.SELLER) {
+      console.log('prew');
+      if (userData.role !== RoleEnum.SELLER && userData.id == post.userID) {
+        console.log('1');
         paidInfo.countViews = await this.postViewRepository.count({
           where: { post: { id: postId } },
         });
+        console.log('2');
         paidInfo.averagePrise =
           await this.postRepository.getAveragePriceForCarBand(
             post.carBrand,
             post.model,
           );
 
-        paidInfo.viewsByDay = await this.postViewRepository.countViewsByDay(
-          post.id,
-        );
+        console.log('3');
+        const ddddd = await this.postViewRepository.countViewsByDay(post.id);
+        console.log(ddddd);
+        console.log('4');
         paidInfo.viewsByWeek = await this.postViewRepository.countViewsByWeek(
           post.id,
         );
+        console.log('5');
         paidInfo.viewsByMonth = await this.postViewRepository.countViewsByMonth(
           post.id,
         );
       }
-
+      console.log('6');
       return [post, paidInfo];
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch post details');
