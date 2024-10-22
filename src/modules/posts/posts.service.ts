@@ -26,6 +26,7 @@ import { PostViewedEvent } from './services/postViewEvent';
 import { PostViewRepository } from '../repository/services/postView.repository';
 import { PaidInfoInterface } from './types/paidInfo.interface';
 import { CarBrandRepository } from '../repository/services/carBrand.repository';
+import { StatDateEnum } from '../../common/enums/statDateEnum';
 
 @Injectable()
 export class PostsService {
@@ -128,8 +129,6 @@ export class PostsService {
         tags,
       }),
     );
-    // const savedPost = await this.postRepository.save(post);
-    // return await this.getById(savedPost.id, userData);
   }
 
   public async getByPostId(postId: string): Promise<PostsEntity> {
@@ -161,32 +160,29 @@ export class PostsService {
         viewsByWeek: 0,
         viewsByMonth: 0,
       };
-      console.log('prew');
       if (userData.role !== RoleEnum.SELLER && userData.id == post.userID) {
-        console.log('1');
         paidInfo.countViews = await this.postViewRepository.count({
           where: { post: { id: postId } },
         });
-        console.log('2');
         paidInfo.averagePrise =
           await this.postRepository.getAveragePriceForCarBand(
             post.carBrand,
             post.model,
           );
 
-        console.log('3');
-        const ddddd = await this.postViewRepository.countViewsByDay(post.id);
-        console.log(ddddd);
-        console.log('4');
-        paidInfo.viewsByWeek = await this.postViewRepository.countViewsByWeek(
+        paidInfo.viewsByDay = await this.postViewRepository.countViews(
           post.id,
+          StatDateEnum.DAY,
         );
-        console.log('5');
-        paidInfo.viewsByMonth = await this.postViewRepository.countViewsByMonth(
+        paidInfo.viewsByWeek = await this.postViewRepository.countViews(
           post.id,
+          StatDateEnum.WEEK,
+        );
+        paidInfo.viewsByMonth = await this.postViewRepository.countViews(
+          post.id,
+          StatDateEnum.MONTH,
         );
       }
-      console.log('6');
       return [post, paidInfo];
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch post details');
