@@ -1,7 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { EntityEnum } from '../enums/entity.enum';
 import { IdCreateUpdateEntity } from './models/IdCreateUpdateEntity';
-import { PostsEntity } from './post.entity';
 import { UsersEntity } from './users.entity';
 
 @Entity(EntityEnum.CARBRAND)
@@ -11,9 +10,6 @@ export class CarEntity extends IdCreateUpdateEntity {
 
   @Column('simple-array')
   model: string[];
-
-  @OneToMany(() => PostsEntity, (entity) => entity.carBrand)
-  posts?: PostsEntity[];
 
   @Column('text')
   userID: string;

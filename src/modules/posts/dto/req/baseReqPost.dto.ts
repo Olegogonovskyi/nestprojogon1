@@ -88,23 +88,26 @@ export class BaseReqPostDto {
   @IsString()
   region: string;
 
+  @IsString()
+  carBrandId: string;
+
   @IsInt()
   @Min(1945)
   @Max(2025)
   year: number;
 
   @ApiPropertyOptional({ type: Number, description: 'currency in EUR' })
-  @IsNumber()
+  @IsNumber({ allowInfinity: false, allowNaN: false })
   @IsOptional()
   eurPrice?: number;
 
   @ApiPropertyOptional({ type: Number, description: 'currency in USD' })
-  @IsNumber()
+  @IsNumber({ allowInfinity: false, allowNaN: false })
   @IsOptional()
   usdPrice?: number;
 
   @ApiPropertyOptional({ type: Number, description: 'currency in UAN' })
-  @IsNumber()
+  @IsNumber({ allowInfinity: false, allowNaN: false })
   @IsOptional()
   uahPrice?: number;
 

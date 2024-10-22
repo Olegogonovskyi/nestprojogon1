@@ -25,6 +25,7 @@ import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { PostViewedEvent } from './services/postViewEvent';
 import { PostViewRepository } from '../repository/services/postView.repository';
 import { PaidInfoInterface } from './types/paidInfo.interface';
+import { CarBrandRepository } from '../repository/services/carBrand.repository';
 
 @Injectable()
 export class PostsService {
@@ -34,6 +35,7 @@ export class PostsService {
     private readonly exchangeRateService: ExchangeRateService,
     private readonly eventEmitter: EventEmitter2,
     private readonly postViewRepository: PostViewRepository,
+    private readonly carBrandRepository: CarBrandRepository,
   ) {}
 
   private async createTags(tags: string[]): Promise<TagEntity[]> {
@@ -60,7 +62,7 @@ export class PostsService {
   public async create(
     createPostDto: CreatePostDto,
     userData: ReqAfterGuardDto,
-  ): Promise<[PostsEntity, paidInfo: PaidInfoInterface]> {
+  ): Promise<PostsEntity> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
 
@@ -75,6 +77,13 @@ export class PostsService {
         );
       }
     }
+    const carBrandinDataBase = await this.carBrandRepository.findOneBy({
+      name: createPostDto.carBrand,
+    });
+
+    if (!carBrandinDataBase) {
+      throw new ForbiddenException('We dont know about this car brand');
+    }
     const { eur, usd } = await this.exchangeRateService.updateExchangeRates();
 
     const { eurPrice, usdPrice, uahPrice } = ExchangeHelper.priseCalc(
@@ -86,10 +95,12 @@ export class PostsService {
 
     const tags = await this.createTags(createPostDto.tags);
     const errors = await validate(createPostDto);
+
     if (errors.length > 0) {
       const post = this.postRepository.create({
         ...createPostDto,
         userID: userData.id,
+        user: userData,
         uahPrice,
         eurPrice,
         usdPrice,
@@ -103,19 +114,22 @@ export class PostsService {
         `Validation failed. You have only 3 attempts to update post ${posttoChange}`,
       );
     }
-    const post = this.postRepository.create({
-      ...createPostDto,
-      userID: userData.id,
-      uahPrice,
-      eurPrice,
-      usdPrice,
-      exchangeRateDate: new Date(),
-      editAttempts: 0,
-      isActive: true,
-      tags,
-    });
-    const savedPost = await this.postRepository.save(post);
-    return await this.getById(savedPost.id, userData);
+    return await this.postRepository.save(
+      this.postRepository.create({
+        ...createPostDto,
+        userID: userData.id,
+        user: userData,
+        uahPrice,
+        eurPrice,
+        usdPrice,
+        exchangeRateDate: new Date(),
+        editAttempts: 0,
+        isActive: true,
+        tags,
+      }),
+    );
+    // const savedPost = await this.postRepository.save(post);
+    // return await this.getById(savedPost.id, userData);
   }
 
   public async getByPostId(postId: string): Promise<PostsEntity> {

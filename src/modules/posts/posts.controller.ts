@@ -43,11 +43,9 @@ export class PostsController {
     @Body() createPostDto: CreatePostDto,
     @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<CreateUpdateResDto> {
-    const [post, paidInfo] = await this.postsService.create(
-      createPostDto,
-      userData,
-    );
-    return PostMapper.toResCreateDto(post, paidInfo);
+    const post = await this.postsService.create(createPostDto, userData);
+    console.log(post.user);
+    return PostMapper.toResCreateDto(post);
   }
 
   @ApiBearerAuth()

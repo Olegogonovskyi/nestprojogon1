@@ -55,7 +55,7 @@ export class PostMapper {
 
   public static toResCreateDto(
     post: PostsEntity,
-    paidInfo: PaidInfoInterface,
+    paidInfo?: PaidInfoInterface,
   ): CreateUpdateResDto {
     return this.toResDto(post, paidInfo);
   }
