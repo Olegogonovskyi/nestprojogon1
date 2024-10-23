@@ -55,6 +55,7 @@ export class UsersController {
 
   @ApiOperation({
     summary: `Upload avatar`,
+    description: 'returns link with avatar',
   })
   @UseInterceptors(FileInterceptor('avatar'))
   @ApiFile('avatar', false, false)
@@ -63,8 +64,8 @@ export class UsersController {
   public async uploadAvatar(
     @UploadedFile() avatar: Express.Multer.File,
     @CurrentUser() userData: ReqAfterGuardDto,
-  ): Promise<void> {
-    await this.usersService.uploadAvatar(userData, avatar);
+  ): Promise<string> {
+    return await this.usersService.uploadAvatar(userData, avatar);
   }
 
   @ApiOperation({

@@ -58,7 +58,7 @@ export class UsersService {
   public async uploadAvatar(
     userData: ReqAfterGuardDto,
     avatar: Express.Multer.File,
-  ): Promise<void> {
+  ): Promise<string> {
     try {
       const image = await this.fileStorageService.uploadFile(
         avatar,
@@ -66,6 +66,7 @@ export class UsersService {
         userData.id,
       );
       await this.userRepository.update(userData.id, { image });
+      return image;
     } catch (e) {
       throw new InternalServerErrorException('Avatar upload failed');
     }

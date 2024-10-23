@@ -1,1 +1,1 @@
-export const ValidationCostants = ['asshole', 'ass', 'idiot', 'stupid'];
+export const ValidationCostants = ['asshole', 'ass', 'idiot', 'stupid', 'fuck'];

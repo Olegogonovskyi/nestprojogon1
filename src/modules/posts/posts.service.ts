@@ -95,9 +95,11 @@ export class PostsService {
     );
 
     const tags = await this.createTags(createPostDto.tags);
+    console.log('1');
     const errors = await validate(createPostDto);
-
+    console.log('2');
     if (errors.length > 0) {
+      console.log('uuuu');
       const post = this.postRepository.create({
         ...createPostDto,
         userID: userData.id,
@@ -109,6 +111,7 @@ export class PostsService {
         editAttempts: 1,
         tags,
       });
+      console.log(post.editAttempts);
       const savedPost = await this.postRepository.save(post);
       const posttoChange = await this.getById(savedPost.id, userData);
       throw new BadRequestException(
