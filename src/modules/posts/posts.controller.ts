@@ -10,8 +10,10 @@ import {
   Get,
   Query,
   UseGuards,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
+
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -40,10 +42,26 @@ export class PostsController {
   @ApiOperation({ summary: 'Create a new post' })
   @Post()
   public async create(
-    @Body() createPostDto: CreatePostDto,
+    @Body(
+      new ValidationPipe({
+        exceptionFactory: (errors) => errors, // пробую тут пропустити помилки
+        stopAtFirstError: false,
+        transform: true,
+      }),
+    )
+    createPostDto: CreatePostDto,
     @CurrentUser() userData: ReqAfterGuardDto,
   ): Promise<CreateUpdateResDto> {
-    const post = await this.postsService.create(createPostDto, userData);
+    let validationErrors = null;
+    if (Array.isArray(createPostDto)) {
+      validationErrors = createPostDto;
+      createPostDto = new CreatePostDto();
+    }
+    const post = await this.postsService.create(
+      createPostDto,
+      userData,
+      validationErrors,
+    );
     console.log(post.user);
     return PostMapper.toResCreateDto(post);
   }

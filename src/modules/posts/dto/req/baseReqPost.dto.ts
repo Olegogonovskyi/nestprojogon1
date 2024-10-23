@@ -36,7 +36,7 @@ export class BaseReqPostDto {
 
   @ApiProperty({ type: String, maxLength: 300 })
   @IsString()
-  @IsNotIn(ValidationCostants)
+  @IsNotIn(ValidationCostants, { message: 'aaaaaa' })
   @Length(0, 300)
   @Transform(TransformHelper.trim)
   @Type(() => String)

@@ -19,7 +19,7 @@ import { ExchangeRateService } from '../exchange/exchange.service';
 
 import { RoleEnum } from '../../database/enums/role.enum';
 
-import { validate } from 'class-validator';
+import { validate, ValidationError } from 'class-validator';
 import { ExchangeHelper } from './helpers/exchangeHelper';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { PostViewedEvent } from './services/postViewEvent';
@@ -63,6 +63,7 @@ export class PostsService {
   public async create(
     createPostDto: CreatePostDto,
     userData: ReqAfterGuardDto,
+    err?: ValidationError[],
   ): Promise<PostsEntity> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
@@ -93,12 +94,12 @@ export class PostsService {
       eur,
       usd,
     );
-
+    console.log(err);
     const tags = await this.createTags(createPostDto.tags);
     console.log('1');
-    const errors = await validate(createPostDto);
+    // const errors = await validate(createPostDto);
     console.log('2');
-    if (errors.length > 0) {
+    if (err.length > 0) {
       console.log('uuuu');
       const post = this.postRepository.create({
         ...createPostDto,
