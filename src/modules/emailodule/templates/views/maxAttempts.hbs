@@ -1,0 +1,28 @@
+{{> header}}
+<table style="width: 100%; padding: 45px 35px; box-sizing: border-box; background-color: #f4f4f4;">
+  <tr>
+    <td style="font-size: 18px; text-align: center;">
+      Post Editing Violations Alert
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <p style="margin: 17px 0 0;">
+        Dear Manager,
+      </p>
+      <p>
+        We wanted to inform you that user <strong>{{user}}</strong> has reached the maximum number of allowed attempts to edit their post with ID: <strong>{{postId}}</strong>.
+      </p>
+      <p>
+        The post has been set to inactive. Please review this user's activity to ensure compliance with our guidelines and take any necessary actions.
+      </p>
+      <p>
+        Thank you for your attention to this matter.
+      </p>
+      <p>
+        Best regards,<br/>Your Team
+      </p>
+    </td>
+  </tr>
+</table>
+{{> footer}}

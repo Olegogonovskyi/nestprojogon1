@@ -16,4 +16,8 @@ export type EmailTypeToPayloadType = {
     EmailPayloadCombinedType,
     'name' | 'layout'
   >;
+  [EmailEnum.BADWORDER]: PickRequired<
+    EmailPayloadCombinedType,
+    'layout' | 'user' | 'postId'
+  >;
 };

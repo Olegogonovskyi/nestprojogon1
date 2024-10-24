@@ -19,7 +19,6 @@ import { ExchangeRateService } from '../exchange/exchange.service';
 
 import { RoleEnum } from '../../database/enums/role.enum';
 
-import { validate, ValidationError } from 'class-validator';
 import { ExchangeHelper } from './helpers/exchangeHelper';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { PostViewedEvent } from './services/postViewEvent';
@@ -27,6 +26,10 @@ import { PostViewRepository } from '../repository/services/postView.repository';
 import { PaidInfoInterface } from './types/paidInfo.interface';
 import { CarBrandRepository } from '../repository/services/carBrand.repository';
 import { StatDateEnum } from '../../common/enums/statDateEnum';
+import { ValidationCostants } from '../../validationConstants/validation costants';
+import { EmailService } from '../emailodule/emailodule.service';
+import { UserRepository } from '../repository/services/users.repository';
+import { EmailEnum } from '../emailodule/enums/emailEnam';
 
 @Injectable()
 export class PostsService {
@@ -37,6 +40,8 @@ export class PostsService {
     private readonly eventEmitter: EventEmitter2,
     private readonly postViewRepository: PostViewRepository,
     private readonly carBrandRepository: CarBrandRepository,
+    private readonly emailService: EmailService,
+    private readonly userRepository: UserRepository,
   ) {}
 
   private async createTags(tags: string[]): Promise<TagEntity[]> {
@@ -63,11 +68,9 @@ export class PostsService {
   public async create(
     createPostDto: CreatePostDto,
     userData: ReqAfterGuardDto,
-    err?: ValidationError[],
   ): Promise<PostsEntity> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
-
     if (!userData.isVerified) {
       throw new UnauthorizedException('User is not veryfied');
     }
@@ -94,13 +97,16 @@ export class PostsService {
       eur,
       usd,
     );
-    console.log(err);
     const tags = await this.createTags(createPostDto.tags);
-    console.log('1');
-    // const errors = await validate(createPostDto);
-    console.log('2');
-    if (err.length > 0) {
-      console.log('uuuu');
+    const hasForbiddenWords = ValidationCostants.some(
+      (word) =>
+        createPostDto.title.includes(word) ||
+        createPostDto.body.includes(word) ||
+        createPostDto.description.includes(word),
+    );
+    if (hasForbiddenWords) {
+      console.log(`Validation Errors: ${hasForbiddenWords}`);
+
       const post = this.postRepository.create({
         ...createPostDto,
         userID: userData.id,
@@ -114,9 +120,8 @@ export class PostsService {
       });
       console.log(post.editAttempts);
       const savedPost = await this.postRepository.save(post);
-      const posttoChange = await this.getById(savedPost.id, userData);
       throw new BadRequestException(
-        `Validation failed. You have only 3 attempts to update post ${posttoChange}`,
+        `Validation failed. You have only 3 attempts to update post ${savedPost.id}`,
       );
     }
     return await this.postRepository.save(
@@ -204,13 +209,22 @@ export class PostsService {
     updatePostDto: UpdatePostDto,
   ): Promise<PostsEntity> {
     const post = await this.postRepository.findOneBy({ id: postId });
-    if (post.editAttempts <= 3) {
-      const errors = await validate(updatePostDto);
-      if (errors.length > 0) {
-        this.postRepository.merge(post, updatePostDto, {
-          editAttempts: post.editAttempts + 1,
-          isActive: false,
-        });
+    const attemts = post.editAttempts;
+    if (attemts < 3) {
+      const hasForbiddenWords = ValidationCostants.some(
+        (word) =>
+          updatePostDto.title.includes(word) ||
+          updatePostDto.body.includes(word) ||
+          updatePostDto.description.includes(word),
+      );
+      if (hasForbiddenWords) {
+        await this.postRepository.save(
+          this.postRepository.merge(post, updatePostDto, {
+            editAttempts: attemts + 1,
+            isActive: false,
+          }),
+        );
+        console.log(post.editAttempts);
         throw new BadRequestException(
           `Validation failed. You have only ${3 - post.editAttempts} attempts to update post ${postId}`,
         );
@@ -218,7 +232,17 @@ export class PostsService {
       this.postRepository.merge(post, updatePostDto, { isActive: true });
       await this.postRepository.save(post);
     }
-    await this.deletePost(postId);
+
+    const managers = await this.userRepository.find({
+      where: { role: RoleEnum.MANAGER },
+    });
+    for (const manager of managers) {
+      await this.emailService.sendEmail(EmailEnum.BADWORDER, manager.email, {
+        layout: 'main',
+        postId: postId,
+        user: post.userID,
+      });
+    }
     throw new BadRequestException('Maximum edit attempts reached');
   }
 

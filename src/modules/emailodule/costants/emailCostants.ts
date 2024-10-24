@@ -14,4 +14,8 @@ export const emailConstant = {
     subject: 'Bye',
     template: 'goodbye',
   },
+  [EmailEnum.BADWORDER]: {
+    subject: 'BadWorder Man',
+    template: 'maxAttempts',
+  },
 };

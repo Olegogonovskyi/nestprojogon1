@@ -26,18 +26,18 @@ export class BaseReqPostDto {
   @IsString()
   id?: string;
 
-  @ApiProperty({ type: String, minLength: 3, maxLength: 50 })
+  // @ApiProperty({ type: String, minLength: 3, maxLength: 50 })
   @IsString()
-  @IsNotIn(ValidationCostants)
-  @Length(3, 50)
+  // @IsNotIn(ValidationCostants)
+  // @Length(3, 50)
   @Transform(TransformHelper.trim)
   @Type(() => String)
   title: string;
 
-  @ApiProperty({ type: String, maxLength: 300 })
+  // @ApiProperty({ type: String, maxLength: 300 })
   @IsString()
-  @IsNotIn(ValidationCostants, { message: 'aaaaaa' })
-  @Length(0, 300)
+  // @IsNotIn(ValidationCostants, { message: 'aaaaaa', groups: ['custom'] })
+  // @Length(0, 300)
   @Transform(TransformHelper.trim)
   @Type(() => String)
   description: string;
@@ -45,7 +45,7 @@ export class BaseReqPostDto {
   @ApiProperty({ type: String, maxLength: 3000 })
   @IsString()
   @IsNotIn(ValidationCostants)
-  @Length(0, 3000)
+  // @Length(0, 3000)
   @Transform(TransformHelper.trim)
   @Type(() => String)
   body: string;

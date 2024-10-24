@@ -39,6 +39,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+
   await app.listen(appConfig.port, () => {
     Logger.log(`Server running on http://${appConfig.host}:${appConfig.port}`);
     Logger.log(
