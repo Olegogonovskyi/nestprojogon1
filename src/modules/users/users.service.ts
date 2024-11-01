@@ -13,6 +13,10 @@ import { UpdateUserByAdminDto } from './dto/req/updateUserByAdmin.dto';
 import { UpdateMeDto } from './dto/req/updateMe.dto';
 import { FileStorageService } from '../filestorage/filestorageService';
 import { ContentType } from '../filestorage/enums/content-type.enum';
+import { EmailEnum } from '../emailodule/enums/emailEnam';
+import process from 'node:process';
+import { EmailService } from '../emailodule/emailodule.service';
+import { TokenService } from '../auth/services/tokenService';
 
 @Injectable()
 export class UsersService {
@@ -20,6 +24,8 @@ export class UsersService {
     private readonly userRepository: UserRepository,
     private readonly authCacheService: AuthCacheService,
     private readonly fileStorageService: FileStorageService,
+    private readonly emailService: EmailService,
+    private readonly tokenService: TokenService,
   ) {}
 
   public async create(
@@ -35,10 +41,20 @@ export class UsersService {
         errorCode: 'USER_EXISTS',
       });
     }
-
-    return await this.userRepository.save(
+    const user = await this.userRepository.save(
       this.userRepository.create({ ...CreateUserByAdminDto, password }),
     );
+    const verToken = await this.tokenService.genreVerifToken({
+      userId: user.id,
+    });
+
+    await this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
+      layout: 'main',
+      name: user.name,
+      frontUrl: process.env.FRONTEND_URL,
+      actionToken: verToken,
+    });
+    return user;
   }
 
   public async updateUserbyAdmin(dto: UpdateUserByAdminDto, id: string) {

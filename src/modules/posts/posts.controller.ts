@@ -50,17 +50,6 @@ export class PostsController {
     return PostMapper.toResCreateDto(post);
   }
 
-  @ApiBearerAuth()
-  @ApiOperation({ summary: 'Find a post' })
-  @Get(':postId')
-  public async getById(
-    @Param('postId') postId: string,
-    @CurrentUser() userData: ReqAfterGuardDto,
-  ): Promise<CreateUpdateResDto> {
-    const [post, paidInfo] = await this.postsService.getById(postId, userData);
-    return PostMapper.toResCreateDto(post, paidInfo);
-  }
-
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiOperation({
     summary: `Get list of posts`,
@@ -96,5 +85,16 @@ export class PostsController {
   @Delete(':id')
   public async deletePost(@Param('id') id: string): Promise<void> {
     await this.postsService.deletePost(id);
+  }
+
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Find a post' })
+  @Get(':postId')
+  public async getById(
+    @Param('postId') postId: string,
+    @CurrentUser() userData: ReqAfterGuardDto,
+  ): Promise<CreateUpdateResDto> {
+    const [post, paidInfo] = await this.postsService.getById(postId, userData);
+    return PostMapper.toResCreateDto(post, paidInfo);
   }
 }

@@ -9,9 +9,18 @@ import { PostsModule } from '../posts/posts.module';
 import { APP_GUARD } from '@nestjs/core';
 import { FileStorageModule } from '../filestorage/filestorageModule';
 import { UsersAdminController } from './usersAdmin.controller';
+import { EmailModule } from '../emailodule/emailodule.module';
+import { TokenService } from '../auth/services/tokenService';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [RedisModule, PostsModule, FileStorageModule],
+  imports: [
+    RedisModule,
+    PostsModule,
+    FileStorageModule,
+    EmailModule,
+    JwtModule,
+  ],
   controllers: [UsersController, UsersAdminController],
   providers: [
     UsersService,
@@ -21,6 +30,7 @@ import { UsersAdminController } from './usersAdmin.controller';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    TokenService,
   ],
   exports: [UsersService],
 })

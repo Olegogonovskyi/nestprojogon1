@@ -7,6 +7,7 @@ import { JwtPayload } from '../models/jwtPayload';
 import { TokenPair } from '../models/tokenPair';
 import { TokenTypeEnum } from '../enums/tokenTypeEnum';
 import { handleTokenError } from '../../../common/tokenErr/handleTokenError';
+import { JwtVeryfPayload } from '../models/jwtVeryfPayload';
 
 @Injectable()
 export class TokenService {
@@ -36,7 +37,7 @@ export class TokenService {
     }
   }
 
-  public async genreVerifToken(payload: JwtPayload): Promise<string> {
+  public async genreVerifToken(payload: JwtVeryfPayload): Promise<string> {
     try {
       console.log(this.jwtConfig.verifSecret);
       console.log(this.jwtConfig.verifTime);

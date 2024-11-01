@@ -44,7 +44,6 @@ export class AuthService {
 
     const verToken = await this.tokenService.genreVerifToken({
       userId: user.id,
-      deviceId: registerAuthDto.deviceId,
     });
 
     try {

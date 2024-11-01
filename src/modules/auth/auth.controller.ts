@@ -14,11 +14,11 @@ import { RegisterAuthReqDto } from './dto/req/register.auth.req.dto';
 import { AuthResDto } from './dto/res/auth.res.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoginReqDto } from './dto/req/loginReq.dto';
-import { JwtAccessGuard } from './quards/jwtAccesGuard';
 import { TokenPair } from './models/tokenPair';
 import { CurrentUser } from './decorators/currentUserDecorator';
 import { ReqAfterGuardDto } from './dto/req/reqAfterGuard.dto';
 import { ControllerEnum } from '../enums/controllerEnum';
+import { JwtRefreshGuard } from './quards/jwtRefrGuard';
 
 @ApiTags(ControllerEnum.AUTH)
 @Controller(ControllerEnum.AUTH)
@@ -41,9 +41,9 @@ export class AuthController {
     return await this.authService.login(loginAuthDto);
   }
 
-  @ApiOperation({ summary: 'Refresh Tokkens' })
+  @ApiOperation({ summary: 'Refresh Tokens' })
   @ApiBearerAuth()
-  @UseGuards(JwtAccessGuard)
+  @UseGuards(JwtRefreshGuard)
   @SkipAuth()
   @Post('refresh')
   public async refresh(
