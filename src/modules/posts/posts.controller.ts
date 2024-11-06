@@ -10,14 +10,17 @@ import {
   Get,
   Query,
   UseGuards,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 
 import {
   ApiBearerAuth,
+  ApiConsumes,
+  ApiExtraModels,
   ApiOperation,
   ApiTags,
-  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { CreatePostDto } from './dto/req/createPost.dto';
 import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
@@ -31,6 +34,10 @@ import { ControllerEnum } from '../enums/controllerEnum';
 import { RolesGuard } from '../users/guards/RolesGuard';
 import { Roles } from '../users/decorators/roleDecorator';
 import { RoleEnum } from '../../database/enums/role.enum';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { SkipAuth } from '../auth/decorators/skipAuthDecorator';
+import { ContentType } from '../filestorage/enums/content-type.enum';
+import { ApiFileWithDto } from './decorators/ApiFileWithDto';
 
 @ApiTags(ControllerEnum.POSTS)
 @Controller(ControllerEnum.POSTS)
@@ -39,18 +46,23 @@ export class PostsController {
 
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new post' })
+  @ApiConsumes('multipart/form-data')
+  @ApiExtraModels(CreatePostDto)
+  @UseInterceptors(FilesInterceptor(ContentType.ARTICLE, 10))
+  @ApiFileWithDto(ContentType.ARTICLE, CreatePostDto, true, true)
   @Post()
   public async create(
     @Body()
     createPostDto: CreatePostDto,
     @CurrentUser() userData: ReqAfterGuardDto,
+    @UploadedFiles() image: Array<Express.Multer.File>,
   ): Promise<CreateUpdateResDto> {
     console.log(`Initial createPostDto:`, createPostDto);
-    const post = await this.postsService.create(createPostDto, userData);
+    const post = await this.postsService.create(createPostDto, userData, image);
     return PostMapper.toResCreateDto(post);
   }
 
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @SkipAuth()
   @ApiOperation({
     summary: `Get list of posts`,
   })

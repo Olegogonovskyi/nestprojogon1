@@ -30,11 +30,14 @@ import { ValidationCostants } from '../../validationConstants/validation costant
 import { EmailService } from '../emailodule/emailodule.service';
 import { UserRepository } from '../repository/services/users.repository';
 import { EmailEnum } from '../emailodule/enums/emailEnam';
+import { ContentType } from '../filestorage/enums/content-type.enum';
+import { FileStorageService } from '../filestorage/filestorageService';
 
 @Injectable()
 export class PostsService {
   constructor(
     private readonly postRepository: PostRepository,
+    private readonly fileStorageService: FileStorageService,
     private readonly tagsRepository: TagRepository,
     private readonly exchangeRateService: ExchangeRateService,
     private readonly eventEmitter: EventEmitter2,
@@ -68,27 +71,32 @@ export class PostsService {
   public async create(
     createPostDto: CreatePostDto,
     userData: ReqAfterGuardDto,
+    images: Array<Express.Multer.File>,
   ): Promise<PostsEntity> {
     const { prise, priseValue } = createPostDto;
     const { id, role } = userData;
+
     if (!userData.isVerified) {
-      throw new UnauthorizedException('User is not veryfied');
+      throw new UnauthorizedException('User is not verified');
     }
+
     if (role === RoleEnum.SELLER) {
       const countPosts = await this.postRepository.countPostsByUserId(id);
       if (countPosts >= 1) {
         throw new ForbiddenException(
-          'If You want publicate more posts you must pay',
+          'If you want to publish more posts, you must pay',
         );
       }
     }
+
     const carBrandinDataBase = await this.carBrandRepository.findOneBy({
       name: createPostDto.carBrand,
     });
 
     if (!carBrandinDataBase) {
-      throw new ForbiddenException('We dont know about this car brand');
+      throw new ForbiddenException("We don't recognize this car brand");
     }
+
     const { eur, usd } = await this.exchangeRateService.updateExchangeRates();
 
     const { eurPrice, usdPrice, uahPrice } = ExchangeHelper.priseCalc(
@@ -97,47 +105,51 @@ export class PostsService {
       eur,
       usd,
     );
+
     const tags = await this.createTags(createPostDto.tags);
+
     const hasForbiddenWords = ValidationCostants.some(
       (word) =>
         createPostDto.title.includes(word) ||
         createPostDto.body.includes(word) ||
         createPostDto.description.includes(word),
     );
-    if (hasForbiddenWords) {
-      console.log(`Validation Errors: ${hasForbiddenWords}`);
 
-      const post = this.postRepository.create({
-        ...createPostDto,
-        userID: userData.id,
-        user: userData,
-        uahPrice,
-        eurPrice,
-        usdPrice,
-        exchangeRateDate: new Date(),
-        editAttempts: 1,
-        tags,
-      });
-      console.log(post.editAttempts);
-      const savedPost = await this.postRepository.save(post);
+    let imageUrls: string[];
+    try {
+      imageUrls = await Promise.all(
+        images.map((file) =>
+          this.fileStorageService.uploadFile(file, ContentType.ARTICLE, id),
+        ),
+      );
+    } catch (e) {
+      throw new InternalServerErrorException('Images upload failed');
+    }
+
+    const postData = {
+      ...createPostDto,
+      userID: userData.id,
+      user: userData,
+      uahPrice,
+      eurPrice,
+      usdPrice,
+      exchangeRateDate: new Date(),
+      editAttempts: hasForbiddenWords ? 1 : 0,
+      isActive: !hasForbiddenWords,
+      tags,
+      image: imageUrls,
+    };
+
+    if (hasForbiddenWords) {
+      const savedPost = await this.postRepository.save(
+        this.postRepository.create(postData),
+      );
       throw new BadRequestException(
         `Validation failed. You have only 3 attempts to update post ${savedPost.id}`,
       );
     }
-    return await this.postRepository.save(
-      this.postRepository.create({
-        ...createPostDto,
-        userID: userData.id,
-        user: userData,
-        uahPrice,
-        eurPrice,
-        usdPrice,
-        exchangeRateDate: new Date(),
-        editAttempts: 0,
-        isActive: true,
-        tags,
-      }),
-    );
+
+    return await this.postRepository.save(this.postRepository.create(postData));
   }
 
   public async getByPostId(postId: string): Promise<PostsEntity> {

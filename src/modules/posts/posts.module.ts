@@ -6,9 +6,15 @@ import { RolesGuard } from '../users/guards/RolesGuard';
 import { APP_GUARD } from '@nestjs/core';
 import { ExchangeModule } from '../exchange/exchange.module';
 import { EmailModule } from '../emailodule/emailodule.module';
+import { FileStorageModule } from '../filestorage/filestorageModule';
 
 @Module({
-  imports: [forwardRef(() => UsersModule), ExchangeModule, EmailModule],
+  imports: [
+    forwardRef(() => UsersModule),
+    ExchangeModule,
+    EmailModule,
+    FileStorageModule,
+  ],
   controllers: [PostsController],
   providers: [
     PostsService,

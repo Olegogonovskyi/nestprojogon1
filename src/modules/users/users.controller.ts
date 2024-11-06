@@ -23,6 +23,7 @@ import { UpdateMeDto } from './dto/req/updateMe.dto';
 import { ControllerEnum } from '../enums/controllerEnum';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiFile } from './decorators/apiFile.decorator';
+import { ContentType } from '../filestorage/enums/content-type.enum';
 
 @ApiTags(ControllerEnum.USERS)
 @ApiBearerAuth()
@@ -57,8 +58,8 @@ export class UsersController {
     summary: `Upload avatar`,
     description: 'returns link with avatar',
   })
-  @UseInterceptors(FileInterceptor('avatar'))
-  @ApiFile('avatar', false, false)
+  @UseInterceptors(FileInterceptor(ContentType.AVATAR))
+  @ApiFile(ContentType.AVATAR, false, false)
   @ApiConsumes('multipart/form-data')
   @Post('me/uploadAvatar')
   public async uploadAvatar(

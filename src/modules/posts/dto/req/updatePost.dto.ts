@@ -2,7 +2,6 @@ import { PickType } from '@nestjs/swagger';
 import { BaseReqPostDto } from './baseReqPost.dto';
 import { IsOptional } from 'class-validator';
 import { PriseEnum } from '../../../../database/enums/prise.enum';
-import { CarBrandEnum } from '../../enums/carEnum';
 
 export class UpdatePostDto extends PickType(BaseReqPostDto, [
   'title',
@@ -42,7 +41,7 @@ export class UpdatePostDto extends PickType(BaseReqPostDto, [
   prise: PriseEnum;
 
   @IsOptional()
-  image: string;
+  image: string[];
 
   @IsOptional()
   carBrand: string;

@@ -26,8 +26,8 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @Column('text')
   body: string;
 
-  @Column('text', { nullable: true })
-  image: string;
+  @Column('simple-array', { nullable: false })
+  image: string[];
 
   @Column('decimal', { default: 1 })
   priseValue: number;
