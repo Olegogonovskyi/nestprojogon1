@@ -1,5 +1,6 @@
 import { PickType } from '@nestjs/swagger';
 import { BaseReqPostDto } from './baseReqPost.dto';
+import { IsOptional } from 'class-validator';
 
 export class CreatePostDto extends PickType(BaseReqPostDto, [
   'title',
@@ -13,4 +14,7 @@ export class CreatePostDto extends PickType(BaseReqPostDto, [
   'town',
   'year',
   'model',
-]) {}
+]) {
+  @IsOptional()
+  tags?: string[];
+}

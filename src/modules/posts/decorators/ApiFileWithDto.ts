@@ -8,30 +8,35 @@ export const ApiFileWithDto = <TModel extends Type<any>>(
   isRequired = true,
 ): MethodDecorator => {
   return applyDecorators(
-    ApiExtraModels(dto), // Додаємо модель, щоб Swagger її знав
+    ApiExtraModels(dto),
     ApiBody({
       schema: {
-        type: 'object',
-        required: isRequired ? [fileName] : [],
-        properties: {
-          [fileName]: isArray
-            ? {
+        allOf: [
+          { $ref: getSchemaPath(dto) },
+          {
+            type: 'object',
+            required: isRequired ? [fileName] : [],
+            properties: {
+              [fileName]: isArray
+                ? {
+                    type: 'array',
+                    items: {
+                      type: 'string',
+                      format: 'binary',
+                    },
+                  }
+                : {
+                    type: 'string',
+                    format: 'binary',
+                  },
+              tags: {
+                // Додано правильне відображення поля tags
                 type: 'array',
-                items: {
-                  type: 'string',
-                  format: 'binary',
-                },
-              }
-            : {
-                type: 'string',
-                format: 'binary',
+                items: { type: 'string' },
               },
-          ...{
-            dto: {
-              $ref: getSchemaPath(dto),
             },
           },
-        },
+        ],
       },
     }),
   );

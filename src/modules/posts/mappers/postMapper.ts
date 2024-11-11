@@ -26,6 +26,7 @@ export class PostMapper {
       region,
       model,
       year,
+      image,
     } = post;
     const baseDto = {
       id,
@@ -43,6 +44,7 @@ export class PostMapper {
       region,
       model,
       year,
+      image,
     };
     return paidInfo !== undefined
       ? { ...baseDto, paidInfo: paidInfo }

@@ -55,20 +55,26 @@ export class BaseReqPostDto {
   @Length(0, 3000)
   image: string[];
 
-  @ApiProperty({ type: [String], maxLength: 30, isArray: true })
-  @IsArray()
+  @ApiProperty({
+    type: [String],
+    isArray: true,
+    description: 'Tags for the post',
+  })
   @IsString({ each: true })
   @IsNotIn(ValidationCostants)
   @Length(3, 30, { each: true })
   @ArrayMaxSize(5)
+  @Type(() => String)
   @Transform(TransformHelper.trimArray)
   @Transform(TransformHelper.uniqueItems)
   @Transform(TransformHelper.toLowerCaseArray)
-  tags: string[];
+  tags?: string[];
 
+  @ApiProperty({ type: Number, description: 'Value of the prise' })
   @IsInt()
   @Min(1)
   @ApiProperty({ type: Number, minimum: 1 })
+  @Type(() => Number)
   priseValue: number;
 
   @ApiProperty({ enum: PriseEnum })
@@ -90,9 +96,11 @@ export class BaseReqPostDto {
   @IsString()
   carBrandId: string;
 
+  @ApiProperty({ type: Number, description: 'Year of the car' })
   @IsInt()
   @Min(1945)
   @Max(2025)
+  @Type(() => Number)
   year: number;
 
   @ApiPropertyOptional({ type: Number, description: 'currency in EUR' })

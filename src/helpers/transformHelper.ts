@@ -4,7 +4,8 @@ export class TransformHelper {
   }
 
   public static trimArray({ value }) {
-    return value ? value.map((item) => item.trim()) : value;
+    console.log(value);
+    return Array.isArray(value) ? value.flat().map((item) => item.trim()) : value;
   }
 
   public static uniqueItems({ value }) {
