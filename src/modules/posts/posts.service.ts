@@ -8,10 +8,7 @@ import {
 } from '@nestjs/common';
 import { CreatePostDto } from './dto/req/createPost.dto';
 import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
-import { TagRepository } from '../repository/services/tag.repository';
 import { PostRepository } from '../repository/services/post.repository';
-import { TagEntity } from '../../database/entities/tag.entity';
-import { In } from 'typeorm';
 import { PostsEntity } from '../../database/entities/post.entity';
 import { UpdatePostDto } from './dto/req/updatePost.dto';
 import { PostListRequeryDto } from './dto/req/PostListReqQuery.dto';
@@ -38,7 +35,6 @@ export class PostsService {
   constructor(
     private readonly postRepository: PostRepository,
     private readonly fileStorageService: FileStorageService,
-    private readonly tagsRepository: TagRepository,
     private readonly exchangeRateService: ExchangeRateService,
     private readonly eventEmitter: EventEmitter2,
     private readonly postViewRepository: PostViewRepository,
@@ -46,17 +42,6 @@ export class PostsService {
     private readonly emailService: EmailService,
     private readonly userRepository: UserRepository,
   ) {}
-
-  private async createTags(tags: string[]): Promise<TagEntity[]> {
-    if (!tags || tags.length === 0) return [];
-    const entities = await this.tagsRepository.findBy({ name: In(tags) });
-    const existingTags = entities.map((entity) => entity.name);
-    const newTags = tags.filter((tag) => !existingTags.includes(tag));
-    const newEntities = await this.tagsRepository.save(
-      newTags.map((tag) => this.tagsRepository.create({ name: tag })),
-    );
-    return [...entities, ...newEntities];
-  }
 
   private async addView(post: PostsEntity): Promise<void> {
     const view = this.postViewRepository.create({ post });
@@ -106,8 +91,6 @@ export class PostsService {
       usd,
     );
 
-    const tags = await this.createTags(createPostDto.tags);
-
     const hasForbiddenWords = ValidationCostants.some(
       (word) =>
         createPostDto.title.includes(word) ||
@@ -136,7 +119,6 @@ export class PostsService {
       exchangeRateDate: new Date(),
       editAttempts: hasForbiddenWords ? 1 : 0,
       isActive: !hasForbiddenWords,
-      tags,
       image: imageUrls,
     };
 

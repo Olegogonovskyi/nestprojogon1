@@ -1,18 +1,9 @@
-import {
-  Entity,
-  Column,
-  ManyToOne,
-  JoinColumn,
-  ManyToMany,
-  JoinTable,
-  OneToMany,
-} from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { IdCreateUpdateEntity } from './models/IdCreateUpdateEntity';
 
 import { EntityEnum } from '../enums/entity.enum';
 import { PriseEnum } from '../enums/prise.enum';
 import { UsersEntity } from './users.entity';
-import { TagEntity } from './tag.entity';
 import { PostViewEntity } from './postViev.entity';
 
 @Entity(EntityEnum.POSTS)
@@ -73,16 +64,6 @@ export class PostsEntity extends IdCreateUpdateEntity {
   @ManyToOne(() => UsersEntity, (entity) => entity.posts)
   @JoinColumn({ name: 'userID' })
   user?: UsersEntity;
-
-  // @Column('text')
-  // carBrandId: string;
-  // @ManyToOne(() => CarEntity, (entity) => entity.posts)
-  // @JoinColumn({ name: 'carBrandId' })
-  // carBrandName?: CarEntity;
-
-  @ManyToMany(() => TagEntity, (entity) => entity.posts)
-  @JoinTable()
-  tags?: TagEntity[];
 
   @OneToMany(() => PostViewEntity, (entity) => entity.post)
   views?: PostViewEntity[];

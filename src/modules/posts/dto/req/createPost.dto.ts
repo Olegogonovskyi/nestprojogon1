@@ -8,13 +8,9 @@ export class CreatePostDto extends PickType(BaseReqPostDto, [
   'body',
   'priseValue',
   'prise',
-  'tags',
   'carBrand',
   'region',
   'town',
   'year',
   'model',
-]) {
-  @IsOptional()
-  tags?: string[];
-}
+]) {}

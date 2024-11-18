@@ -29,11 +29,10 @@ export const ApiFileWithDto = <TModel extends Type<any>>(
                     type: 'string',
                     format: 'binary',
                   },
-              tags: {
-                // Додано правильне відображення поля tags
-                type: 'array',
-                items: { type: 'string' },
-              },
+              // tags: {
+              //   type: 'array',
+              //   items: { type: 'string' },
+              // },
             },
           },
         ],

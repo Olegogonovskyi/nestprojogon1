@@ -16,7 +16,6 @@ export class CreateUpdateResDto extends PartialType(
     'uahPrice',
     'eurPrice',
     'isActive',
-    'tags',
     'user',
     'countOfViews',
     'carBrand',
