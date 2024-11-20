@@ -42,7 +42,7 @@ export class PostMapper {
       region,
       model,
       year,
-      image,
+      image: image.map((img) => `${process.env.AWS_S3_BUCKET_URL}/${img}`),
     };
     return paidInfo !== undefined
       ? { ...baseDto, paidInfo: paidInfo }

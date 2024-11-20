@@ -20,11 +20,6 @@ export class PostListRequeryDto {
   offset?: number = 0;
 
   @ApiProperty()
-  @IsString()
-  @IsOptional()
-  tag?: string;
-
-  @ApiProperty()
   @Transform(TransformHelper.trim)
   @Transform(TransformHelper.toLowerCase)
   @IsString()

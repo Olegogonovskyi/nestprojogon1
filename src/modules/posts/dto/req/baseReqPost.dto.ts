@@ -16,7 +16,6 @@ import { PriseEnum } from '../../../../database/enums/prise.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { RegisterAuthResDto } from '../../../auth/dto/res/register.auth.res.dto';
 
-
 export class BaseReqPostDto {
   @ApiPropertyOptional()
   @IsOptional()

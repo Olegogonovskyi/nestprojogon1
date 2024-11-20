@@ -83,7 +83,9 @@ export class PostsController {
     @Param('id') id: string,
     @Body() updatePostDto: UpdatePostDto,
   ): Promise<CreateUpdateResDto> {
+    console.log('Received updatePostDto:', updatePostDto);
     const result = await this.postsService.updatePost(id, updatePostDto);
+    console.log(result);
     return PostMapper.toResUpdateDto(result);
   }
 
@@ -99,7 +101,7 @@ export class PostsController {
     await this.postsService.deletePost(id);
   }
 
-  @ApiBearerAuth()
+  @SkipAuth()
   @ApiOperation({ summary: 'Find a post' })
   @Get(':postId')
   public async getById(

@@ -29,6 +29,7 @@ import { UserRepository } from '../repository/services/users.repository';
 import { EmailEnum } from '../emailodule/enums/emailEnam';
 import { ContentType } from '../filestorage/enums/content-type.enum';
 import { FileStorageService } from '../filestorage/filestorageService';
+import { EventEnum } from './enums/eventEnum';
 
 @Injectable()
 export class PostsService {
@@ -48,7 +49,7 @@ export class PostsService {
     await this.postViewRepository.save(view);
   }
 
-  @OnEvent('post.viewed')
+  @OnEvent(EventEnum.POSTVIEW)
   private async handlePostViewedEvent(event: PostViewedEvent) {
     await this.addView(event.post);
   }
@@ -145,34 +146,35 @@ export class PostsService {
     postId: string,
     userData: ReqAfterGuardDto,
   ): Promise<[PostsEntity, paidInfo: PaidInfoInterface]> {
-    try {
-      const post = await this.postRepository.findOne({
-        where: { id: postId },
-        relations: ['user'],
-      });
-      if (!post) {
-        throw new NotFoundException(`Post with ID ${postId} not found`);
-      }
+    const post = await this.postRepository.findOne({
+      where: { id: postId },
+      relations: ['user'],
+    });
+    if (!post) {
+      throw new NotFoundException(`Post with ID ${postId} not found`);
+    }
 
-      this.eventEmitter.emit('post.viewed', new PostViewedEvent(post));
-
-      const paidInfo: PaidInfoInterface = {
-        countViews: 0,
-        averagePrise: 0,
-        viewsByDay: 0,
-        viewsByWeek: 0,
-        viewsByMonth: 0,
-      };
-      if (userData.role !== RoleEnum.SELLER && userData.id == post.userID) {
+    this.eventEmitter.emit(EventEnum.POSTVIEW, new PostViewedEvent(post));
+    const paidInfo: PaidInfoInterface = {
+      countViews: 0,
+      averagePrise: 0,
+      viewsByDay: 0,
+      viewsByWeek: 0,
+      viewsByMonth: 0,
+    };
+    if (userData) {
+      if (userData.role !== RoleEnum.SELLER || userData.id == post.userID) {
+        console.log('3/5');
         paidInfo.countViews = await this.postViewRepository.count({
           where: { post: { id: postId } },
         });
+        console.log('5');
         paidInfo.averagePrise =
           await this.postRepository.getAveragePriceForCarBand(
             post.carBrand,
             post.model,
           );
-
+        console.log('6');
         paidInfo.viewsByDay = await this.postViewRepository.countViews(
           post.id,
           StatDateEnum.DAY,
@@ -186,10 +188,8 @@ export class PostsService {
           StatDateEnum.MONTH,
         );
       }
-      return [post, paidInfo];
-    } catch (error) {
-      throw new InternalServerErrorException('Failed to fetch post details');
     }
+    return [post, paidInfo];
   }
 
   public async getList(
@@ -224,7 +224,7 @@ export class PostsService {
         );
       }
       this.postRepository.merge(post, updatePostDto, { isActive: true });
-      await this.postRepository.save(post);
+      return await this.postRepository.save(post);
     }
 
     const managers = await this.userRepository.find({

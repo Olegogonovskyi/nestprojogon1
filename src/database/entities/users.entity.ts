@@ -5,6 +5,7 @@ import { RoleEnum } from '../enums/role.enum';
 import { PostsEntity } from './post.entity';
 import { RefreshTokenEntity } from './refreshToken.entity';
 import { CarEntity } from './car.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity(EntityEnum.USERS)
 export class UsersEntity extends IdCreateUpdateEntity {
@@ -14,6 +15,7 @@ export class UsersEntity extends IdCreateUpdateEntity {
   @Column('text', { unique: true })
   email: string;
 
+  @Exclude()
   @Column('text')
   password: string;
 
