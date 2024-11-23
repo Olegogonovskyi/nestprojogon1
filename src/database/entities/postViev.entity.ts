@@ -7,7 +7,9 @@ import { EntityEnum } from '../enums/entity.enum';
 export class PostViewEntity extends IdCreateUpdateEntity {
   @Column('text')
   postID: string;
-  @ManyToOne(() => PostsEntity, (entity) => entity.views)
+  @ManyToOne(() => PostsEntity, (entity) => entity.views, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'postID' })
   post: PostsEntity;
 }

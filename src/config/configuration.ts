@@ -1,8 +1,16 @@
-export default () => ({
+import * as process from 'node:process';
+import { Config } from './config.types';
+
+export default (): Config => ({
   app: {
     port: Number(process.env.APP_PORT) || 3002,
     host: process.env.APP_HOST || 'localhost',
   },
+
+  urls: {
+    frontUrl: process.env.FRONTEND_URL,
+  },
+
   postgres: {
     port: Number(process.env.POSTGRES_PORT),
     host: process.env.POSTGRES_HOST,
@@ -11,17 +19,19 @@ export default () => ({
     dbName: process.env.POSTGRES_DB,
   },
   redis: {
-    port: process.env.REDIS_PORT,
+    port: parseInt(process.env.REDIS_PORT, 10) || 6379,
     host: process.env.REDIS_HOST,
     password: process.env.REDIS_PASSWORD,
   },
   jwt: {
     accessSecret: process.env.JWT_ACCESS_SECRET,
-    accessExpiresIn: Number(process.env.JWT_ACCESS_EXPIRES_IN),
+    accessExpiresIn: parseInt(process.env.JWT_ACCESS_EXPIRES_IN, 10) || 36000,
     refreshSecret: process.env.JWT_REFRESH_SECRET,
-    refreshExpiresIn: Number(process.env.JWT_REFRESH_EXPIRES_IN),
+    refreshExpiresIn:
+      parseInt(process.env.JWT_REFRESH_EXPIRES_IN, 10) || 100000,
     verifSecret: process.env.JWT_ACTION_VERIFIED_SECRET,
-    verifTime: Number(process.env.JWT_ACTION_VERIFIED_EXPIRES_IN),
+    verifTime:
+      parseInt(process.env.JWT_ACTION_VERIFIED_EXPIRES_IN, 10) || 50000,
   },
   aws: {
     region: process.env.AWS_REGION,
@@ -31,7 +41,7 @@ export default () => ({
     endpoint: process.env.AWS_ENDPOINT_URL,
   },
   email: {
-    SMTP_EMAIL: process.env.SMTP_EMAIL,
-    SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+    smtpEmail: process.env.SMTP_EMAIL,
+    smtpPass: process.env.SMTP_PASSWORD,
   },
 });

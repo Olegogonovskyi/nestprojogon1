@@ -164,17 +164,14 @@ export class PostsService {
     };
     if (userData) {
       if (userData.role !== RoleEnum.SELLER || userData.id == post.userID) {
-        console.log('3/5');
         paidInfo.countViews = await this.postViewRepository.count({
           where: { post: { id: postId } },
         });
-        console.log('5');
         paidInfo.averagePrise =
           await this.postRepository.getAveragePriceForCarBand(
             post.carBrand,
             post.model,
           );
-        console.log('6');
         paidInfo.viewsByDay = await this.postViewRepository.countViews(
           post.id,
           StatDateEnum.DAY,
@@ -207,9 +204,9 @@ export class PostsService {
     if (attemts < 3) {
       const hasForbiddenWords = ValidationCostants.some(
         (word) =>
-          updatePostDto.title.includes(word) ||
-          updatePostDto.body.includes(word) ||
-          updatePostDto.description.includes(word),
+          updatePostDto.title?.includes(word) ||
+          updatePostDto.body?.includes(word) ||
+          updatePostDto.description?.includes(word),
       );
       if (hasForbiddenWords) {
         await this.postRepository.save(
@@ -218,13 +215,18 @@ export class PostsService {
             isActive: false,
           }),
         );
-        console.log(post.editAttempts);
+
         throw new BadRequestException(
           `Validation failed. You have only ${3 - post.editAttempts} attempts to update post ${postId}`,
         );
       }
+
       this.postRepository.merge(post, updatePostDto, { isActive: true });
-      return await this.postRepository.save(post);
+      await this.postRepository.save(post);
+      return await this.postRepository.findOne({
+        where: { id: post.id },
+        relations: ['user'], // розумію, що додаткове навантаження на базу, але додав шоб підвантажило юзера, можна і забрати
+      });
     }
 
     const managers = await this.userRepository.find({

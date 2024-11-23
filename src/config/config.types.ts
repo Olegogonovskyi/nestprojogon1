@@ -1,5 +1,6 @@
 export type Config = {
   app: AppConfig;
+  urls: UrlsConfig;
   postgres: PostgresConfig;
   redis: RedisConfig;
   jwt: JwtConfig;
@@ -10,6 +11,10 @@ export type Config = {
 export type AppConfig = {
   port: number;
   host: string;
+};
+
+export type UrlsConfig = {
+  frontUrl: string;
 };
 
 export type PostgresConfig = {

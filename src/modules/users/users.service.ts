@@ -47,6 +47,7 @@ export class UsersService {
     const verToken = await this.tokenService.genreVerifToken({
       userId: user.id,
     });
+    console.log(process.env);
 
     await this.emailService.sendEmail(EmailEnum.WELCOME, user.email, {
       layout: 'main',

@@ -15,7 +15,6 @@ export class UpdatePostDto extends PickType(BaseReqPostDto, [
   'town',
   'model',
   'year',
-  'user',
 ]) {
   @IsOptional()
   title: string;

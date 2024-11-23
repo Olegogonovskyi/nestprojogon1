@@ -59,6 +59,7 @@ export class PostsController {
   ): Promise<CreateUpdateResDto> {
     console.log(`Initial createPostDto:`, createPostDto);
     const post = await this.postsService.create(createPostDto, userData, image);
+    console.log(`post0: ${post}`);
     return PostMapper.toResCreateDto(post);
   }
 
@@ -83,9 +84,7 @@ export class PostsController {
     @Param('id') id: string,
     @Body() updatePostDto: UpdatePostDto,
   ): Promise<CreateUpdateResDto> {
-    console.log('Received updatePostDto:', updatePostDto);
     const result = await this.postsService.updatePost(id, updatePostDto);
-    console.log(result);
     return PostMapper.toResUpdateDto(result);
   }
 
