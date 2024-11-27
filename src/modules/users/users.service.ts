@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserByAdminDto } from './dto/req/createUserByAdmin.dto';
 import { UsersEntity } from '../../database/entities/users.entity';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { UserRepository } from '../repository/services/users.repository';
 import { AuthCacheService } from '../auth/services/auth.catch.service';
 import { ReqAfterGuardDto } from '../auth/dto/req/reqAfterGuard.dto';
@@ -31,7 +31,7 @@ export class UsersService {
   public async create(
     CreateUserByAdminDto: CreateUserByAdminDto,
   ): Promise<UsersEntity> {
-    const password = await bcrypt.hash(CreateUserByAdminDto.password, 10);
+    const password = bcrypt.hashSync(CreateUserByAdminDto.password, 10);
     const isExistUser = await this.userRepository.findOneBy({
       email: CreateUserByAdminDto.email,
     });

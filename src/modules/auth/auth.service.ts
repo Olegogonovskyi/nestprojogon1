@@ -4,7 +4,7 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { RegisterAuthReqDto } from './dto/req/register.auth.req.dto';
 import { UserRepository } from '../repository/services/users.repository';
 import { TokenService } from './services/tokenService';
@@ -32,7 +32,7 @@ export class AuthService {
   public async register(
     registerAuthDto: RegisterAuthReqDto,
   ): Promise<AuthResDto> {
-    const password = await bcrypt.hash(registerAuthDto.password, 10);
+    const password = bcrypt.hashSync(registerAuthDto.password, 10);
     const user = await this.userRepository.save(
       this.userRepository.create({ ...registerAuthDto, password }),
     );
@@ -78,7 +78,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const isPaswordValid = await bcrypt.compare(
+    const isPaswordValid = bcrypt.compareSync(
       loginAuthDto.password,
       user.password,
     );
