@@ -24,15 +24,12 @@ export class BaseReqPostDto {
 
   @ApiProperty({ type: String })
   @IsString()
-  // @IsNotIn(ValidationCostants)
-  // @Length(3, 50)
   @Transform(TransformHelper.trim)
   @Type(() => String)
   title: string;
 
   @ApiProperty({ type: String })
   @IsString()
-  // @IsNotIn(ValidationCostants, { message: 'aaaaaa', groups: ['custom'] })
   @Length(0, 300)
   @Transform(TransformHelper.trim)
   @Type(() => String)

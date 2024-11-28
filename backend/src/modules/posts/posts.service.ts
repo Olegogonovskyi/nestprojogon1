@@ -37,7 +37,7 @@ export class PostsService {
     private readonly postRepository: PostRepository,
     private readonly fileStorageService: FileStorageService,
     private readonly exchangeRateService: ExchangeRateService,
-    private readonly eventEmitter: EventEmitter2,
+    private readonly eventEmitter: EventEmitter2, // можна було б і без цього, але в документації ніби так потрібно події обробляти
     private readonly postViewRepository: PostViewRepository,
     private readonly carBrandRepository: CarBrandRepository,
     private readonly emailService: EmailService,

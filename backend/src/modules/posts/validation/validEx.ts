@@ -4,7 +4,7 @@ import {
   ValidationArguments,
 } from 'class-validator';
 
-// Валідатор для перевірки наявності певних слів у тексті
+// Валідатор для перевірки наявності поганих слів у тексті
 @ValidatorConstraint({ async: false })
 export class NotContainsWordsConstraint
   implements ValidatorConstraintInterface

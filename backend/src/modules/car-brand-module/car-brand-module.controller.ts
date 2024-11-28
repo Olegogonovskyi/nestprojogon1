@@ -14,11 +14,7 @@ import {
 import { CarBrandModuleService } from './car-brand-module.service';
 import { CreateReqCarBrandModuleDto } from './dto/req/createReq-car-brand-module.dto';
 import { UpdateCarBrandModuleDto } from './dto/req/update-car-brand-module.dto';
-import {
-  ApiBearerAuth,
-  ApiOperation,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ControllerEnum } from '../enums/controllerEnum';
 import { RoleEnum } from '../../database/enums/role.enum';
 import { CreateResCarBrandModuleDto } from './dto/res/createRes-car-brand-module.dto';

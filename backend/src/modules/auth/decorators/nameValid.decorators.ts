@@ -5,7 +5,7 @@ import { IsNotIn, IsString, Length } from 'class-validator';
 
 export function NameValidDecorators() {
   return applyDecorators(
-    Transform(TransformHelper.trim), // заміна цього @Transform(({ value }) => value.trim()) метод helper - public static trim({ value }: { value: string }): string {}
+    Transform(TransformHelper.trim), // трошки переробити
     IsString(),
     IsNotIn(['fuck']),
     Length(2, 20),
