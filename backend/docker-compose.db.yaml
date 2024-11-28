@@ -1,22 +1,6 @@
-version: '3.9'
+version: '3.8'
 
 services:
-  app:  # Правильне оголошення сервісу
-    build:
-      context: .
-      dockerfile: Dockerfile
-    env_file:
-      - .env
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    ports:
-      - "3002:3002"
-    depends_on:
-      - oleg-proj-postgres
-      - oleg-proj-redis
-    restart: on-failure
-
   oleg-proj-postgres:
     image: postgres:16.1
     ports:
@@ -26,7 +10,7 @@ services:
       POSTGRES_PASSWORD: '${POSTGRES_PASSWORD:-password}'
       POSTGRES_DB: '${POSTGRES_DB:-oleg-proj}'
     volumes:
-      - oleg-proj-api-db:/var/lib/postgresql/data
+      - ./oleg-proj-api-db:/var/lib/postgresql/oleg-proj
 
   oleg-proj-redis:
     image: redis:7.2.3
@@ -44,23 +28,11 @@ services:
       - "8000:9000"
       - "8002:9002"
     volumes:
-      - ./backend/oleg-proj-api-s3-data:/usr/src/app/s3
+      - ./oleg-proj-api-s3-data:/usr/src/app/s3
     environment:
       - MINIO_ROOT_USER=user            # AWS_S3_ACCESS_KEY
       - MINIO_ROOT_PASSWORD=password    # AWS_S3_SECRET_KEY
 
-  web:
-    image: nginx:alpine
-    ports:
-      - "8080:80"
-    volumes:
-      - ./client:/usr/share/nginx/html
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    restart: on-failure
-
 volumes:
   oleg-proj-api-db:
   oleg-proj-api-s3:
-
-#
-#    C:\Users\User\nestprojogon\docker-compose.db.yaml:
