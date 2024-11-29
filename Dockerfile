@@ -1,13 +1,13 @@
-#FROM node:20-alpine
-#
-#MAINTAINER Some Dev
-#
-#RUN mkdir /app
-#WORKDIR /app
-#
-#COPY ./backend/package.json /app
-#
-#RUN npm i
+FROM node:20-alpine
+
+MAINTAINER Some Dev
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY ./backend/package.json /app
+
+RUN npm i
 
 #FROM node:20-alpine
 #
@@ -27,24 +27,27 @@
 ## Запуск додатку
 #CMD ["node", "dist/src/main.js"]
 
-FROM node:20-alpine
+#FROM node:20-alpine
 
-# Встановлення системних залежностей
-RUN apk add --no-cache python3 make g++ build-base
-
-WORKDIR /app
-
-# Копіювання package-файлів
-COPY ./backend/package*.json ./
-
-# Встановлення залежностей
-RUN npm install --legacy-peer-deps
-
-# Копіювання решти файлів проєкту
-COPY ./backend .
-
-# Збирання проєкту
-RUN npm run build
-
-# Встановлення точки входу
-CMD ["node", "dist/src/main.js"]
+## Встановлення системних залежностей
+#RUN apk add --no-cache python3 make g++ build-base
+#
+#WORKDIR /app
+#
+## Копіювання файлів проекту
+#COPY ./backend/package*.json ./
+#
+## Очищення кеша npm перед встановленням
+#RUN npm cache clean --force
+#
+## Встановлення залежностей
+#RUN npm install --legacy-peer-deps
+#
+## Копіювання решти файлів
+#COPY ./backend .
+#
+## Збирання проекту
+#RUN npm run build
+#
+## Команда запуску
+#CMD ["node", "dist/src/main.js"]

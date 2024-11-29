@@ -39,8 +39,9 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  const port = appConfig.port || 3002;
 
-  await app.listen(appConfig.port, () => {
+  await app.listen(port, () => {
     Logger.log(`Server running on http://${appConfig.host}:${appConfig.port}`);
     Logger.log(
       `Swagger running on http://${appConfig.host}:${appConfig.port}/docs`,

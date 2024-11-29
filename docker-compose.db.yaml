@@ -1,7 +1,6 @@
-version: '3.9'
 
 services:
-  app:  # Правильне оголошення сервісу
+  app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,18 +8,21 @@ services:
       - .env
     volumes:
       - ./backend:/app
-      - /app/node_modules
-    ports:
-      - "3002:3002"
+#    ports:
+#      - "3002:3002"
     depends_on:
       - oleg-proj-postgres
       - oleg-proj-redis
     restart: on-failure
+    command: >
+      node dist/src/main.js
 
   oleg-proj-postgres:
     image: postgres:16.1
     ports:
-      - '${POSTGRES_PORT}:5432'
+      - '${POSTGRES_PORT:-5436}:5432'
+    env_file:
+      - .env
     environment:
       POSTGRES_USER: '${POSTGRES_USER:-user}'
       POSTGRES_PASSWORD: '${POSTGRES_PASSWORD:-password}'
@@ -32,8 +34,9 @@ services:
     image: redis:7.2.3
     ports:
       - '${REDIS_PORT:-6379}:6379'
-    command: >
-      --requirepass '${REDIS_PASSWORD:-redispass}'
+    env_file:
+      - .env
+    command: redis-server
     restart: unless-stopped
 
   oleg-proj-s3:
@@ -62,5 +65,3 @@ volumes:
   oleg-proj-api-db:
   oleg-proj-api-s3:
 
-#
-#    C:\Users\User\nestprojogon\docker-compose.db.yaml:

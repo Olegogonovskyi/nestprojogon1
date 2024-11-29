@@ -57,9 +57,7 @@ export class PostsController {
     @CurrentUser() userData: ReqAfterGuardDto,
     @UploadedFiles() image: Array<Express.Multer.File>,
   ): Promise<CreateUpdateResDto> {
-    console.log(`Initial createPostDto:`, createPostDto);
     const post = await this.postsService.create(createPostDto, userData, image);
-    console.log(`post0: ${post}`);
     return PostMapper.toResCreateDto(post);
   }
 
