@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react">
+      <change afterPath="$PROJECT_DIR$/frontent/my-app/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Olegogonovskyi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Olegogonovskyi/nestprojogon1.git&quot;,
+    &quot;accountId&quot;: &quot;a380d444-5465-43e7-a3f3-43a61c6d1886&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2m35nqp4jjiDrmXPrLnQmo8VJMz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/nestprojogon&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.migration:create.executor&quot;: &quot;Run&quot;,
+    &quot;npm.migration:generate (1).executor&quot;: &quot;Run&quot;,
+    &quot;npm.migration:generate.executor&quot;: &quot;Run&quot;,
+    &quot;npm.migration:run (1).executor&quot;: &quot;Run&quot;,
+    &quot;npm.migration:run.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:docker:db (1).executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:docker:db.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:local (1).executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:local.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\User\\nestprojogon\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;redis&quot;,
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\nestprojogon" />
+      <recent name="C:\Users\User\nestprojogon\backend" />
+      <recent name="C:\Users\User\nestprojogon\src\modules\posts\enums" />
+      <recent name="C:\Users\User\nestprojogon\src\modules\auth\models" />
+      <recent name="C:\Users\User\nestprojogon\src\modules\auth\quards" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\nestprojogon\frontent\my-app" />
+      <recent name="C:\Users\User\nestprojogon" />
+      <recent name="C:\Users\User\nestprojogon\backend" />
+      <recent name="C:\Users\User\nestprojogon\src\modules\emailodule\templates\views" />
+      <recent name="C:\Users\User\nestprojogon\src\modules\car-brand-module\dto\req" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start:local (1)">
+    <configuration name="migration:generate" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="migration:generate" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="migration:run" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="migration:run" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:docker:db" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:docker:db" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:local (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:local" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:local" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:local" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start:local (1)" />
+        <item itemvalue="npm.migration:run" />
+        <item itemvalue="npm.migration:generate" />
+        <item itemvalue="npm.start:local" />
+        <item itemvalue="npm.start:docker:db" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="" />
+      <created>1726292589828</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726292589828</updated>
+      <workItem from="1726292591882" duration="7412000" />
+      <workItem from="1726300494702" duration="22819000" />
+      <workItem from="1726394287852" duration="963000" />
+      <workItem from="1726395279791" duration="141000" />
+      <workItem from="1726395724251" duration="1397000" />
+      <workItem from="1726397254168" duration="875000" />
+      <workItem from="1726398419017" duration="12402000" />
+      <workItem from="1726509738625" duration="1195000" />
+      <workItem from="1726511204980" duration="5991000" />
+      <workItem from="1726593937798" duration="6659000" />
+      <workItem from="1726602245287" duration="7142000" />
+      <workItem from="1726676690025" duration="1023000" />
+      <workItem from="1726680392415" duration="1984000" />
+      <workItem from="1726683320068" duration="4211000" />
+      <workItem from="1726688400616" duration="1148000" />
+      <workItem from="1726904653150" duration="34052000" />
+      <workItem from="1726988049687" duration="11747000" />
+      <workItem from="1727028085228" duration="205000" />
+      <workItem from="1727117397435" duration="5865000" />
+      <workItem from="1727196465427" duration="9812000" />
+      <workItem from="1727290869203" duration="3122000" />
+      <workItem from="1727628745770" duration="3143000" />
+      <workItem from="1727720824937" duration="52000" />
+      <workItem from="1727721142465" duration="5196000" />
+      <workItem from="1727852025014" duration="25188000" />
+      <workItem from="1728045298010" duration="16665000" />
+      <workItem from="1728128911147" duration="7851000" />
+      <workItem from="1728389015644" duration="1365000" />
+      <workItem from="1728412206321" duration="2662000" />
+      <workItem from="1728917258520" duration="2373000" />
+      <workItem from="1729229062902" duration="9403000" />
+      <workItem from="1729509134322" duration="1563000" />
+      <workItem from="1729520347699" duration="20000" />
+      <workItem from="1729531216152" duration="1543000" />
+      <workItem from="1729573989183" duration="21220000" />
+      <workItem from="1729660466190" duration="6689000" />
+      <workItem from="1729677260649" duration="5811000" />
+      <workItem from="1729746608751" duration="10757000" />
+      <workItem from="1729767957825" duration="3731000" />
+      <workItem from="1729832917996" duration="607000" />
+      <workItem from="1730485020760" duration="50000" />
+      <workItem from="1730485354038" duration="3463000" />
+      <workItem from="1730880953296" duration="17744000" />
+      <workItem from="1731262761674" duration="754000" />
+      <workItem from="1731349042580" duration="7980000" />
+      <workItem from="1731441123095" duration="3983000" />
+      <workItem from="1731954272960" duration="2332000" />
+      <workItem from="1732123003646" duration="3472000" />
+      <workItem from="1732126820929" duration="6440000" />
+      <workItem from="1732359841084" duration="13701000" />
+      <workItem from="1732449990875" duration="6422000" />
+      <workItem from="1732468543901" duration="4609000" />
+      <workItem from="1732475380354" duration="39000" />
+      <workItem from="1732475446765" duration="6345000" />
+      <workItem from="1732559054891" duration="6914000" />
+      <workItem from="1732644130039" duration="8148000" />
+      <workItem from="1732652463253" duration="3000" />
+      <workItem from="1732652981865" duration="2300000" />
+      <workItem from="1732732451864" duration="8219000" />
+      <workItem from="1732813363341" duration="1495000" />
+      <workItem from="1732815605687" duration="5174000" />
+      <workItem from="1732901947458" duration="5972000" />
+      <workItem from="1732908404999" duration="1575000" />
+      <workItem from="1732910422189" duration="14403000" />
+    </task>
+    <task id="LOCAL-00005" summary="add some methods to post">
+      <option name="closed" value="true" />
+      <created>1726510865044</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726510865044</updated>
+    </task>
+    <task id="LOCAL-00006" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726517332350</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726517332352</updated>
+    </task>
+    <task id="LOCAL-00007" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726601402200</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726601402201</updated>
+    </task>
+    <task id="LOCAL-00008" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726609390583</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1726609390584</updated>
+    </task>
+    <task id="LOCAL-00009" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726681568012</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726681568013</updated>
+    </task>
+    <task id="LOCAL-00010" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726682939181</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726682939181</updated>
+    </task>
+    <task id="LOCAL-00011" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726920716575</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726920716576</updated>
+    </task>
+    <task id="LOCAL-00012" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726947019357</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1726947019358</updated>
+    </task>
+    <task id="LOCAL-00013" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726956550404</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1726956550404</updated>
+    </task>
+    <task id="LOCAL-00014" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726991921281</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1726991921281</updated>
+    </task>
+    <task id="LOCAL-00015" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1726999109061</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1726999109061</updated>
+    </task>
+    <task id="LOCAL-00016" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727123540128</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1727123540129</updated>
+    </task>
+    <task id="LOCAL-00017" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727125187662</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1727125187663</updated>
+    </task>
+    <task id="LOCAL-00018" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727207932024</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1727207932025</updated>
+    </task>
+    <task id="LOCAL-00019" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727294193054</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1727294193054</updated>
+    </task>
+    <task id="LOCAL-00020" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727631968919</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1727631968919</updated>
+    </task>
+    <task id="LOCAL-00021" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727726943786</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1727726943787</updated>
+    </task>
+    <task id="LOCAL-00022" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727865699339</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1727865699341</updated>
+    </task>
+    <task id="LOCAL-00023" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727865797695</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1727865797695</updated>
+    </task>
+    <task id="LOCAL-00024" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727879825400</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1727879825400</updated>
+    </task>
+    <task id="LOCAL-00025" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1727894082183</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1727894082186</updated>
+    </task>
+    <task id="LOCAL-00026" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1728136158410</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1728136158412</updated>
+    </task>
+    <task id="LOCAL-00027" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1728136853751</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1728136853753</updated>
+    </task>
+    <task id="LOCAL-00028" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1728932992025</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1728932992025</updated>
+    </task>
+    <task id="LOCAL-00029" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729235102994</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729235102995</updated>
+    </task>
+    <task id="LOCAL-00030" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729236775783</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1729236775784</updated>
+    </task>
+    <task id="LOCAL-00031" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729237989359</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1729237989361</updated>
+    </task>
+    <task id="LOCAL-00032" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729583314101</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1729583314103</updated>
+    </task>
+    <task id="LOCAL-00033" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729591684993</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1729591684995</updated>
+    </task>
+    <task id="LOCAL-00034" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729604858627</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1729604858631</updated>
+    </task>
+    <task id="LOCAL-00035" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729663606511</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1729663606511</updated>
+    </task>
+    <task id="LOCAL-00036" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1729771719283</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1729771719283</updated>
+    </task>
+    <task id="LOCAL-00037" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1730913296982</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1730913296982</updated>
+    </task>
+    <task id="LOCAL-00038" summary="and with posts.controller.ts">
+      <option name="closed" value="true" />
+      <created>1731357112564</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1731357112566</updated>
+    </task>
+    <task id="LOCAL-00039" summary="without tags">
+      <option name="closed" value="true" />
+      <created>1731955967214</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1731955967216</updated>
+    </task>
+    <task id="LOCAL-00040" summary="without tags">
+      <option name="closed" value="true" />
+      <created>1732134973538</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732134973539</updated>
+    </task>
+    <task id="LOCAL-00041" summary="test 1">
+      <option name="closed" value="true" />
+      <created>1732384954468</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1732384954468</updated>
+    </task>
+    <task id="LOCAL-00042" summary="test 2">
+      <option name="closed" value="true" />
+      <created>1732386230300</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1732386230300</updated>
+    </task>
+    <task id="LOCAL-00043" summary="test 3">
+      <option name="closed" value="true" />
+      <created>1732453351436</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1732453351437</updated>
+    </task>
+    <task id="LOCAL-00044" summary="test D1">
+      <option name="closed" value="true" />
+      <created>1732468284646</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1732468284646</updated>
+    </task>
+    <task id="LOCAL-00045" summary="test D2">
+      <option name="closed" value="true" />
+      <created>1732474832590</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1732474832590</updated>
+    </task>
+    <task id="LOCAL-00046" summary="test D2">
+      <option name="closed" value="true" />
+      <created>1732474848966</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1732474848966</updated>
+    </task>
+    <task id="LOCAL-00047" summary="test D4">
+      <option name="closed" value="true" />
+      <created>1732481771272</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1732481771272</updated>
+    </task>
+    <task id="LOCAL-00048" summary="test D5">
+      <option name="closed" value="true" />
+      <created>1732566158372</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1732566158372</updated>
+    </task>
+    <task id="LOCAL-00049" summary="test undo D0">
+      <option name="closed" value="true" />
+      <created>1732738206050</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1732738206050</updated>
+    </task>
+    <task id="LOCAL-00050" summary="test undo D00">
+      <option name="closed" value="true" />
+      <created>1732738704308</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1732738704311</updated>
+    </task>
+    <task id="LOCAL-00051" summary="test undo D00">
+      <option name="closed" value="true" />
+      <created>1732739602217</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1732739602217</updated>
+    </task>
+    <task id="LOCAL-00052" summary="test undo D1">
+      <option name="closed" value="true" />
+      <created>1732766810439</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1732766810439</updated>
+    </task>
+    <task id="LOCAL-00053" summary="test with react">
+      <option name="closed" value="true" />
+      <created>1732916958998</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1732916958999</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add main structure" />
+    <MESSAGE value="add auth" />
+    <MESSAGE value="add some methods to post" />
+    <MESSAGE value="and with posts.controller.ts" />
+    <MESSAGE value="without tags" />
+    <MESSAGE value="test 1" />
+    <MESSAGE value="test 2" />
+    <MESSAGE value="test 3" />
+    <MESSAGE value="test D1" />
+    <MESSAGE value="test D2" />
+    <MESSAGE value="test D4" />
+    <MESSAGE value="test D5" />
+    <MESSAGE value="test undo D0" />
+    <MESSAGE value="test undo D00" />
+    <MESSAGE value="test undo D1" />
+    <MESSAGE value="test with react" />
+    <option name="LAST_COMMIT_MESSAGE" value="test with react" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/modules/posts/posts.controller.ts</url>
+          <line>60</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
