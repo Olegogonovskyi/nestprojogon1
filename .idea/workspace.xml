@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react">
-      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.db.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.db.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +22,11 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="withoutDocer" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -64,41 +61,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/nestprojogon&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.migration:create.executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:generate (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:generate.executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:run (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:run.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:docker:db (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:docker:db.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:local (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:local.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\User\\nestprojogon\\backend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/User/nestprojogon",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.migration:create.executor": "Run",
+    "npm.migration:generate (1).executor": "Run",
+    "npm.migration:generate.executor": "Run",
+    "npm.migration:run (1).executor": "Run",
+    "npm.migration:run.executor": "Run",
+    "npm.start:docker:db (1).executor": "Run",
+    "npm.start:docker:db.executor": "Run",
+    "npm.start:local (1).executor": "Run",
+    "npm.start:local.executor": "Run",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "C:\\Users\\User\\nestprojogon\\backend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;redis&quot;,
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "redis",
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\nestprojogon" />
@@ -108,9 +105,9 @@
       <recent name="C:\Users\User\nestprojogon\src\modules\auth\quards" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User\nestprojogon\frontent\my-app" />
-      <recent name="C:\Users\User\nestprojogon" />
       <recent name="C:\Users\User\nestprojogon\backend" />
+      <recent name="C:\Users\User\nestprojogon" />
+      <recent name="C:\Users\User\nestprojogon\frontent\my-app" />
       <recent name="C:\Users\User\nestprojogon\src\modules\emailodule\templates\views" />
       <recent name="C:\Users\User\nestprojogon\src\modules\car-brand-module\dto\req" />
     </key>
@@ -169,10 +166,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.start:local (1)" />
-        <item itemvalue="npm.migration:run" />
-        <item itemvalue="npm.migration:generate" />
         <item itemvalue="npm.start:local" />
         <item itemvalue="npm.start:docker:db" />
+        <item itemvalue="npm.migration:run" />
+        <item itemvalue="npm.migration:generate" />
       </list>
     </recent_temporary>
   </component>
@@ -257,23 +254,7 @@
       <workItem from="1732908404999" duration="1575000" />
       <workItem from="1732910422189" duration="14708000" />
       <workItem from="1733007350068" duration="349000" />
-      <workItem from="1733008005128" duration="7940000" />
-    </task>
-    <task id="LOCAL-00006" summary="and with posts.controller.ts">
-      <option name="closed" value="true" />
-      <created>1726517332350</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1726517332352</updated>
-    </task>
-    <task id="LOCAL-00007" summary="and with posts.controller.ts">
-      <option name="closed" value="true" />
-      <created>1726601402200</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1726601402201</updated>
+      <workItem from="1733008005128" duration="9021000" />
     </task>
     <task id="LOCAL-00008" summary="and with posts.controller.ts">
       <option name="closed" value="true" />
@@ -651,7 +632,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732925197136</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="test with react">
+      <option name="closed" value="true" />
+      <created>1733016132670</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1733016132672</updated>
+    </task>
+    <task id="LOCAL-00056" summary="test with react1">
+      <option name="closed" value="true" />
+      <created>1733017142178</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1733017142179</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,7 +682,8 @@
     <MESSAGE value="test undo D00" />
     <MESSAGE value="test undo D1" />
     <MESSAGE value="test with react" />
-    <option name="LAST_COMMIT_MESSAGE" value="test with react" />
+    <MESSAGE value="test with react1" />
+    <option name="LAST_COMMIT_MESSAGE" value="test with react1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
