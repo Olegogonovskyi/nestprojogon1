@@ -5,7 +5,301 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/environments/dev.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/environments/prod.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nest-cli.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ormconfig.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/enums/statDateEnum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/http/db-query-failed.filter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/http/global-exception.filter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/swagger/swaggerHelper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/tokenErr/handleTokenError.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/config.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/configuration.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/entities/car.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/entities/carDealPoint.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/entities/models/IdCreateUpdateEntity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/entities/post.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/entities/postViev.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/entities/refreshToken.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/entities/users.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/enums/entity.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/enums/prise.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/enums/role.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/1732912825633-$npm_config_name.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/delete.create.tokens.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/transformHelper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/auth.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/auth.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/auth.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/decorators/ageValid.decorators.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/decorators/apiFile.decorator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/decorators/currentUserDecorator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/decorators/nameValid.decorators.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/decorators/skipAuthDecorator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/dto/req/baseUserReq.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/dto/req/loginReq.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/dto/req/register.auth.req.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/dto/req/reqAfterGuard.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/dto/res/auth.res.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/dto/res/register.auth.res.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/enums/tokenTypeEnum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/mapers/userMapper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/models/jwtPayload.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/models/jwtVeryfPayload.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/models/tokenPair.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/quards/jwtAccesGuard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/quards/jwtRefrGuard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/services/auth.catch.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/auth/services/tokenService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/car-brand-module.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/car-brand-module.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/car-brand-module.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/dto/base-carBrand.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/dto/carBrandListRequery.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/dto/req/createReq-car-brand-module.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/dto/req/update-car-brand-module.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/dto/res/carBrandListResDto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/dto/res/createRes-car-brand-module.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/car-brand-module/services/carBrandMapper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/costants/emailCostants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/emailodule.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/emailodule.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/enums/emailEnam.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/templates/layouts/main.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/templates/partials/footer.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/templates/partials/header.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/templates/views/goodbye.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/templates/views/maxAttempts.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/templates/views/old-visit.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/templates/views/welcome.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/types/emailTypes/email-payload-combined.type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/types/emailTypes/email-type-to-payload.type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/emailodule/types/emailTypes/pick-required.type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/enums/controllerEnum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/exchange/costants/PrivatBank.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/exchange/dto/res/bankRes.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/exchange/exchange.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/exchange/exchange.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/exchange/mappers/exchangeMapper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/exchange/models/bankResInterface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/exchange/services/BankCurService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/filestorage/enums/content-type.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/filestorage/filestorageModule.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/filestorage/filestorageService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/postgres/postgresModule.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/decorators/ApiFileWithDto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/dto/req/PostListReqQuery.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/dto/req/baseReqPost.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/dto/req/createPost.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/dto/req/updatePost.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/dto/res/PostListRes.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/dto/res/createUpdateRes.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/dto/res/paidInfoRes.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/enums/eventEnum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/helpers/exchangeHelper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/mappers/postMapper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/posts.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/posts.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/posts.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/services/postView.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/services/postViewEvent.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/types/paidInfo.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/validation/postCustomValidationPipe.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/posts/validation/validEx.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/redis/redis.constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/redis/redis.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/redis/redis.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/repository/repository.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/repository/services/carBrand.repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/repository/services/post.repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/repository/services/postView.repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/repository/services/refreshToken.repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/repository/services/users.repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/decorators/apiFile.decorator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/decorators/roleDecorator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/dto/req/createUserByAdmin.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/dto/req/updateMe.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/dto/req/updateUserByAdmin.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/dto/res/createUserAdminRes.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/guards/RolesGuard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/mapers/userModuleMaper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/users.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/users.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/users.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/usersAdmin.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validationConstants/validation costants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/environments/local.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/environments/dev.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/environments/local.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/environments/prod.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/nest-cli.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ormconfig.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/common/enums/statDateEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/common/http/db-query-failed.filter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/common/http/global-exception.filter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/common/swagger/swaggerHelper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/common/tokenErr/handleTokenError.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/config/config.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/config/configuration.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/entities/car.entity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/entities/carDealPoint.entity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/entities/models/IdCreateUpdateEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/entities/post.entity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/entities/postViev.entity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/entities/refreshToken.entity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/entities/users.entity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/enums/entity.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/enums/prise.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/enums/role.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/database/migrations/1732912825633-$npm_config_name.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/helpers/delete.create.tokens.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/helpers/transformHelper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/auth.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/auth.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/auth.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/decorators/ageValid.decorators.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/decorators/apiFile.decorator.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/decorators/currentUserDecorator.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/decorators/nameValid.decorators.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/decorators/skipAuthDecorator.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/dto/req/baseUserReq.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/dto/req/loginReq.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/dto/req/register.auth.req.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/dto/req/reqAfterGuard.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/dto/res/auth.res.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/dto/res/register.auth.res.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/enums/tokenTypeEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/mapers/userMapper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/models/jwtPayload.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/models/jwtVeryfPayload.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/models/tokenPair.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/quards/jwtAccesGuard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/quards/jwtRefrGuard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/services/auth.catch.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/auth/services/tokenService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/car-brand-module.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/car-brand-module.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/car-brand-module.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/dto/base-carBrand.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/dto/carBrandListRequery.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/dto/req/createReq-car-brand-module.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/dto/req/update-car-brand-module.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/dto/res/carBrandListResDto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/dto/res/createRes-car-brand-module.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/car-brand-module/services/carBrandMapper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/costants/emailCostants.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/emailodule.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/emailodule.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/enums/emailEnam.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/templates/layouts/main.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/templates/partials/footer.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/templates/partials/header.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/templates/views/goodbye.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/templates/views/maxAttempts.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/templates/views/old-visit.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/templates/views/welcome.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/types/emailTypes/email-payload-combined.type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/types/emailTypes/email-type-to-payload.type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/emailodule/types/emailTypes/pick-required.type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/enums/controllerEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/exchange/costants/PrivatBank.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/exchange/dto/res/bankRes.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/exchange/exchange.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/exchange/exchange.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/exchange/mappers/exchangeMapper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/exchange/models/bankResInterface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/exchange/services/BankCurService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/filestorage/enums/content-type.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/filestorage/filestorageModule.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/filestorage/filestorageService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/postgres/postgresModule.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/decorators/ApiFileWithDto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/dto/req/PostListReqQuery.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/dto/req/baseReqPost.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/dto/req/createPost.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/dto/req/updatePost.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/dto/res/PostListRes.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/dto/res/createUpdateRes.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/dto/res/paidInfoRes.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/enums/eventEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/helpers/exchangeHelper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/mappers/postMapper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/posts.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/posts.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/posts.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/services/postView.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/services/postViewEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/types/paidInfo.interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/validation/postCustomValidationPipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/posts/validation/validEx.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/redis/redis.constants.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/redis/redis.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/redis/redis.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/repository/repository.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/repository/services/carBrand.repository.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/repository/services/post.repository.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/repository/services/postView.repository.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/repository/services/refreshToken.repository.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/repository/services/users.repository.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/decorators/apiFile.decorator.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/decorators/roleDecorator.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/dto/req/createUserByAdmin.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/dto/req/updateMe.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/dto/req/updateUserByAdmin.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/dto/res/createUserAdminRes.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/guards/RolesGuard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/mapers/userModuleMaper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/users.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/users.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/users.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/modules/users/usersAdmin.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/validationConstants/validation costants.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/tsconfig.build.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/asset-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/static/js/main.fe444164.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/static/js/main.fe444164.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/static/js/main.fe444164.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.db.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.db.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontent/my-app/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +318,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="withoutDocer" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,7 +359,7 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "withoutD",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/User/nestprojogon",
@@ -254,15 +548,7 @@
       <workItem from="1732908404999" duration="1575000" />
       <workItem from="1732910422189" duration="14708000" />
       <workItem from="1733007350068" duration="349000" />
-      <workItem from="1733008005128" duration="9021000" />
-    </task>
-    <task id="LOCAL-00008" summary="and with posts.controller.ts">
-      <option name="closed" value="true" />
-      <created>1726609390583</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1726609390584</updated>
+      <workItem from="1733008005128" duration="9390000" />
     </task>
     <task id="LOCAL-00009" summary="and with posts.controller.ts">
       <option name="closed" value="true" />
@@ -648,7 +934,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733017142179</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="test with react1">
+      <option name="closed" value="true" />
+      <created>1733017246275</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1733017246276</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
