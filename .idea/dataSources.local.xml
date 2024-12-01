@@ -20,9 +20,7 @@
       </schema-mapping>
     </data-source>
     <data-source name="Redis@localhost" uuid="262cb89c-5808-4e85-a8f4-d8b9704a31d2">
-      <database-info product="Redis Standalone" version="7.2.3" jdbc-version="4.2" driver-name="Redis JDBC Driver" driver-version="1.5" dbms="REDIS" exact-version="7.2.3" exact-driver-version="1.5">
-        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
-      </database-info>
+      <database-info product="Redis Standalone" version="7.2.3" jdbc-version="4.2" driver-name="Redis JDBC Driver" driver-version="1.5" dbms="REDIS" exact-version="7.2.3" exact-driver-version="1.5" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
       <schema-mapping>

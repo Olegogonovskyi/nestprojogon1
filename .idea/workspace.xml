@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react">
-      <change afterPath="$PROJECT_DIR$/frontent/my-app/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontent/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.db.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.db.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -253,15 +255,9 @@
       <workItem from="1732815605687" duration="5174000" />
       <workItem from="1732901947458" duration="5972000" />
       <workItem from="1732908404999" duration="1575000" />
-      <workItem from="1732910422189" duration="14403000" />
-    </task>
-    <task id="LOCAL-00005" summary="add some methods to post">
-      <option name="closed" value="true" />
-      <created>1726510865044</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1726510865044</updated>
+      <workItem from="1732910422189" duration="14708000" />
+      <workItem from="1733007350068" duration="349000" />
+      <workItem from="1733008005128" duration="7940000" />
     </task>
     <task id="LOCAL-00006" summary="and with posts.controller.ts">
       <option name="closed" value="true" />
@@ -647,7 +643,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732916958999</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="test with react">
+      <option name="closed" value="true" />
+      <created>1732925197136</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1732925197136</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

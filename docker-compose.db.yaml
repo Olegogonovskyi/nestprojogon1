@@ -8,14 +8,13 @@ services:
       - .env
     volumes:
       - ./backend:/app
-#    ports:
-#      - "3002:3002"
+    ports:
+      - "3002:3002"
     depends_on:
       - oleg-proj-postgres
       - oleg-proj-redis
     restart: on-failure
-    command: >
-      node dist/src/main.js
+
 
   oleg-proj-postgres:
     image: postgres:16.1
