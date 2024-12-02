@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react12">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,41 +69,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;withoutD&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/nestprojogon&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.migration:create.executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:generate (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:generate.executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:run (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.migration:run.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:docker:db (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:docker:db.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:local (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:local.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "withoutD",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/User/nestprojogon",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.migration:create.executor": "Run",
+    "npm.migration:generate (1).executor": "Run",
+    "npm.migration:generate.executor": "Run",
+    "npm.migration:run (1).executor": "Run",
+    "npm.migration:run.executor": "Run",
+    "npm.start:docker:db (1).executor": "Run",
+    "npm.start:docker:db.executor": "Run",
+    "npm.start:local (1).executor": "Run",
+    "npm.start:local.executor": "Run",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "C:\\Users\\User\\nestprojogon\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;redis&quot;,
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "redis",
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\nestprojogon" />
@@ -112,9 +120,9 @@
       <recent name="C:\Users\User\nestprojogon\src\modules\car-brand-module\dto\req" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start:local">
-    <configuration name="migration:generate" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/backend/package.json" />
+  <component name="RunManager" selected="npm.migration:run (1)">
+    <configuration name="migration:generate (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="migration:generate" />
@@ -123,8 +131,8 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="migration:run" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/backend/package.json" />
+    <configuration name="migration:run (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="migration:run" />
@@ -165,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.migration:run (1)" />
+        <item itemvalue="npm.migration:generate (1)" />
         <item itemvalue="npm.start:local" />
         <item itemvalue="npm.start:docker:db" />
         <item itemvalue="npm.start:local (1)" />
-        <item itemvalue="npm.migration:run" />
-        <item itemvalue="npm.migration:generate" />
       </list>
     </recent_temporary>
   </component>
@@ -256,15 +264,8 @@
       <workItem from="1733007350068" duration="349000" />
       <workItem from="1733008005128" duration="9481000" />
       <workItem from="1733017826425" duration="259000" />
-      <workItem from="1733018572486" duration="348000" />
-    </task>
-    <task id="LOCAL-00011" summary="and with posts.controller.ts">
-      <option name="closed" value="true" />
-      <created>1726920716575</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1726920716576</updated>
+      <workItem from="1733018572486" duration="414000" />
+      <workItem from="1733107670267" duration="904000" />
     </task>
     <task id="LOCAL-00012" summary="and with posts.controller.ts">
       <option name="closed" value="true" />
@@ -650,7 +651,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733017776782</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="test with react12">
+      <option name="closed" value="true" />
+      <created>1733018965920</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1733018965922</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,17 +696,6 @@
     <MESSAGE value="test with react1" />
     <MESSAGE value="test with react12" />
     <option name="LAST_COMMIT_MESSAGE" value="test with react12" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/modules/posts/posts.controller.ts</url>
-          <line>60</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
