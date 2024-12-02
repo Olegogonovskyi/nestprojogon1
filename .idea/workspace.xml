@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react12">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/oleg-proj.K13yrQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fecbbf8e-f1bf-4783-bd15-e4ff924364a3/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
-    </list>
+    <list default="true" id="3958ddd0-63ea-45e1-9a71-8b07211b7475" name="Changes" comment="test with react12" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -265,15 +255,7 @@
       <workItem from="1733008005128" duration="9481000" />
       <workItem from="1733017826425" duration="259000" />
       <workItem from="1733018572486" duration="414000" />
-      <workItem from="1733107670267" duration="904000" />
-    </task>
-    <task id="LOCAL-00012" summary="and with posts.controller.ts">
-      <option name="closed" value="true" />
-      <created>1726947019357</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1726947019358</updated>
+      <workItem from="1733107670267" duration="1288000" />
     </task>
     <task id="LOCAL-00013" summary="and with posts.controller.ts">
       <option name="closed" value="true" />
@@ -659,7 +641,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733018965922</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="test with react12">
+      <option name="closed" value="true" />
+      <created>1733108966232</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1733108966235</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
